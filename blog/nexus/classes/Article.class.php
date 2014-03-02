@@ -98,34 +98,33 @@
 		}
 				
 		
-		public function getAllCommentaires()
-		{
+		public function getAllCommentaires() {
 			$connexionBDD = connexionBDD();
 			
-			$id = $this->id;			
-			$requete = $connexionBDD->query("SELECT id, pseudo, date, commentaire
+			$requete = $connexionBDD->prepare("SELECT id, pseudo, date, commentaire
 																		FROM commentaires 
-																		WHERE id_news = $id
+																		WHERE id_news = :id
 																		ORDER BY date DESC");
 			
 			$this->commentaires = new Collection();	
+
+			if(false === $requete->execute(array('id' => $this->id))) {	
+				$connexionBDD = NULL;
+				return $this->commentaires;
+			}			
 			
-			if (false === ($donnees = $requete->fetch())) 
-			{
-				// echo '<h5 class="error">Il n\'y a pas de commentaires</h5>';
-				$nombreCommentaires = 0;
+			if (false === ($donnees = $requete->fetch())) {
+				$connexionBDD = NULL;
+				return $this->commentaires;
 			}
-			else 
-			{
-				do 
-				{
+			else {
+				do {
 					$this->commentaires[] = new Commentaire($donnees['id'],$donnees['pseudo'], $donnees['date'], $donnees['commentaire']);							
 				}
 				while ($donnees = $requete->fetch());
 			}
 						
-			$connexionBDD = NULL;
-			
+			$connexionBDD = NULL;			
 			return $this->commentaires;
 		}
 		

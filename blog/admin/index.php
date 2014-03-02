@@ -7,10 +7,10 @@
 <html lang="fr" >
 
 <head> 
-	<meta charset="utf-8" /> 
-	<title>CodisArt - Back Office - Accueil</title>	
+	<meta charset="utf-8" />
+	<title>CodisArt - Back Office - Accueil</title>
 	
-	<link rel="stylesheet" href="css/admin.css" />	
+	<link rel="stylesheet" href="css/admin.css" />
 	<link rel="shortcut icon" type="image/x-icon" href="images/admin_favicon.ico" />
 </head>
 
@@ -20,7 +20,7 @@
 	<div class="global">
 	
 		<header class="header">
-			<h1>Bienvenue sur le back-office du blog !</h1>			
+			<h1>Bienvenue sur le back-office du blog !</h1>
 		</header>
 
 		<nav class="nav">
