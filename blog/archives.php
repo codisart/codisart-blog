@@ -29,8 +29,7 @@
 					$controller ->recoverGET('a','annee')
 								->recoverGET('m','mois');
 
-					if(!$controller->isNumber($annee) || !$controller->isNumber($mois))
-					{
+					if(!$controller->isNumber($annee) || !$controller->isNumber($mois)) {
 						header('Location: ./');
 						exit;
 					}
