@@ -17,7 +17,7 @@
 				
 				<h2 class="lb_title"><?php echo $form_title; ?></h2>
 				
-				<form id="" action="operations_suggestion.php" method="POST">
+				<form id="" action="actions/suggestion.php" method="POST">
 					<p>				
 						<input type="hidden" name="action" value="supprimer" />
 						<input type="hidden" name="idSuggestion" value="<?php echo $id ?>" />
