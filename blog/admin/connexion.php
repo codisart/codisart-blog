@@ -4,6 +4,7 @@
 	while(empty($directories)){chdir('..'); $directories = glob('nexus');}
 	require_once(getcwd().'/nexus/main.php');
 		
+	$controller = Controller::getInstance();
 	$controller->recoverPOST('login')->recoverPOST('password');
 	
 	if($controller->isString($login) && $controller->isString($password)) {
