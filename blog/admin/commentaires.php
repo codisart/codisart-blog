@@ -21,12 +21,7 @@
 		<header class="header">
 			<h1>Bienvenue sur le back-office du blog !</h1>
 		</header>
-			
-		<div id ="navigation">	
-			<a class="ongletActif">Accueil</a>
-			<a class="onglet" href="deconnexion.php">Se déconnecter</a>
-		</div>
-
+		
 		<nav class="nav">
 			<ul>
 				<li class="tab bg-light-blue"><a class="option" href="index.php">Articles</a></li></li>
