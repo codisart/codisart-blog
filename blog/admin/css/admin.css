@@ -95,8 +95,7 @@ nav .actif:hover .option {color :  #707070; text-shadow: none;}
 .contenu {clear : both; background : #efefef; box-shadow: 0 0 0 7px #ffffff; -moz-box-shadow: 0 0 0 7px #ffffff; -webkit-box-shadow: 0 0 0 7px #ffffff; border : 1px solid #cccccc; font-family : Arial, Helvetica, sans-serif;}
 
 .grand button,
-.grand .button
- {
+.grand .button {
 	display : block;
 	border: 1px solid #c0c0c0;
 	box-shadow: 0px 1px 0px #f7f7f7, 0 1px 0 0 #f7f7f7 inset ;
@@ -237,10 +236,12 @@ form .button:active { color : #505050; background : -webkit-linear-gradient(bott
 
 #lightbox {display : none; position : fixed; top : 25%; left : 50%; z-index : 2000; min-height : 400px; width : 500px; margin-left : -250px; overflow: auto; padding : 8px;}
 
+#cia-lightbox {width : 500px; }
 #cia-lightbox  h2 { height : 50px ; line-height : 50px ; color: #4f4f4f; margin : 0 15px 0;}
 #cia-lightbox em {font-size : 10px; color: #a8a8a8;}
 
 #cia-lightbox form .textbox {float : right;width : 220px;}
+#cia-lightbox form textarea {resize: none;}
 
 #cia-lightbox .button { padding : 0 25px 0; border-radius : 4px; font-size : 15px; font-weight : bold; text-shadow : 0 1px 0 #ffffff; box-shadow: 0 1px 1px #ffffff inset; background : -webkit-linear-gradient(top, #f8f8f8, #e8e8e8);}
 #cia-lightbox .button:hover { color : #303030; background : -webkit-linear-gradient(top, #ffffff, #efefef);}
