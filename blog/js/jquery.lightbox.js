@@ -37,7 +37,7 @@
 
 	$.lightbox.hide = function() {
 		var lightbox = $("#cia-lightbox"), brouillard = $("#cia-brouillard");
-		brouillard.hide(); lightbox.html("").hide();
+		brouillard.remove(); lightbox.html("").remove();
 	}
 	
 })(jQuery);

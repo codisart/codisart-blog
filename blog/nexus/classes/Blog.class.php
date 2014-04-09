@@ -208,7 +208,7 @@
 		/**
 		 *	@return Collection $messages collection des messages
 		 */
-		public function getAllSuggestions() {
+		static public function getAllSuggestions() {
 			$messages = new Collection();		
 						
 			$connexionBDD = connexionBDD();				
