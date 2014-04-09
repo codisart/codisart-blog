@@ -86,7 +86,7 @@
 
 				<tbody>
 					<tr>
-						<td id="load_more_articles" class="load_more" colspan="4" data-count="<?php echo $articles->count(); ?>" data-periode="<?php echo 3; ?>">Charger plus d'articles</td>
+						<td class="load-articles" colspan="4" ><a href="" onclick="loadArticles();return false;"data-count="<?php echo $articles->count(); ?>" data-periode="<?php echo 3; ?>">Charger plus d'articles</a></td>
 					</tr>
 				</tbody>
 

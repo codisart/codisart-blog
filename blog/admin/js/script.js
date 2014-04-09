@@ -45,6 +45,12 @@ function hideCheckBoxSelectAll() {
 	}
 }
 
+function loadArticles (that) {
+	console.log(that.dataset.count);
+	console.log(that.dataset.periode);
+
+	// body...
+}
 
 /*
 function verificationMail(chaine) {

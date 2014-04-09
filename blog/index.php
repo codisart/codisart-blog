@@ -9,7 +9,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 
 	<noscript>
-        <style>#global{display:none; }body{background: white;}</style>
+        <style> #global{display:none;} body{background: white;}</style>
     </noscript>
 </head>
 
