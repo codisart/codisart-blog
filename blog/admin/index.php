@@ -51,9 +51,11 @@
 						do{$directories = glob('nexus');} while(empty($directories) && chdir('..'));
 						require_once(getcwd().'/nexus/main.php');
 						
-						// $articles = Blog::getAllArticles();
+						defined('REPARTITION') || define('REPARTITION', 5);
+
+						$totalArticles = Blog::getNombreAllArticles();
 						$thisBlog = new Blog();					
-						$articles = $thisBlog->getArticles(1, 3);
+						$articles = $thisBlog->getArticles(1, REPARTITION);
 																		
 						foreach ($articles as $article):
 					?>
@@ -86,7 +88,9 @@
 
 				<tbody>
 					<tr>
-						<td class="load-articles" colspan="4" ><a href="" onclick="loadArticles();return false;"data-count="<?php echo $articles->count(); ?>" data-periode="<?php echo 3; ?>">Charger plus d'articles</a></td>
+						<td class="load-articles" colspan="4" >
+							<a href="" onclick="loadArticles(this);return false;" data-total="<?php echo $totalArticles; ?>"data-count="<?php echo $articles->count(); ?>" data-periode="<?php echo REPARTITION; ?>">Charger plus d'articles</a>
+						</td>
 					</tr>
 				</tbody>
 

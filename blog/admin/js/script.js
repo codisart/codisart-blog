@@ -47,7 +47,7 @@ function hideCheckBoxSelectAll() {
 
 function loadArticles (that) {
 	console.log(that.dataset.count);
-	console.log(that.dataset.periode);
+	console.log(that.dataset.total);
 
 	// body...
 }

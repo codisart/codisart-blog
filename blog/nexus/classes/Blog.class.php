@@ -98,23 +98,21 @@
 			 			
 			$articles = new Collection();
 						
-			$requete = $connexionBDD->query("SELECT COUNT(id)
+			$requete = $connexionBDD->query("SELECT COUNT(1) as total
 													FROM news
 													");
 			
 			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
+				echo '<h5 class="error">Il n\'y a pas d\'articles enregistrés</h5>';
+				$number =  0;
 			}
 			else {
-				do {
-					$articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);							
-				}
-				while ($donnees = $requete->fetch());
+				$number = $donnees['total'];
 			}
 															
 			$connexionBDD = NULL;				
 			
-			return $articles;
+			return $number;
 		}
 				
 		
