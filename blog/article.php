@@ -31,28 +31,34 @@
 					require_once('nexus/main.php');
 					
 					$controller = Controller::getInstance();
-	
-					$controller ->recoverPOST('comment', 'comment')
-								->recoverPOST('mail', 'mail')
-								->recoverPOST('pseudo', 'pseudo')
-								->recoverPOST('idArticle', 'id')
-								->recoverPOST('action');
-
-					if('ajouter' === $action)
-					{
-						if($controller->isString($comment) && $controller->isEmailAdresse($mail) && $controller->isString($pseudo) && $controller->isNumber($id))
-						{					
-							Commentaire::ajouter($id, $pseudo, $mail, $comment);
-						}
-						else 
-						{						
-							echo '<h5 class="error">Votre mail n\'est pas valide !</h5>';		
-						}
-					}					
+					$controller
+						->recoverPOST('asali')
+						->recoverPOST('idArticle', 'id')
+						->recoverPOST('action');
 					
+					if(!$asali) {
+						$controller 
+							->recoverPOST('comment', 'comment')
+							->recoverPOST('mail', 'mail')
+							->recoverPOST('pseudo', 'pseudo');
+
+						if('ajouter' === $action)
+						{
+							if($controller->isString($comment) && $controller->isEmailAdresse($mail) && $controller->isString($pseudo) && $controller->isNumber($id))
+							{					
+								Commentaire::ajouter($id, $pseudo, $mail, $comment);
+							}
+							else 
+							{						
+								echo '<h5 class="error">Votre mail n\'est pas valide !</h5>';		
+							}
+						}	
+					}
+						
 					$controller ->recoverGET('idArticle', 'id');
 
 					$article = new Article($id);
+					
 				?>
 				
 				<br/>
@@ -120,6 +126,7 @@
 						</p>
 						
 						<p>
+							<input type="text" name="asali" id="asali" value="" />
 							<input id="submit" name="submit" value="Valider" type="submit" class="button">
 						</p>
 					</form>
