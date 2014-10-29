@@ -35,7 +35,7 @@
 					</p>
 
 					<p>
-						<label for="contenuArticle">Contenu : </label>
+						<label for="contenuArticle" class="textarea">Contenu : </label>
 						<textarea name="contenuArticle" id="contenuArticle" rows="8" cols="51"><?php echo isset($article) ? $article->getContenu() : ''; ?></textarea>
 					</p>
 					

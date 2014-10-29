@@ -71,7 +71,7 @@
 		
 		public function getContenu()
 		{		
-			return nl2br(htmlspecialchars($this->contenu));
+			return nl2br($this->contenu);
 		}			
 		
 		

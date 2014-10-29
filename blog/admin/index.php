@@ -51,7 +51,7 @@
 						do{$directories = glob('nexus');} while(empty($directories) && chdir('..'));
 						require_once(getcwd().'/nexus/main.php');
 						
-						defined('REPARTITION') || define('REPARTITION', 5);
+						defined('REPARTITION') || define('REPARTITION', 10);
 
 						$totalArticles = Blog::getNombreAllArticles();
 						$thisBlog = new Blog();					
@@ -105,11 +105,13 @@
 	</div>
 	
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="//cdn.ckeditor.com/4.4.5/full/ckeditor.js"></script>
 	<script type="text/javascript" src="//punkka.alwaysdata.net/blog/js/jquery.lightbox.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	
 	<script>
 		$(document).ready( function() {
+
 			$('#create_new_article').on('click',function(){
 				formulaire('article.php', 'ajouter');			
 			});
@@ -135,6 +137,7 @@
 			.on('mouseout',function(){
 				this.src='images/delete.png';			
 			});
+
 
 			$('#load_more_articles').on('click', function (){
 				// var articles = {};

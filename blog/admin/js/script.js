@@ -7,10 +7,11 @@ function formulaire(page, action, id) {
 		if(id) { params.id = id; }
 		
 		$.post('forms/'+ page, params,  function(data){
-			$.lightbox(data);
+			$.lightbox(data);	
+			CKEDITOR.replace( 'contenuArticle', {language: 'fr', skin : 'moono'});
 		})
 		.fail(function(jqXHR, textStatus) {
-			$.lightbox(buildPetitContenu(textStatus + ' ' + jqXHR.status));	
+			$.lightbox(buildPetitContenu(textStatus + ' ' + jqXHR.status));
 		});
 	}
 	else {
@@ -18,7 +19,13 @@ function formulaire(page, action, id) {
 	}
 }
 
-
+/**
+ * [buildPetitContenu description]
+ * @param  {[type]} data [description]
+ * @return {[type]}      [description]
+ *
+ * TODO : Changer le nom de la fonction
+ */
 function buildPetitContenu(data) {
 	var contenu = "";
 
@@ -45,9 +52,18 @@ function hideCheckBoxSelectAll() {
 	}
 }
 
-function loadArticles (that) {
+function loadArticles(that) {
 	console.log(that.dataset.count);
 	console.log(that.dataset.total);
+
+	$.post('forms/'+ page, params,  function(data){
+			$.lightbox(data);
+		})
+	// articles = loadMoreArticles($(this).data('count'), $(this).data('periode'));
+				
+				// for (article in articles) {
+
+				// }
 
 	// body...
 }
@@ -66,8 +82,17 @@ function verificationMail(chaine) {
 }
 */
 
-$(document).ready(function() {
 
+
+$(document).ready(function() {
+	CKEDITOR.config.toolbar = [
+	   ['Bold','Italic','Underline','Strike'],
+	   ['Undo','Redo','-','Cut','Copy','Paste','Find','Replace','-','Outdent','Indent'],
+	   '/',
+	   ['NumberedList','BulletedList'],
+	   ['Image','-','Link','Unlink','-', 'TextColor','BGColor'],
+	   ['Source']
+	] ;
 	
 });
 

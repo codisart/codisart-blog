@@ -1,5 +1,13 @@
 <?php 
 
+    /***** Config *****/
+
+    define('REPARTITION', 15);
+
+
+
+
+
 	/***** Base de données *****/
 	
 	define("SERVER","mysql:host=localhost;dbname=blog");
@@ -41,3 +49,4 @@
     }
     
     spl_autoload_register("loadFile");
+
