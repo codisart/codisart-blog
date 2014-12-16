@@ -53,9 +53,9 @@
 						
 						defined('REPARTITION') || define('REPARTITION', 10);
 
-						$totalArticles = Blog::getNombreAllArticles();
 						$thisBlog = new Blog();					
 						$articles = $thisBlog->getArticles(1, REPARTITION);
+						$totalArticles = $thisBlog::getNombreAllArticles();
 																		
 						foreach ($articles as $article):
 					?>
