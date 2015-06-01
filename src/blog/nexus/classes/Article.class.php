@@ -130,37 +130,29 @@
 		
 						
 		//Setters 
-		public function setContenu($newContenu) {		
-			if($newContenu === $this->contenu) {			
-				return $this;
-			}
-			
-			$id = $this->id;			
-			$this->contenu = $newContenu;		
-			
-			$connexionBDD = connexionBDD();
-			
-			$requete = $connexionBDD->prepare("UPDATE news SET contenu = ? WHERE id ='$id'");
-			$requete->execute(array($newContenu));
-			
-			return $this;
+		public function setContenu($newContenu) {
+			return $this->setAttribut('contenu', $newContenu);
 		}
 		
 		
-		public function setTitre($newTitre) {		
-			if($newTitre === $this->titre) {			
+		public function setTitre($newTitre) {	
+			return $this->setAttribut('titre', $newTitre);
+		}
+
+		protected function setAttribut($name, $newValue) {
+			if($newValue === $this->$name) {			
 				return $this;
 			}
 			
 			$id = $this->id;
-			$this->titre = $newTitre;
+			$this->$name = $newValue;
 			
 			$connexionBDD = connexionBDD();
 			
-			$requete = $connexionBDD->prepare("UPDATE news SET titre = ? WHERE id ='$id'");
-			$requete->execute(array($newTitre));
-			
-			return $this;			
+			$requete = $connexionBDD->prepare("UPDATE news SET $name = ? WHERE id ='$id'");
+			$requete->execute(array($newValue));
+
+			return $this;		
 		}
 		
 		
