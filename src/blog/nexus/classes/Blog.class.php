@@ -14,7 +14,7 @@
 
 
 		/**
-		 *	@return le numéro de la page
+		 *	@return integer le numéro de la page
 		 */		
 		public function getPage() {
 			return $this->page;
@@ -22,7 +22,7 @@
 		
 		
 		/**
-		 *	@return le nombre d'articles de la page
+		 *	@return integer le nombre d'articles de la page
 		 */		
 		public function getNombreArticlesPage() {
 			return $this->nombreArticlesPage;
@@ -30,7 +30,7 @@
 		
 		
 		/**
-		 *	@return une Collection contenant les articles
+		 *	@return Collection les articles de la page demandée
 		 */		
 		public function getArticles($page, $nombreArticlesPage = 10) {			 
 			$this->page = $page;
@@ -64,7 +64,7 @@
 		
 
 		/**
-		 *	@return une collection contenant tous les articles
+		 *	@return Collection Tous les articles en base de données.
 		 */		
 		public static function getAllArticles() {			 			
 			$articles = new Collection();
@@ -117,7 +117,7 @@
 				
 		
 		/**
-		 * 	@param int $index numero  de l'article dans le tableau contenu
+		 * 	@param integer $index numero de l'article dans le tableau contenu
 		 *	@return Article l'article 
 		 */	
 		public function getArticle($index) {
@@ -126,8 +126,7 @@
 		
 		
 		/**
-		 * 	@param int $index numero  de l'article dans le tableau contenu
-		 *	@return Article $article l'article 
+		 *	@return Article un article au hasard.
 		 */	
 		public static function getRandomArticle() {					
 			$connexionBDD = connexionBDD();

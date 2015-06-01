@@ -2,8 +2,6 @@
 	
 	class Suggestion {
 		
-		static private $database = "messages";
-		
 		// private $page;
 		// private $adresse;
 		// private $nombreMessagesPage;
@@ -11,8 +9,6 @@
 		// private $messages;
 		
 		/**
-		 * @param int $page numéro de la page, int $nombreArticlePage nombre d'articles par page (par défault 10)
-		 * constructeur de la classe, initialise les articles de toute la page
 		 */
 		public function __construct($id, $pseudo = '', $mail = '', $date = 0, $message = '') {
 			$this->id = $id;
@@ -57,7 +53,7 @@
         }
 		
 		/**
-		 *	@return une Collection contenant les messages
+		 *	@return Collection les messages de la page demandée.
 		 */		
 		public function getCommentaires($page, $nombreMessagesPage = 10) {			 
 			$this->page = $page;
