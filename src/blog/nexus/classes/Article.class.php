@@ -65,7 +65,7 @@
 		public function formatDateFrench() {			
 			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 			
-			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n",strtotime($this->date)) -1].date(" Y, H:i:s",strtotime($this->date));
+			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n", strtotime($this->date)) -1].date(" Y, H:i:s", strtotime($this->date));
 			
 			return $this;
 		}
@@ -81,19 +81,16 @@
 			$contenu = $this->get_Contenu();
 			$contenu_limite = '';
 			
-			if (substr_count($contenu, ' ') - $nbreMots > 10)
-			{
+			if (substr_count($contenu, ' ') - $nbreMots > 10) {
 				$contenu = explode(' ', $contenu);
-				for ( $i = 0  ; $i < 20 ; $i++)
-				{
+				for ($i = 0; $i < 20; $i++) {
 					$contenu_limite .= $contenu[$i].' ';
 				}
 				
 				$contenu_limite .= '...<br/><em><a href="article.php?idArticle='.$this->get_ID().'">Lire la suite -></a></em>';
 				return $contenu_limite;
 			}
-			else 
-			{
+			else  {
 				return $contenu;
 			}							
 		}
