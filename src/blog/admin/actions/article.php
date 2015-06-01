@@ -17,7 +17,7 @@
 		$article->setContenu($contenu)->setTitre($titre);
 	}
 	else if('ajouter' === $action && $controller->isString($titre) &&  "" !== $contenu)	{		
-		$id = Article::ajouter($titre, $contenu);
+		Article::ajouter($titre, $contenu);
 	}
 	else if('supprimer' === $action && $controller->isNumber($id)) {		
 		$article = new Article($id);		

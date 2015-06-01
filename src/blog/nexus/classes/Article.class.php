@@ -165,22 +165,22 @@
 				
 			if (!connexionBDD()->query("DELETE FROM news WHERE id ='$id'")) {
 				echo 'Cet article a déjà été supprimé ou n\'existe pas !';
+				return false;
 			}			
 			
 			return true;
 		}	
 		
 		
-		public function ajouter($titre, $contenu) {
-			$connexionBDD = connexionBDD();
-			
-			$requete = $connexionBDD->prepare("INSERT INTO news (titre, contenu) VALUES ( ?, ?)");
+		public function ajouter($titre, $contenu) {			
+			$requete = connexionBDD()->prepare("INSERT INTO news (titre, contenu) VALUES ( ?, ?)");
 			
 			if (!$requete->execute(array($titre, $contenu))) {				
 				echo 'Cet article a déjà été supprimé ou n\'existe pas !';
+				return false;
 			}			
-				
-			$connexionBDD = NULL;
+
+			return true;
 		}	
 		
 		
@@ -203,7 +203,7 @@
 				$connexionBDD = NULL;
 				return false;
 			}
-			
+
 			do {
 				$articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);
 			}
