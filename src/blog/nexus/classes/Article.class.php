@@ -9,11 +9,11 @@
 		private $commentaires;
 		
 		
-		public function __construct($id,$titre = '', $date = 0, $contenu = '')
+		public function __construct($id, $titre = '', $date = 0, $contenu = '')
 		{		
 			$this->id = $id;
 			
-			if($titre == '' && $date == 0 && $contenu == '')
+			if ($titre == '' && $date == 0 && $contenu == '')
 			{				
 				$connexionBDD = connexionBDD();
 				
@@ -43,9 +43,9 @@
 		/**
 		 *  Permet la lecture seule des membres
 		 */		
-		public function __get ($nom)
+		public function __get($nom)
         {
-            if(isset($this->$nom))
+            if (isset($this->$nom))
 			{
 				return $this->$nom;
 			}
@@ -63,7 +63,7 @@
 		{			
 			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 			
-			$this->date = date("j ",strtotime($this->date)).$listeMois[date("n",strtotime($this->date)) -1].date(" Y, H:i:s",strtotime($this->date));
+			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n",strtotime($this->date)) -1].date(" Y, H:i:s",strtotime($this->date));
 			
 			return $this;
 		}
@@ -80,10 +80,10 @@
 			$contenu = $this->get_Contenu();
 			$contenu_limite = '';
 			
-			if(substr_count($contenu, ' ') - $nbreMots > 10)
+			if (substr_count($contenu, ' ') - $nbreMots > 10)
 			{
-				$contenu = explode(' ',$contenu);
-				for( $i = 0  ; $i < 20 ; $i++)
+				$contenu = explode(' ', $contenu);
+				for ( $i = 0  ; $i < 20 ; $i++)
 				{
 					$contenu_limite .= $contenu[$i].' ';
 				}
@@ -108,7 +108,7 @@
 			
 			$this->commentaires = new Collection();	
 
-			if(false === $requete->execute(array('id' => $this->id))) {	
+			if (false === $requete->execute(array('id' => $this->id))) {	
 				$connexionBDD = NULL;
 				return $this->commentaires;
 			}			
@@ -119,7 +119,7 @@
 			}
 			else {
 				do {
-					$this->commentaires[] = new Commentaire($donnees['id'],$donnees['pseudo'], $donnees['date'], $donnees['commentaire']);							
+					$this->commentaires[] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['commentaire']);							
 				}
 				while ($donnees = $requete->fetch());
 			}
@@ -131,16 +131,19 @@
 						
 		//Setters 
 		public function setContenu($newContenu) {
-			return $this->setAttribut('contenu', $newContenu);
+			return $this->setAttribute('contenu', $newContenu);
 		}
 		
 		
 		public function setTitre($newTitre) {	
-			return $this->setAttribut('titre', $newTitre);
+			return $this->setAttribute('titre', $newTitre);
 		}
 
-		protected function setAttribut($name, $newValue) {
-			if($newValue === $this->$name) {			
+		/**
+		 * @param string $name
+		 */
+		protected function setAttribute($name, $newValue) {
+			if ($newValue === $this->$name) {			
 				return $this;
 			}
 			
@@ -160,7 +163,7 @@
 		public function supprimer() {
 			$id = $this->id;					
 				
-			if(!connexionBDD()->query("DELETE FROM news WHERE id ='$id'")) {
+			if (!connexionBDD()->query("DELETE FROM news WHERE id ='$id'")) {
 				echo 'Cet article a déjà été supprimé ou n\'existe pas !';
 			}			
 			
@@ -173,7 +176,7 @@
 			
 			$requete = $connexionBDD->prepare("INSERT INTO news (titre, contenu) VALUES ( ?, ?)");
 			
-			if(!$requete->execute(array($titre, $contenu))) {				
+			if (!$requete->execute(array($titre, $contenu))) {				
 				echo 'Cet article a déjà été supprimé ou n\'existe pas !';
 			}			
 				
@@ -189,7 +192,7 @@
 													WHERE DATE_FORMAT(date, '%Y/%c') = :mois
 													ORDER BY id DESC");
 			
-			if(false === $requete->execute(array('mois' => $mois))) {				
+			if (false === $requete->execute(array('mois' => $mois))) {				
 				$connexionBDD = NULL;
 				return false;
 			}
@@ -204,11 +207,6 @@
 				}
 				while ($donnees = $requete->fetch());
 			}
-
-			// while ($donnees = $requete->fetch())
-			// {
-			// 	$articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);							
-			// }
 			
 			return $articles;			
 		}	
