@@ -34,33 +34,25 @@
 		
 		
 		
-		public function recoverPOST($key, $newKey = false) {
-			if(false === $newKey) {
-				$newKey = $key;
-			}
-			
-			global ${$newKey};
-
-			if(array_key_exists($key, $_POST)) {
-				${$newKey} = $_POST[$key];
-				$this->variables[$newKey] = $_POST[$key];
-				unset($_POST[$key]);
-			}
-
-			return $this;	
+		public function recoverPOST($key, $newKey = false) {	
+			return $this->recoverGLOBAL($_POST, $key, $newKey);
 		}
 		
-		public function recoverGET($key, $newKey = false) {
+		public function recoverGET($key, $newKey = false) {			
+			return $this->recoverGLOBAL($_GET, $key, $newKey);
+		}
+
+		protected function recoverGLOBAL($superglobale, $key, $newKey = false) {
 			if(false === $newKey) {
 				$newKey = $key;
 			}
 			
 			global ${$newKey};
 				
-			if(array_key_exists($key, $_GET)) {
-				${$newKey} = $_GET[$key];
-				$this->variables[$newKey] = $_GET[$key];
-				unset($_GET[$key]);
+			if(array_key_exists($key, $superglobale)) {
+				${$newKey} = $superglobale[$key];
+				$this->variables[$newKey] = $superglobale[$key];
+				unset($superglobale[$key]);
 			}
 			
 			return $this;
@@ -69,7 +61,7 @@
 
 		/***** To string *****/
 
-		function toString() {
+		public function toString() {
 			$text = "";			
 			
 			if(empty($this->variables)) {
@@ -87,7 +79,7 @@
 		
 		/***** Controleur pour type d'input *****/
 
-		function isNumber($variable, $MAX_LENGTH = false) {
+		public function isNumber($variable, $MAX_LENGTH = false) {
 			if(!is_numeric($variable)) {
 				return false;
 			}	
@@ -102,7 +94,7 @@
 		}
 		
 		
-		function isString(&$chaine) {	
+		public function isString(&$chaine) {	
 			if(!is_string($chaine) || "" === $chaine) {			
 				return false;
 			}	
@@ -112,7 +104,7 @@
 		}
 		
 		
-		function isArray(&$array, $methode) {
+		public function isArray(&$array, $methode) {
 			if(empty($array)) {
 				$array = array();
 				return false;
@@ -128,7 +120,7 @@
 		}
 		
 		
-		function isHTML(&$text) {
+		public function isHTML(&$text) {
 			if(!is_string($text) || $text == "") {			
 				return false;
 			}	
@@ -139,7 +131,7 @@
 		}
 		
 		
-		function isPlainText(&$text) {
+		public function isPlainText(&$text) {
 			if(!is_string($text) || $text == "") {			
 				return false;
 			}	
@@ -150,8 +142,8 @@
 		
 		
 		/***** Special Inputs *****/
-		
-		function isEmailAdresse(&$adresse) {
+
+		public function isEmailAdresse(&$adresse) {
 			if (preg_match('#^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.((net)|(com)|(org)|(fr)|(uk))#',$adresse)) {							
 				return true;
 			}
@@ -160,7 +152,7 @@
 		}	
 		
 
-		function isTelephoneNumber(&$nombre) {
+		public function isTelephoneNumber(&$nombre) {
 			if (preg_match('#^0[1-8]([-. ]?[0-9]{2}){4}$#',$nombre)) {							
 				$nombre = str_replace(array("-","_"," "), "", $nombre);
 				return true;
