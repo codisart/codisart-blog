@@ -53,7 +53,7 @@
             if (isset($this->$nom)) {
 				return $this->$nom;
 			}
-			else  {
+			else {
 				return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
 			}
         }
@@ -65,7 +65,7 @@
 		public function formatDateFrench() {			
 			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 			
-			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n", strtotime($this->date)) -1].date(" Y, H:i:s", strtotime($this->date));
+			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n", strtotime($this->date))-1].date(" Y, H:i:s", strtotime($this->date));
 			
 			return $this;
 		}
@@ -90,7 +90,7 @@
 				$contenu_limite .= '...<br/><em><a href="article.php?idArticle='.$this->id.'">Lire la suite -></a></em>';
 				return $contenu_limite;
 			}
-			else  {
+			else {
 				return $contenu;
 			}							
 		}
@@ -108,16 +108,9 @@
 			
 			$this->commentaires = new Collection();	
 
-			if (false === $requete->execute(array('id' => $this->id))) {	
-				$connexionBDD = NULL;
-				return $this->commentaires;
-			}			
+			$requete->execute(array('id' => $this->id));
 			
-			if (false === ($donnees = $requete->fetch())) {
-				$connexionBDD = NULL;
-				return $this->commentaires;
-			}
-			else {
+			if (false !== ($donnees = $requete->fetch())) {
 				do {
 					$this->commentaires[] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['commentaire']);							
 				}
@@ -205,7 +198,7 @@
 			}
 
 			do {
-				$articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);
+				$articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
 			}
 			while ($donnees = $requete->fetch());
 			

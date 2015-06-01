@@ -84,12 +84,12 @@
 				</div>
 
 				<hr/>
-				
-				<h2 id="nombreCommentaires" ><?php echo $article->getAllCommentaires()->count(); ?> commentaires postés. <a href="#formCommentaire">Laisser un commentaire</a></h2>
-					
 				<?php
 					$comments = $article->getAllCommentaires();
+				?>
+				<h2 id="nombreCommentaires" ><?php echo $comments->count(); ?> commentaires postés. <a href="#formCommentaire">Laisser un commentaire</a></h2>
 					
+				<?php
 					foreach($comments as $comment):
 				?>
 					<div class="commentaire">
