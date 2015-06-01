@@ -1,6 +1,12 @@
 <?php 
+	
+	class data {
 
-$objet->
+		public function __construct() {
+			return true;
+		}
+	}
+
 
 
 ?>
