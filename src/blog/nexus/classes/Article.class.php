@@ -1,27 +1,32 @@
 <?php
 	
-	class Article
-	{
+	class Article {
+
 		private $titre;
+
 		private $date;
+
 		private $contenu;
-		private $id;		
+
+		private $id;
+
 		private $commentaires;
+
 		
 		
-		public function __construct($id, $titre = '', $date = 0, $contenu = '')
-		{		
+		public function __construct($id, $titre = '', $date = 0, $contenu = '') {		
 			$this->id = $id;
 			
-			if ($titre == '' && $date == 0 && $contenu == '')
-			{				
+			if ($titre == '' && $date == 0 && $contenu == '') {				
 				$connexionBDD = connexionBDD();
 				
-				$requete = $connexionBDD->query("SELECT id, titre, contenu, date
-																	FROM news 
-																	WHERE id='$id'
-																	ORDER BY id DESC 
-																	LIMIT 0,1");			
+				$requete = $connexionBDD->query("
+					SELECT id, titre, contenu, date
+					FROM news 
+					WHERE id='$id'
+					ORDER BY id DESC 
+					LIMIT 0,1
+				");			
 			
 				$donnees = $requete->fetch();
 				
@@ -43,14 +48,12 @@
 		/**
 		 *  Permet la lecture seule des membres
 		 */		
-		public function __get($nom)
-        {
-            if (isset($this->$nom))
-			{
+		public function __get($nom) {
+
+            if (isset($this->$nom)) {
 				return $this->$nom;
 			}
-			else 
-			{
+			else  {
 				return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
 			}
         }
@@ -59,8 +62,7 @@
 		
 		
 		// A mettre dnas une librairie
-		public function formatDateFrench()
-		{			
+		public function formatDateFrench() {			
 			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 			
 			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n",strtotime($this->date)) -1].date(" Y, H:i:s",strtotime($this->date));
@@ -69,8 +71,7 @@
 		}
 
 		
-		public function getContenu()
-		{		
+		public function getContenu() {		
 			return nl2br($this->contenu);
 		}			
 		
@@ -101,10 +102,12 @@
 		public function getAllCommentaires() {
 			$connexionBDD = connexionBDD();
 			
-			$requete = $connexionBDD->prepare("SELECT id, pseudo, date, commentaire
-																		FROM commentaires 
-																		WHERE id_news = :id
-																		ORDER BY date DESC");
+			$requete = $connexionBDD->prepare("
+				SELECT id, pseudo, date, commentaire
+				FROM commentaires 
+				WHERE id_news = :id
+				ORDER BY date DESC
+			");
 			
 			$this->commentaires = new Collection();	
 
@@ -187,10 +190,12 @@
 		static public function getArticlesMois($year, $month) {
 			$mois = "$year/$month";
 			
-			$requete = connexionBDD()->prepare("SELECT id, titre, contenu, date
-													FROM news 
-													WHERE DATE_FORMAT(date, '%Y/%c') = :mois
-													ORDER BY id DESC");
+			$requete = connexionBDD()->prepare("
+				SELECT id, titre, contenu, date
+				FROM news 
+				WHERE DATE_FORMAT(date, '%Y/%c') = :mois
+				ORDER BY id DESC
+			");
 			
 			if (false === $requete->execute(array('mois' => $mois))) {				
 				$connexionBDD = NULL;
