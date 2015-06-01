@@ -78,7 +78,7 @@
 		
 		public function getContenuLimite($nbreMots = 20) {
 			
-			$contenu = $this->get_Contenu();
+			$contenu = $this->getContenu();
 			$contenu_limite = '';
 			
 			if (substr_count($contenu, ' ') - $nbreMots > 10) {
@@ -87,7 +87,7 @@
 					$contenu_limite .= $contenu[$i].' ';
 				}
 				
-				$contenu_limite .= '...<br/><em><a href="article.php?idArticle='.$this->get_ID().'">Lire la suite -></a></em>';
+				$contenu_limite .= '...<br/><em><a href="article.php?idArticle='.$this->id.'">Lire la suite -></a></em>';
 				return $contenu_limite;
 			}
 			else  {
@@ -203,12 +203,11 @@
 				$connexionBDD = NULL;
 				return false;
 			}
-			else {
-				do {
-					$articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);
-				}
-				while ($donnees = $requete->fetch());
+			
+			do {
+				$articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);
 			}
+			while ($donnees = $requete->fetch());
 			
 			return $articles;			
 		}	
