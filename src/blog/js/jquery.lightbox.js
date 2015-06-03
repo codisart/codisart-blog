@@ -22,7 +22,7 @@
 			.on("click", function() { $.lightbox.hide();});
 
 		lightbox.html(contenu);
-		margin_left = -parseInt(lightbox.css("width"))/2;
+		var margin_left = -parseInt(lightbox.css("width"))/2;
 
 		var lightbox_styles = {"position" : "fixed", "top" : "22%", "z-index" : "2000", "left" : "50%", "margin-left" : margin_left };	
 		lightbox.css("marginLeft", margin_left);
