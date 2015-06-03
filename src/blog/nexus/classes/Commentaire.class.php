@@ -55,12 +55,12 @@
 		}
 		
 		
-		public static function supprimer($id_contenu) {		
+		public static function supprimer($idContenu) {		
 			$connexionBDD = connexionBDD();
 				
 			$requete = $connexionBDD->prepare("DELETE FROM commentaires WHERE id = :id");
 			
-			if(false === $requete->execute(array('id' => $id_contenu))) {				
+			if(false === $requete->execute(array('id' => $idContenu))) {				
 				echo '<h5 class="error">On ne peut pas supprimer ce contenu !</h5>';
 				
 				$connexionBDD = NULL;				

@@ -22,7 +22,7 @@
 		}
 
 		
-		public function resize_to($max_width, $max_height)
+		public function resize_to($maxWidth, $maxHeight)
 		{
 			//If image dimension is smaller, do not resize
 			if ($this->info[0] <= $max_width && $this->info[1] <= $max_height)

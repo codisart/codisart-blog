@@ -73,15 +73,15 @@
 		
 		/***** Controleur pour type d'input *****/
 
-		public function isNumber($variable, $MAX_LENGTH = false) {
+		public function isNumber($variable, $maxLength = false) {
 			if(!is_numeric($variable)) {
 				return false;
 			}	
 
-			if(false === $MAX_LENGTH) {
+			if(false === $maxLength) {
 				return true;
 			}
-			else if(strlen($variable) === $MAX_LENGTH) {
+			else if(strlen($variable) === $maxLength) {
 				return true;
 			}
 			return false;			
