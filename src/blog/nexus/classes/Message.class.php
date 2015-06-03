@@ -8,7 +8,7 @@
 		private $contenu;
 		private $id;
 		
-		public function __construct($id,$pseudo = "", $date = 0, $mail = "", $contenu = "") {
+		public function __construct($id, $pseudo = "", $date = 0, $mail = "", $contenu = "") {
 			
 			$this->id = $id;
 			

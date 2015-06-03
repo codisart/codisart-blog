@@ -2,33 +2,8 @@
 
 /* Image.lib.php */
 
-
-function afficherGalerie($dossierImages) {
-	$cheminDossierImages = 'images/'.$dossierImages;
-
-	if(!is_dir($cheminDossierImages)) {
-        return false;
-	}
-    
-    if($referenceDossierImages = opendir('images/'.$dossierImages)) {
-					
-		for ( $i = 1 ; $i < 20 ; $i++) {						
-			$image = readdir($referenceDossierImages);	
-
-			if($image && $image != 'Thumbs.db' && $image!= 'miniatures' && $image!= 'testGD.php' && $image != '.'  && $image != '..') {
-
-				if(!is_file('images/'.$dossierImages.'/miniatures/'.$image)) {							
-					createMiniature();
-				}
-				
-				echo '<img id="mini'.$image.'"  alt="'.$image.'" height="74" src="images/'.$dossierImages.'/miniatures/'.$image.'" onclick="afficherImageTailleReelle(this.id);"/>';	
-			}		
-		}
-	}		
-}
-
 function createMiniature() {
-	$source = imagecreatefromjpeg('images/'.$dossierImages.'/'.$image);
+	$source = imagecreatefromjpeg('images/image.jpg');
 	$largeur = imagesx($source);
 	$hauteur = imagesy($source);
 
