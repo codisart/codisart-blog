@@ -114,8 +114,8 @@ body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
 #secondaire .encart .recherche p { height: 28px;}
 #secondaire .encart .recherche input { float: left; height: 26px; line-height: 26px; margin: 0; padding:0; border: 1px solid #2a2a2a; outline: none; box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;}
 	
-#secondaire .encart .recherche input.saisie { width: 170px; font-family: Calibri, "Lucida Grande", sans-serif; font-size: 18px; color: #909090; padding: 0 0 0 7px; font-style: italic; border-right: none; margin-left: 12%; background: #FFFFFF; }
-#secondaire .encart .recherche input.bouton { width: 30px; color: #FFFFFF; font-size: 15px; font-family: Rockwell; background: #2a2a2a; text-align: center; border-radius: 0;}
+#secondaire .encart .recherche .saisie { width: 170px; font-family: Calibri, "Lucida Grande", sans-serif; font-size: 18px; color: #909090; padding: 0 0 0 7px; font-style: italic; border-right: none; margin-left: 12%; background: #FFFFFF; }
+#secondaire .encart .recherche .bouton { width: 30px; color: #FFFFFF; font-size: 15px; font-family: Rockwell; background: #2a2a2a; text-align: center; border-radius: 0;}
 	
 
 /***** projects.php *****/
