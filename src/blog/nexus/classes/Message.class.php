@@ -58,19 +58,7 @@
 		}
 		
 		
-		//fonctions / Méthodes
-		public function afficher($view) {	
-			if($view != '') {
-				include($view);
-				echo "\n\n";
-			}
-			else {
-				echo '<h2>'.$this->pseudo.'</h2>';
-				echo '<br/>';
-				echo "\n\n";
-			}		
-		}
-		
+		//fonctions / Méthodes				
 		public static function ajouter($pseudo, $mail, $contenu) {
 			if($pseudo != "" && $mail != "" && $contenu !="") {			
 				$connexionBDD = connexionBDD();
