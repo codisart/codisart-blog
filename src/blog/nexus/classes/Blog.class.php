@@ -95,12 +95,11 @@
 		 */		
 		public static function getNombreAllArticles() {
 			$connexionBDD = connexionBDD();
-			 			
-			$articles = new Collection();
 						
-			$requete = $connexionBDD->query("SELECT COUNT(1) as total
-													FROM news
-													");
+			$requete = $connexionBDD->query("
+				SELECT COUNT(1) as total
+				FROM news
+			");
 			
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles enregistrés</h5>';

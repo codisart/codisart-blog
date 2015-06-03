@@ -110,8 +110,8 @@
 				return false;
 			}
 			
-			foreach($array as $key => $value) {			
-				if(false === $this->$methode($array[$key])) {
+			foreach($array as $value) {			
+				if(false === $this->$methode($value)) {
 					return false;
 				}
 			}
