@@ -1,15 +1,9 @@
 <?php
 
-	class Controller 
-	{
+	class Controller {
 		static private $instance;
 
 		public $variables = array();
-		
-		function __construct()
-		{			
-			
-		}
 		
 		
 		public function __toString() {
@@ -24,7 +18,7 @@
 		}
 		
 		
-		static public  function getInstance() {
+		static public function getInstance() {
 			 if(is_null(self::$instance)) {
 			   self::$instance = new Controller();  
 			 }
