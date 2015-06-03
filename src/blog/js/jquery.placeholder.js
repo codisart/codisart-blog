@@ -16,7 +16,7 @@
     			var placeholder = that.attr('placeholder');				
 
 				that.on('focus', function() {
-					if(that.val() == placeholder) {
+					if(that.val() === placeholder) {
 						that.val("");
 						that.css('color', '#222222');
 						that.css('font-style','normal');
@@ -24,7 +24,7 @@
 				});
 
 				that.on('blur', function() {
-					if(that.val() == "") {
+					if(that.val() === "") {
 						that.val(placeholder);
 						that.css('color', '#909090');
 						that.css('font-style','italic');
