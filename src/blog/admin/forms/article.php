@@ -12,12 +12,10 @@
 		
 	$titre = $contenu = $form_title = "";
 		
-	if('ajouter' === $action || ('modifier' ===  $action && $controller->isNumber($id)))
-	{			
+	if('ajouter' === $action || ('modifier' ===  $action && $controller->isNumber($id))) {			
 		$form_title = "Nouvel article";
 	
-		if('modifier' === $action) 
-		{
+		if('modifier' === $action) {
 			$form_title = "Modifer l'article"; 			
 			$article = new Article($id);											
 		}
@@ -50,10 +48,10 @@
 			</div>
 		<?php
 		
-	}
-	else if($action === 'supprimer' && $controller->isNumber($id))
-	{
+	} else if($action === 'supprimer' && $controller->isNumber($id)) {
+
 		$form_title = "Suppression de l'article"
+
 			?>
 			<div class="contenu petit">
 				<em>Cliquer à l'extérieur de la modale pour la fermer</em>
@@ -74,11 +72,7 @@
 				
 			<?php
 			exit();
-	}	
-	else 
-	{
+	} else  {
 		echo '<span class="error" >Erreur</span>';
 	}
 	
-	
-	?>
