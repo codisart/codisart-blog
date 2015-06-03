@@ -24,9 +24,7 @@
             if(isset($this->$nom)) {
 				return $this->$nom;
 			}
-			else {
-				return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
-			}
+			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
         }					
 					
 				
@@ -37,21 +35,21 @@
 				
 				$requete = $connexionBDD->prepare("INSERT INTO commentaires (id_news, pseudo, mail, commentaire) VALUES (?, ?, ?, ?)");
 			
+				$notification = '<h5 class="success">Votre contenu a bien été enregistré !!</h5>';
 				if(!$requete->execute(array($idArticle, $pseudo, $mail, $comment))) {				
-					echo '<h5 class="error">On ne peut pas enregistrer ce contenu !</h5>';
+					$notification = '<h5 class="error">On ne peut pas enregistrer ce contenu !</h5>';
 				}
-				else {
-					echo '<h5 class="success">Votre contenu a bien été enregistré !!</h5>';
-				}
-								
-				$connexionBDD = NULL;
+				echo $notification;
 				
-				return TRUE;			
+								
+				$connexionBDD = null;
+				
+				return true;			
 			}
 			
 			echo '<h5 class="error">Vous n\'avez pas rempli correctement le formulaire</h5>';
 			
-			return FALSE;			
+			return false;			
 		}
 		
 		
@@ -63,12 +61,12 @@
 			if(false === $requete->execute(array('id' => $idContenu))) {				
 				echo '<h5 class="error">On ne peut pas supprimer ce contenu !</h5>';
 				
-				$connexionBDD = NULL;				
-				return FALSE;			
+				$connexionBDD = null;				
+				return false;			
 			}
 			
-			$connexionBDD = NULL;	
-			return TRUE;			
+			$connexionBDD = null;	
+			return true;			
 		}
 
 		public function getDateOn2Rows() {

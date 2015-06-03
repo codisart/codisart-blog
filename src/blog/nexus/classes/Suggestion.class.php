@@ -8,19 +8,19 @@
 		// private $viewMessage;
 		// private $messages;
 		
-		/**
-		 */
 		public function __construct($id, $pseudo = '', $mail = '', $date = 0, $message = '') {
 			$this->id = $id;
 			
 			if($pseudo == '' && $mail == '' && $date == 0 && $message == '') {				
 				$connexionBDD = connexionBDD();
 				
-				$requete = $connexionBDD->query("SELECT id, pseudo, mail, date, message
-																	FROM messages 
-																	WHERE id='$id'
-																	ORDER BY id DESC 
-																	LIMIT 0,1");			
+				$requete = $connexionBDD->query("
+					SELECT id, pseudo, mail, date, message
+					FROM messages 
+					WHERE id='$id'
+					ORDER BY id DESC 
+					LIMIT 0,1
+				");			
 			
 				$donnees = $requete->fetch();
 				
@@ -29,7 +29,7 @@
 				$date = $donnees['date'];
 				$message = $donnees['message'];
 				
-				$connexionBDD = NULL;				
+				unset($connexionBDD);		
 			}
 			
 			$this->pseudo = $pseudo;
@@ -77,14 +77,12 @@
 				}
 				header('Location : '.$this->adresse.'?page='.$page);				
 			}
-			else {
-				do {
-					$this->messages[$donnees['id']] = new Commentaire($donnees['id'],$donnees['pseudo'], $donnees['date'], $donnees['message']);							
-				}
-				while ($donnees = $requete->fetch());
-			}
+
+			do {
+				$this->messages[$donnees['id']] = new Commentaire($donnees['id'],$donnees['pseudo'], $donnees['date'], $donnees['message']);							
+			} while ($donnees = $requete->fetch());
 															
-			$connexionBDD = NULL;				
+			unset($connexionBDD);
 			
 			return $this->messages;
 		}		
