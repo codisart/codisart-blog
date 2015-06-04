@@ -12,10 +12,9 @@
 			$connexionBDD = new \PDO(SERVER, USER, PASS);
 			$connexionBDD->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 			$connexionBDD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);			
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
     		echo 'Connexion échouée : ' . $e->getMessage();
-    		return NULL;
+    		return null;
 		}
 			
 		return $connexionBDD;
@@ -29,11 +28,11 @@
 
     function loadFile($file) {
 
-		if(is_file(CLASSES."/$file.class.php")) {
+		if (is_file(CLASSES."/$file.class.php")) {
 			require CLASSES."/$file.class.php";
 		}
 		
-		if(is_file(LIBS."/$file.lib.php")) {
+		if (is_file(LIBS."/$file.lib.php")) {
 			 require LIBS."/$file.lib.php";
 		}
     }

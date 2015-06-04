@@ -1,19 +1,18 @@
 <?php
 	
 	$directories = glob('nexus');
-	while(empty($directories)){chdir('..'); $directories = glob('nexus');}
+	while (empty($directories)){chdir('..'); $directories = glob('nexus');}
 	require_once(getcwd().'/nexus/main.php');
 		
 	$controller = Controller::getInstance();
 	$controller->recoverPOST('login')->recoverPOST('password');
 	
-	if($controller->isString($login) && $controller->isString($password)) {
+	if ($controller->isString($login) && $controller->isString($password)) {
 
-		if(User::validLogin($login, $password)) {
+		if (User::validLogin($login, $password)) {
 			$_SESSION['login'] = $login;
 			
 			header("Location: ".basename($_SERVER['REQUEST_URI']));
-
 			exit();	
 		}	
 	}

@@ -11,7 +11,7 @@
 		public function __construct($id, $pseudo = '', $mail = '', $date = 0, $message = '') {
 			$this->id = $id;
 			
-			if($pseudo == '' && $mail == '' && $date == 0 && $message == '') {				
+			if ($pseudo == '' && $mail == '' && $date == 0 && $message == '') {				
 				$connexionBDD = connexionBDD();
 				
 				$requete = $connexionBDD->query("
@@ -81,7 +81,7 @@
 			do {
 				$this->messages[$donnees['id']] = new Commentaire($donnees['id'],$donnees['pseudo'], $donnees['date'], $donnees['message']);							
 			} while ($donnees = $requete->fetch());
-															
+
 			unset($connexionBDD);
 			
 			return $this->messages;
@@ -98,17 +98,16 @@
 											
 				$requete = $connexionBDD->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
 			
-				if(!$requete->execute(array($pseudo, $mail, $contenu))) {				
+				if (!$requete->execute(array($pseudo, $mail, $contenu))) {				
 					echo '<h5 class="error">Cet article a déjà été supprimé ou n\'existe pas !</h5>';
-				}
-				else {
+				} else {
 					echo '<h5 class="success">votre message a bien été enregistré !!</h5>';
 				}
-								
-				$connexionBDD = NULL;
-				
+					
+				unset($connexionBDD);				
 				return true;			
 			}
+
 			echo '<h5 class="error">Vous n\'avez pas rempli correctement  le formulaire</h5>';
 			return false;
 		}
@@ -118,11 +117,11 @@
 					
 			$connexionBDD = connexionBDD();
 				
-			if(!$connexionBDD->query("DELETE FROM messages WHERE id ='$id'")) {
+			if (!$connexionBDD->query("DELETE FROM messages WHERE id ='$id'")) {
 				echo 'Ce message a déjà été supprimé ou n\'existe pas !';
-			}			
-				
-			$connexionBDD = NULL;
+			}
+
+			unset($connexionBDD);
 		}
 
 		public function getDateOn2Rows() {

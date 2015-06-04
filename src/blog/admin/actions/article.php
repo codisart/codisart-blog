@@ -1,9 +1,12 @@
 <?php
 	session_start();
 
-	if(!isset($_SESSION['login'])) {header('Location: ../connexion.php'); exit;}	
+	if (!isset($_SESSION['login'])) {
+		header('Location: ../connexion.php');
+		exit;
+	}	
 	
-	while(empty($directories)){chdir('..'); $directories = glob('nexus');}
+	while (empty($directories)){chdir('..'); $directories = glob('nexus');}
 	require_once(getcwd().'/nexus/main.php');
 	
 	$controller = Controller::getInstance();	
@@ -12,7 +15,7 @@
 					->recoverPOST('idArticle', 'id')
 					->recoverPOST('action');	
 	
-	if('modifier' === $action && $controller->isNumber($id) && $controller->isString($titre)) {
+	if ('modifier' === $action && $controller->isNumber($id) && $controller->isString($titre)) {
 		$article = new Article($id);		
 		$article->setContenu($contenu)->setTitre($titre);
 	} else if('ajouter' === $action && $controller->isString($titre) &&  "" !== $contenu)	{		

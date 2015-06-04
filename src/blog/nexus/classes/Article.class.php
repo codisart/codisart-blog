@@ -89,8 +89,7 @@
 				
 				$contenu_limite .= '...<br/><em><a href="article.php?idArticle='.$this->id.'">Lire la suite -></a></em>';
 				return $contenu_limite;
-			}
-			else {
+			} else {
 				return $contenu;
 			}							
 		}

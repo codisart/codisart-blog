@@ -1,7 +1,7 @@
 <?php	
 	header("Content-Type:text/plain; charset=utf-8");
 
-	while(empty($directories)){chdir('..');$directories = glob('nexus');}
+	while (empty($directories)){chdir('..');$directories = glob('nexus');}
 	require_once(getcwd().'/nexus/main.php');
 	
 	$controller = Controller::getInstance();
@@ -9,7 +9,7 @@
 	$controller ->recoverPOST('action')
 				->recoverPOST('id');
 
-	if($action === 'supprimer' && $controller->isNumber($id)) {
+	if ($action === 'supprimer' && $controller->isNumber($id)) {
 		$form_title = "Suppression de la suggestion"
 			?>
 			<div class="contenu petit">

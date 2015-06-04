@@ -51,11 +51,11 @@
 				$this->nombreArticlesPage = 0;
 			} else {
 				do {
-					$this->articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);							
+					$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);							
 				} while ($donnees = $requete->fetch());
 			}
 															
-			$connexionBDD = NULL;				
+			$connexionBDD = null;				
 			
 			return $this->articles;
 		}
@@ -80,7 +80,7 @@
 				} while ($donnees = $requete->fetch());
 			}
 															
-			$connexionBDD = NULL;				
+			$connexionBDD = null;				
 			
 			return $articles;
 		}
@@ -104,7 +104,7 @@
 				$number = $donnees['total'];
 			}
 															
-			$connexionBDD = NULL;				
+			$connexionBDD = null;				
 			
 			return $number;
 		}
@@ -134,7 +134,7 @@
 				$article = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);
 			}
 															
-			$connexionBDD = NULL;
+			$connexionBDD = null;
 			
 			return $article;
 		}
@@ -188,7 +188,7 @@
 				} while ($donnees = $requete->fetch());
 			}
 									
-			$connexionBDD = NULL;		
+			$connexionBDD = null;		
 			
 			return $this;
 		}

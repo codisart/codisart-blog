@@ -136,8 +136,10 @@
 		
 		/***** Special Inputs *****/
 
-		public function isEmailAdresse(&$adresse) {
-			if (preg_match('#^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.((net)|(com)|(org)|(fr)|(uk))#',$adresse)) {							
+		public function isEmailAdress(&$adresse) {
+			$patternEmailAdress = '#^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.((net)|(com)|(org)|(fr)|(uk))#';
+
+			if (preg_match($patternEmailAdress, $adresse)) {							
 				return true;
 			}
 
@@ -146,7 +148,9 @@
 		
 
 		public function isTelephoneNumber(&$nombre) {
-			if (preg_match('#^0[1-8]([-. ]?[0-9]{2}){4}$#',$nombre)) {							
+			$patternTelephoneNumber = '#^0[1-8]([-. ]?[0-9]{2}){4}$#';
+
+			if (preg_match($patternTelephoneNumber, $nombre)) {							
 				$nombre = str_replace(array("-","_"," "), "", $nombre);
 				return true;
 			}

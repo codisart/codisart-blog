@@ -29,13 +29,18 @@
 					
 					$controller = Controller::recoverGET('page', 'expression');
 					
-					if (!$controller->isString($expression)){header('Location: ./index.php');exit;}					
-					if (!$controller->isNumber($page)){$page = 1;}
+					if (!$controller->isString($expression)){
+						header('Location: ./index.php');
+						exit;
+					}					
+					if (!$controller->isNumber($page)){
+						$page = 1;
+					}
 					
 					$blog = new Blog($page, 10);		
 					$articles = $blog->filtreRecherche($expression)->getArticles();
 					
-					foreach ($articles as $article):
+					foreach ($articles as $article) :
 				?>
 					<br/>
 					<div class="article">

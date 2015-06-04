@@ -32,7 +32,7 @@
 				
 				$controller = Controller::getInstance();
 				$controller ->recoverGET('page')
-							->recoverGET('p','page')
+							->recoverGET('p', 'page')
 							->recoverGET('n', 'nombreArticles');
 				
 				$page = $controller->isNumber($page) ? $page : 1;
