@@ -113,8 +113,7 @@
 			if (false !== ($donnees = $requete->fetch())) {
 				do {
 					$this->commentaires[] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['commentaire']);							
-				}
-				while ($donnees = $requete->fetch());
+				} while ($donnees = $requete->fetch());
 			}
 						
 			$connexionBDD = NULL;			

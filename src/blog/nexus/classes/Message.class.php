@@ -60,22 +60,22 @@
 		
 		//fonctions / Méthodes				
 		public static function ajouter($pseudo, $mail, $contenu) {
-			if($pseudo != "" && $mail != "" && $contenu !="") {			
+
+			if ($pseudo != "" && $mail != "" && $contenu !="") {			
 				$connexionBDD = connexionBDD();
 											
 				$requete = $connexionBDD->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
-			
-				if(!$requete->execute(array($pseudo, $mail, $contenu))) {				
-					echo '<h5 class="error">Cet article a déjà été supprimé ou n\'existe pas !</h5>';
-				}
-				else {
-					echo '<h5 class="success">votre message a bien été enregistré !!</h5>';
-				}
-								
-				$connexionBDD = NULL;
 				
+				$notification = '<h5 class="success">votre message a bien été enregistré !!</h5>';
+				if (!$requete->execute(array($pseudo, $mail, $contenu))) {				
+					$notification = '<h5 class="error">Cet article a déjà été supprimé ou n\'existe pas !</h5>';
+				}
+				echo $notification;
+
+				unset($connexionBDD);				
 				return true;			
 			}
+
 			echo '<h5 class="error">Vous n\'avez pas rempli correctement  le formulaire</h5>';
 			return false;
 		}
@@ -85,10 +85,10 @@
 					
 			$connexionBDD = connexionBDD();
 				
-			if(!$connexionBDD->query("DELETE FROM messages WHERE id ='$id'")) {
-				echo 'Ce message a déjà été supprimé ou n\'existe pas !';
+			if (!$connexionBDD->query("DELETE FROM messages WHERE id ='$id'")) {
+				echo '<h5 class="error">Ce message a déjà été supprimé ou n\'existe pas !</h5>';
 			}			
-				
-			$connexionBDD = NULL;
+			
+			unset($connexionBDD);
 		}	
 	}

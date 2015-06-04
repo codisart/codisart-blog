@@ -89,7 +89,7 @@
 		
 		
 		public function isString(&$chaine) {	
-			if(!is_string($chaine) || "" === $chaine) {			
+			if (!is_string($chaine) || "" === $chaine) {			
 				return false;
 			}	
 			
