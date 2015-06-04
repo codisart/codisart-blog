@@ -56,15 +56,16 @@
 		/***** To string *****/
 
 		public function toString() {
-			$text = "";			
-			
-			if (empty($this->variables)) {
-				$text = "Il n'y pas de variable à contrôler";
-			} else {
+
+			$text = "Il n'y pas de variable à contrôler";
+
+			if (!empty($this->variables)) {
+				$text = "";			
 				foreach ($this->variables as $key => $valeur) {
 					$text .= "la variable $key est égale à $valeur\n";
 				}
 			}
+			
 			return $text;
 		}
 		
@@ -92,7 +93,7 @@
 				return false;
 			}	
 			
-			$chaine = htmlspecialchars($chaine,ENT_QUOTES);
+			$chaine = htmlspecialchars($chaine, ENT_QUOTES);
 			return true;		
 		}
 		

@@ -39,7 +39,7 @@
 				$nombreArticles = $controller->isNumber($nombreArticles) ? $nombreArticles : 10;
 									
 				// Definition de la première page
-				define('FIRST_PAGE',1);
+				define('FIRST_PAGE', 1);
 
 				// Affichage si première page.
 				echo (FIRST_PAGE === $page) ? '<div id=""><br/><h2>Derniers Articles</h2><br/></div><hr />' : "";	

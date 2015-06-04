@@ -7,7 +7,7 @@
 
 	/***** Base de données *****/
 	
-	define("SERVER","mysql:host=localhost;dbname=blog");
+	define("SERVER", "mysql:host=localhost;dbname=blog");
 	define("USER", "root");
 	define("PASS", "");
 	
@@ -28,8 +28,8 @@
 
 	/***** Classes & Librairies*****/
 	
-	define("CLASSES",__DIR__."/classes");
-	define("LIBS",__DIR__."/librairies");	
+	define("CLASSES", __DIR__."/classes");
+	define("LIBS", __DIR__."/librairies");	
 
     function loadFile($file) {
 

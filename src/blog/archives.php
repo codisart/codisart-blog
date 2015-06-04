@@ -26,8 +26,8 @@
 					
 					$controller = Controller::getInstance();
 
-					$controller ->recoverGET('a','annee')
-								->recoverGET('m','mois');
+					$controller ->recoverGET('a', 'annee')
+								->recoverGET('m', 'mois');
 
 					if (!$controller->isNumber($annee) || !$controller->isNumber($mois)) {
 						header('Location: ./');
@@ -40,7 +40,7 @@
 					<div id=""><br/><h2><?php echo "{$listeMois[$mois-1]} $annee"; ?></h2><br/></div><hr />
 					
 				<?php
-					$articles = Article::getArticlesMois($annee,$mois);				
+					$articles = Article::getArticlesMois($annee, $mois);				
 					
 					if (false != $articles) :
 						foreach ($articles as $article) :

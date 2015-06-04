@@ -53,9 +53,7 @@
             if (isset($this->$nom)) {
 				return $this->$nom;
 			}
-			else {
-				return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
-			}
+			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
         }
 		
 		
@@ -89,9 +87,8 @@
 				
 				$contenu_limite .= '...<br/><em><a href="article.php?idArticle='.$this->id.'">Lire la suite -></a></em>';
 				return $contenu_limite;
-			} else {
-				return $contenu;
-			}							
+			}
+			return $contenu;			
 		}
 				
 		

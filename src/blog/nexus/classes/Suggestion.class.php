@@ -47,9 +47,7 @@
             if(isset($this->$nom)) {
 				return $this->$nom;
 			}
-			else {
-				return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
-			}
+			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
         }
 		
 		/**
@@ -79,7 +77,7 @@
 			}
 
 			do {
-				$this->messages[$donnees['id']] = new Commentaire($donnees['id'],$donnees['pseudo'], $donnees['date'], $donnees['message']);							
+				$this->messages[$donnees['id']] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['message']);							
 			} while ($donnees = $requete->fetch());
 
 			unset($connexionBDD);

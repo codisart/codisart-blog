@@ -28,11 +28,10 @@
 
 			if (false === ($donnees = $requete->fetch())) {
 				return false;
-			} else {
-				$password = $donnees['password'];
 			}
+			$password = $donnees['password'];
 						
-			$connexionBDD = NULL;
+			$connexionBDD = null;
 
 			return $password;
 		}

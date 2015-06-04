@@ -13,7 +13,7 @@ function createMiniature() {
 	if( $proportionH >= $proportionL) {
 		$largeurMin = $largeur / $proportionH;
 
-		$sourceMin = imagecreatetruecolor($largeurMin,89);
+		$sourceMin = imagecreatetruecolor($largeurMin, 89);
 
 		$miniature = imagecreatetruecolor(144, 89);
 
@@ -25,7 +25,7 @@ function createMiniature() {
 	} else  {
 		$hauteurMin = $hauteur / $proportionL;
 
-		$sourceMin = imagecreatetruecolor(144,$hauteurMin);
+		$sourceMin = imagecreatetruecolor(144, $hauteurMin);
 
 		$miniature = imagecreatetruecolor(144, 89);
 

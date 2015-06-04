@@ -41,22 +41,27 @@
 			$limit = ($this->page -1)*$this->nombreArticlesPage;
 						
 			$connexionBDD = connexionBDD();
-			$requete = $connexionBDD->query("SELECT id, titre, contenu, date
-												FROM news 
-												ORDER BY date DESC, id DESC 
-												LIMIT $limit, $nombreArticlesPage");
+
+			$requete = $connexionBDD->query("
+				SELECT id, titre, contenu, date
+				FROM news 
+				ORDER BY date DESC, id DESC 
+				LIMIT $limit, $nombreArticlesPage
+			");
 			
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
-				$this->nombreArticlesPage = 0;
-			} else {
-				do {
-					$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);							
-				} while ($donnees = $requete->fetch());
+				$this->nombreArticlesPage = 0;	
+
+				$connexionBDD = null;
+				return $this->articles;
 			}
-															
-			$connexionBDD = null;				
 			
+			do {
+				$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);							
+			} while ($donnees = $requete->fetch());
+															
+			$connexionBDD = null;
 			return $this->articles;
 		}
 		
@@ -74,14 +79,16 @@
 			
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
-			} else {
-				do {
-					$articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);							
-				} while ($donnees = $requete->fetch());
+
+				$connexionBDD = null;
+				return $articles;
 			}
+
+			do {
+				$articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);							
+			} while ($donnees = $requete->fetch());
 															
-			$connexionBDD = null;				
-			
+			$connexionBDD = null;
 			return $articles;
 		}
 		
@@ -99,13 +106,14 @@
 			
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles enregistrés</h5>';
-				$number =  0;
-			} else {
-				$number = $donnees['total'];
+
+				$connexionBDD = null;
+				return 0;
 			}
-															
-			$connexionBDD = null;				
 			
+			$number = $donnees['total'];
+			
+			$connexionBDD = null;
 			return $number;
 		}
 				
@@ -125,30 +133,36 @@
 		public static function getRandomArticle() {					
 			$connexionBDD = connexionBDD();
 
-			$requete = $connexionBDD->query("SELECT id, titre, contenu, date
-															FROM news 
-															ORDER BY rand() LIMIT 1");
+			$requete = $connexionBDD->query("
+				SELECT id, titre, contenu, date
+				FROM news 
+				ORDER BY rand() LIMIT 1
+			");
+
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'article sélectionné</h5>';
-			} else {
-				$article = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);
+
+				$connexionBDD = null;			
+				return null;
 			}
+
+			$article = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
 															
-			$connexionBDD = null;
-			
+			$connexionBDD = null;			
 			return $article;
 		}
-		
-		
-		
 		
 		
 		public static function getArchives() {
 			$connexionBDD = connexionBDD();
 			
-			$requete = $connexionBDD->query("SELECT DISTINCT DATE_FORMAT(date, '%c') as mois, DATE_FORMAT(date, '%Y') as year 
-																	FROM news 
-																	ORDER BY date DESC");
+			$requete = $connexionBDD->query("
+				SELECT 
+					DISTINCT DATE_FORMAT(date, '%c') as mois, 
+					DATE_FORMAT(date, '%Y') as year
+				FROM news 
+				ORDER BY date DESC
+			");
 			
 			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 			
@@ -172,24 +186,32 @@
 			
 			$limit = ($page -1)*$nombreArticlesPage;	
 								
-			$requete = $connexionBDD->query("SELECT id, titre, contenu, date
-																FROM news 
-																WHERE contenu LIKE '%$query%'
-																	OR titre LIKE '%$query%'
-																ORDER BY date DESC, id DESC 
-																LIMIT $limit, $nombreArticlesPage");
+			$requete = $connexionBDD->query("
+				SELECT 
+					id,
+					titre,
+					contenu,
+					date
+				FROM news 
+				WHERE contenu LIKE '%$query%'
+					OR titre LIKE '%$query%'
+				ORDER BY date DESC, id DESC 
+				LIMIT $limit, $nombreArticlesPage
+			");
 						
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
 				$this->nombreArticlesPage = 0;
-			} else {
-				do {
-					$this->articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);							
-				} while ($donnees = $requete->fetch());
+
+				$connexionBDD = null;
+				return $this;
 			}
-									
-			$connexionBDD = null;		
-			
+
+			do {
+				$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);							
+			} while ($donnees = $requete->fetch());
+
+			$connexionBDD = null;
 			return $this;
 		}
 
@@ -200,18 +222,29 @@
 			$messages = new Collection();		
 						
 			$connexionBDD = connexionBDD();				
-			$requete = $connexionBDD->query("SELECT id, pseudo, date, mail, message
-												FROM messages
-												ORDER BY date DESC, id DESC");
+			$requete = $connexionBDD->query("
+				SELECT 
+					id,
+					pseudo,
+					date,
+					mail,
+					message
+				FROM messages
+				ORDER BY date DESC, id DESC
+			");
 			
 			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';				
-			} else {
-				do {
-					$messages[$donnees['id']] = new Commentaire($donnees['id'],$donnees['pseudo'], $donnees['date'], $donnees['message']);
-				} while ($donnees = $requete->fetch());
+				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';
+
+				unset($connexionBDD);
+				return $messages;			
 			}
-													
+
+			do {
+				$messages[$donnees['id']] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['message']);
+			} while ($donnees = $requete->fetch());
+							
+			unset($connexionBDD);						
 			return $messages;
 		}
 		
@@ -223,23 +256,32 @@
 		 */
 		static public function getSuggestions($limite, $origin = 0) {
 			$suggestions = new Collection();
-			// $this->limite = $limite;
-			// $this->origin = $origin;
 
 			$connexionBDD = connexionBDD();
-			$requete = $connexionBDD->query("SELECT id, pseudo, date, mail, message
-												FROM messages
-												ORDER BY date DESC, id DESC
-												LIMIT $origin, $limite");
-			
+			$requete = $connexionBDD->query("
+				SELECT 
+					id, 
+					pseudo, 
+					date, 
+					mail, 
+					message
+				FROM messages
+				ORDER BY date DESC, id DESC
+				LIMIT $origin, $limite
+			");
+
 			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';				
-			} else {
-				do {
-					$suggestions[$donnees['id']] = new Suggestion($donnees['id'],$donnees['pseudo'], $donnees['mail'], $donnees['date'], $donnees['message']);
-				} while ($donnees = $requete->fetch());
+				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';
+				
+				unset($connexionBDD);
+				return $suggestions;				
 			}
-													
+
+			do {
+				$suggestions[$donnees['id']] = new Suggestion($donnees['id'], $donnees['pseudo'], $donnees['mail'], $donnees['date'], $donnees['message']);
+			} while ($donnees = $requete->fetch());
+
+			unset($connexionBDD);
 			return $suggestions;
 		}
 		
