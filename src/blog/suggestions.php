@@ -62,10 +62,10 @@
 				$controller = Controller::getInstance();
 				$controller->recoverPOST('asali');
 
-				if(!$asali) {
+				if (!$asali) {
 					$controller->recoverPOST('suggestion')->recoverPOST('email')->recoverPOST('pseudo');
 				}				
-				if($controller->isPlainText($suggestion) && $controller->isEmailAdresse($email) && $controller->isString($pseudo)) {	
+				if ($controller->isPlainText($suggestion) && $controller->isEmailAdresse($email) && $controller->isString($pseudo)) {	
 					Suggestion::ajouter($pseudo,$email,$suggestion);
 					unset($pseudo, $email, $suggestion);
 				}
@@ -77,7 +77,7 @@
 				
 				$nbreMess = $suggestions->count();				
 				
-				foreach($suggestions as $suggestion):
+				foreach ($suggestions as $suggestion):
 			?>
 				<div class="message">
 					<h3><?php echo htmlspecialchars($suggestion->pseudo); ?>  <em><?php echo $suggestion->date; ?></em></h3>

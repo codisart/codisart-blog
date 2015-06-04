@@ -10,11 +10,11 @@
 		
 		public function offsetSet($offset, $value) {
 
-			if(empty($this->contenu)) {
+			if (empty($this->contenu)) {
 				$this->setType($value);
 			}
 
-			if(!empty($this->contenu) && !$this->checkType($value)) {
+			if (!empty($this->contenu) && !$this->checkType($value)) {
 				return false;
 			}
 
@@ -65,15 +65,14 @@
 
 		public function append($collection) {
 
-			if(!(isset($collection) && is_object($collection) && get_class($collection) === get_class($this) && $collection->count() > 0)) {
+			if (!(isset($collection) && is_object($collection) && get_class($collection) === get_class($this) && $collection->count() > 0)) {
 				return $this;
 			}
 
 			foreach ($collection as $key => $value) {
 				if(isset($this[$key])) {
 					$this[] = $value;
-				}
-				else {
+				} else {
 					$this[$key] = $value;
 				}
 			}
@@ -82,7 +81,7 @@
 		}
 
 		private function setType($value) {
-			if(is_object($value)) {
+			if (is_object($value)) {
 				return $this->type = get_class($value);
 			}
 
@@ -90,7 +89,7 @@
 		}
 
 		private function checkType($value) {
-			if(is_object($value)) {
+			if (is_object($value)) {
 				return $this->type === get_class($value);
 			}
 

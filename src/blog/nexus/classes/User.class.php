@@ -10,7 +10,7 @@
 			$passwordToCompare = self::getPassword($username);
 			//$passwordToCompare = 'cl697710';
 
-			if($username == 'punkka' && $password == $passwordToCompare) {
+			if ($username == 'punkka' && $password == $passwordToCompare) {
 				return true;
 			}
 		}
@@ -19,16 +19,16 @@
 			// requete table Users
 			$connexionBDD = connexionBDD();
 						
-			$requete = $connexionBDD->query("SELECT password
-												FROM users 
-												WHERE name ='$username'
-												LIMIT 0,1
-												");
+			$requete = $connexionBDD->query("
+				SELECT password
+				FROM users 
+				WHERE name ='$username'
+				LIMIT 0,1
+			");
 
 			if (false === ($donnees = $requete->fetch())) {
 				return false;
-			}
-			else {
+			} else {
 				$password = $donnees['password'];
 			}
 						

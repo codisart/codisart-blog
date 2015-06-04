@@ -9,7 +9,7 @@
 		public function __toString() {
 			$string = "<pre>\n Le controller existe et contient les valeurs suivantes: \n ";
 			
-			foreach($this->variables as $key => $variable ) {
+			foreach ($this->variables as $key => $variable ) {
 				$string .= "\t $key est egale a $variable \n";
 			}
 			$string .= "</pre>";
@@ -19,7 +19,7 @@
 		
 		
 		static public function getInstance() {
-			 if(is_null(self::$instance)) {
+			 if (is_null(self::$instance)) {
 			   self::$instance = new Controller();  
 			 }
 		 
@@ -37,13 +37,13 @@
 		}
 
 		protected function recoverGLOBAL($superglobale, $key, $newKey = false) {
-			if(false === $newKey) {
+			if (false === $newKey) {
 				$newKey = $key;
 			}
 			
 			global ${$newKey};
 				
-			if(array_key_exists($key, $superglobale)) {
+			if (array_key_exists($key, $superglobale)) {
 				${$newKey} = $superglobale[$key];
 				$this->variables[$newKey] = $superglobale[$key];
 				unset($superglobale[$key]);
@@ -58,11 +58,10 @@
 		public function toString() {
 			$text = "";			
 			
-			if(empty($this->variables)) {
+			if (empty($this->variables)) {
 				$text = "Il n'y pas de variable à contrôler";
-			}
-			else {
-				foreach($this->variables as $key => $valeur) {
+			} else {
+				foreach ($this->variables as $key => $valeur) {
 					$text .= "la variable $key est égale à $valeur\n";
 				}
 			}
@@ -74,16 +73,16 @@
 		/***** Controleur pour type d'input *****/
 
 		public function isNumber($variable, $maxLength = false) {
-			if(!is_numeric($variable)) {
+			if (!is_numeric($variable)) {
 				return false;
 			}	
 
-			if(false === $maxLength) {
+			if (false === $maxLength) {
+				return true;
+			} else if(strlen($variable) === $maxLength) {
 				return true;
 			}
-			else if(strlen($variable) === $maxLength) {
-				return true;
-			}
+
 			return false;			
 		}
 		
@@ -99,13 +98,13 @@
 		
 		
 		public function isArray(&$array, $methode) {
-			if(empty($array)) {
+			if (empty($array)) {
 				$array = array();
 				return false;
 			}
 			
-			foreach($array as $value) {			
-				if(false === $this->$methode($value)) {
+			foreach ($array as $value) {			
+				if (false === $this->$methode($value)) {
 					return false;
 				}
 			}
@@ -115,7 +114,7 @@
 		
 		
 		public function isHTML(&$text) {
-			if(!is_string($text) || $text == "") {			
+			if (!is_string($text) || $text == "") {			
 				return false;
 			}	
 			
@@ -126,7 +125,7 @@
 		
 		
 		public function isPlainText(&$text) {
-			if(!is_string($text) || $text == "") {			
+			if (!is_string($text) || $text == "") {			
 				return false;
 			}	
 			

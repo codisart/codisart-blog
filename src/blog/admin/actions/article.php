@@ -15,11 +15,9 @@
 	if('modifier' === $action && $controller->isNumber($id) && $controller->isString($titre)) {
 		$article = new Article($id);		
 		$article->setContenu($contenu)->setTitre($titre);
-	}
-	else if('ajouter' === $action && $controller->isString($titre) &&  "" !== $contenu)	{		
+	} else if('ajouter' === $action && $controller->isString($titre) &&  "" !== $contenu)	{		
 		Article::ajouter($titre, $contenu);
-	}
-	else if('supprimer' === $action && $controller->isNumber($id)) {		
+	} else if('supprimer' === $action && $controller->isNumber($id)) {		
 		$article = new Article($id);		
 		$article->supprimer();
 	}

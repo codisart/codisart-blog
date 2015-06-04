@@ -21,7 +21,7 @@
 		 */		
 		public function __get ($nom) {
 
-            if(isset($this->$nom)) {
+            if (isset($this->$nom)) {
 				return $this->$nom;
 			}
 			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
@@ -30,7 +30,7 @@
 				
 		public static function ajouter($idArticle, $pseudo, $mail, $comment) {
 			
-			if($pseudo != "" && $mail != "" && $comment !="") {			
+			if ($pseudo != "" && $mail != "" && $comment !="") {			
 				$connexionBDD = connexionBDD();
 				
 				$requete = $connexionBDD->prepare("INSERT INTO commentaires (id_news, pseudo, mail, commentaire) VALUES (?, ?, ?, ?)");
@@ -40,7 +40,6 @@
 					$notification = '<h5 class="error">On ne peut pas enregistrer ce contenu !</h5>';
 				}
 				echo $notification;
-				
 								
 				$connexionBDD = null;
 				
@@ -58,7 +57,7 @@
 				
 			$requete = $connexionBDD->prepare("DELETE FROM commentaires WHERE id = :id");
 			
-			if(false === $requete->execute(array('id' => $idContenu))) {				
+			if (false === $requete->execute(array('id' => $idContenu))) {				
 				echo '<h5 class="error">On ne peut pas supprimer ce contenu !</h5>';
 				
 				$connexionBDD = null;				

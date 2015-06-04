@@ -29,8 +29,8 @@
 					
 					$controller = Controller::recoverGET('page', 'expression');
 					
-					if(!$controller->isString($expression)){header('Location: ./index.php');exit;}					
-					if(!$controller->isNumber($page)){$page = 1;}
+					if (!$controller->isString($expression)){header('Location: ./index.php');exit;}					
+					if (!$controller->isNumber($page)){$page = 1;}
 					
 					$blog = new Blog($page, 10);		
 					$articles = $blog->filtreRecherche($expression)->getArticles();
@@ -70,8 +70,7 @@
 				<div id="navigationBlog">
 				
 				<?php
-					if($page > 1)
-					{
+					if ($page > 1) {
 					?>
 						<div  style="float:left">
 							<a href="recherche.php?expression=<?php echo $expression; ?>&page=<?php echo $page-1; ?>">Recents articles</a>
@@ -79,8 +78,7 @@
 					<?php
 					}									
 					
-					if($page < ceil(Article::getTotal()/10))
-					{
+					if ($page < ceil(Article::getTotal()/10)) {
 					?>
 						<div  style="float:right">
 							<a href="recherche.php?expression=<?php echo $expression; ?>&page=<?php echo $page+1; ?>">Anciens articles</a>

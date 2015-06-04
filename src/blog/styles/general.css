@@ -44,7 +44,7 @@ body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
 .header .logo h1 {font-weight: lighter; font-size: 75pt; text-indent: 50px; line-height: 180px;}
 .header .logo a {color: white;}
 
-#ad {width: 650px; height: 100px; margin: -120px 35px 0px; background: rgba(255,255,255,0.8);; float: right; line-height: 100px;}
+#ad {width: 650px; height: 100px; margin: -120px 35px 0; background: rgba(255,255,255,0.8);; float: right; line-height: 100px;}
 
 .header .navigation {height: 30px; float: right; margin: 0; padding: 0; padding-right: 40px;}
 .header .navigation .onglet{display: block; float: left; height: 30px; line-height: 30px; margin: 0; padding: 0 20px 0 20px; background : #202020; background: rgba(0,0,0,0.8); font-size: 20px; color: #d2d2d2;	font-weight: lighter; }
@@ -58,12 +58,8 @@ body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
 
 .footer { width: 1200px; height: 70px; margin: 0 auto 0; padding-top: 15px;}
 
-.footer h3,
-.footer h4 { margin: 0 0 0 120px; padding: 0; color: white; text-shadow: -2px 2px 2px #000000; font-family: Rockwell; font-weight: normal; text-align: left;}
-
-.footer h3 { font-size: 16px; }
-
-.footer h4 { font-size: 14px; margin-left: 150px;}
+.footer h3 { margin: 0 0 0 120px; padding: 0; color: white; text-shadow: -2px 2px 2px #000000; font-family: Rockwell; font-weight: normal; text-align: left; font-size: 16px;}
+.footer h4 { margin: 0 0 0 150px; padding: 0; color: white; text-shadow: -2px 2px 2px #000000; font-family: Rockwell; font-weight: normal; text-align: left; font-size: 14px;}
 
 .footer div { font-family: Calibri, "Lucida Grande", sans-serif; font-size: 15px; width: 180px; height: 30px; line-height: 30px; margin: -35px auto 0; border-radius: 5px; background : #2a2a2a; background: rgba(0,0,0,0.7); }
 
@@ -84,22 +80,22 @@ body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
 #principal .article .entete {width: 8px; height: 42px; float: left;}
 #principal .article:nth-child(even) .entete {background-color: #1abc9c;}
 #principal .article:nth-child(odd) .entete {background-color: #4792d2;}
-#principal .article h3 { height: 35px; padding: 0px 20px 0px; line-height: 42px; font-size: 25px; color: #111111; font-weight: lighter; text-indent: 0px; }
+#principal .article h3 { height: 35px; padding: 0 20px 0; line-height: 42px; font-size: 25px; color: #111111; font-weight: lighter; text-indent: 0; }
 
 #principal hr { width: 90%; }
 
-#principal .article h6 { font-size: 12px; color: #656565; text-align: left;	text-indent: 20px; padding: 0px 20px 0px;	font-weight: lighter; }
+#principal .article h6 { font-size: 12px; color: #656565; text-align: left;	text-indent: 20px; padding: 0 20px 0;	font-weight: lighter; }
 #principal .article h6 span { color: #4792d2; }
 
-#principal .article p {font-size: 17px; color: #111111; font-family: Calibri, "Lucida Grande", sans-serif; padding: 0px 20px 0px; margin-top: 20px; margin-bottom: 25px;}	
+#principal .article p {font-size: 17px; color: #111111; font-family: Calibri, "Lucida Grande", sans-serif; padding: 0 20px 0; margin-top: 20px; margin-bottom: 25px;}	
 
-#principal .article em {display: block; height: 20px; font-style: normal; font-size: 13px; text-indent: 0px; padding: 0px 20px 0px;}
+#principal .article em {display: block; height: 20px; font-style: normal; font-size: 13px; text-indent: 0; padding: 0 20px 0;}
 #principal .article em a {color: #444444;}
 #principal .article em a:hover {text-decoration: underline; color: #a9a9a9;}
 
 #principal .article h3 em {font-size: 12px;}
 	
-#navigationBlog {width :700px; margin : 20px auto 0px;	height : 40px; line-height : 40px; font-size : 16px; text-indent : 0px;}
+#navigationBlog {width :700px; margin : 20px auto 0;	height : 40px; line-height : 40px; font-size : 16px; text-indent : 0;}
 #navigationBlog a{color : #e71647;}
 #navigationBlog a:hover{text-decoration : underline;}
 
@@ -120,7 +116,7 @@ body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
 
 /***** projects.php *****/
 
-#contenu.projets {background: #e8e8e8; padding-top:  20px; 	text-indent: 0px; }
+#contenu.projets {background: #e8e8e8; padding-top:  20px; 	text-indent: 0; }
 #contenu.projets>div {width: 900px; height: 140px; margin: 30px auto 30px; }
 #contenu.projets div img {float:left; }
 #contenu.projets div p {width: 680px; margin-left: 210px }
@@ -128,7 +124,7 @@ body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
 
 /***** challenges.php *****/
 
-#contenu.challenges {background: #e8e8e8; padding-top:  20px; 	text-indent: 0px;}
+#contenu.challenges {background: #e8e8e8; padding-top:  20px; 	text-indent: 0;}
 #contenu.challenges>div {width: 1160px; height: 140px; margin: 30px auto 30px;}
 
 
@@ -170,24 +166,24 @@ hr{width:860px;  margin: auto}
 						
 #retourArticle {line-height: 45px; color: #444444;}
 #retourArticle:hover {text-decoration: underline; color: #a9a9a9;}
-#nombreCommentaires {padding: 0px 20px 25px; text-indent: 0px; font-size: 18px; font-family: Calibri; font-weight: 900;}
+#nombreCommentaires {padding: 0 20px 25px; text-indent: 0; font-size: 18px; font-family: Calibri; font-weight: 900;}
 				
 #nombreCommentaires a{color : #444444; font-size : 13px; font-weight: 500;}		
 		
-.commentaire {padding : 0px 20px 0px;}
+.commentaire {padding : 0 20px 0;}
 .commentaire h3 {height : 35px; line-height : 35px; margin-bottom: 10px;}
 .commentaire h3 em {color : #4792d2; font-family : calibri; font-size: 12px; font-style: normal;}
-.commentaire p {padding : 10px 15px; margin : 0px 20px 20px; border-radius: 10px; -moz-border-radius: 10px; background: #ffffff; font-family : Calibri; line-height : 16px; font-size : 15px; color : #333333;}
+.commentaire p {padding : 10px 15px; margin : 0 20px 20px; border-radius: 10px; -moz-border-radius: 10px; background: #ffffff; font-family : Calibri; line-height : 16px; font-size : 15px; color : #333333;}
 		
-#formCommentaire {padding : 0px 20px 0px; text-indent : 0px;}	
+#formCommentaire {padding : 0 20px 0; text-indent : 0;}	
 			
-#formCommentaire h2 {padding-bottom:  25px; text-indent : 0px; font-size : 18px; font-family : Calibri; font-weight : 900;}		
+#formCommentaire h2 {padding-bottom:  25px; text-indent : 0; font-size : 18px; font-family : Calibri; font-weight : 900;}		
 
 #formCommentaire p {margin : 0; margin-bottom : 8px; text-indent : 0;}
 #formCommentaire p input[type=text] {color : #222222; font-style : normal;	width : 230px; border : 1px solid #6a6a6a;}
 #formCommentaire p textarea {width : 660px; margin : 0; padding : 0; font-family : Calibri; font-size : 16px; color : #222222; border : 1px solid #6a6a6a;}
 
-#formCommentaire p input[type=submit] {height : 30px; margin : 0; padding : 0px 10px 0px; line-height : 30px; background : #2a2a2a; border : none; color : white; font-family : Rockwell; font-size : 16px;}
+#formCommentaire p input[type=submit] {height : 30px; margin : 0; padding : 0 10px 0; line-height : 30px; background : #2a2a2a; border : none; color : white; font-family : Rockwell; font-size : 16px;}
 #formCommentaire label {line-height : 28px; margin-left : 10px; font-family : Calibri;}
 
 #formCommentaire label em{font-size : 14px;}

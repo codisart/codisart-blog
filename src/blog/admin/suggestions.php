@@ -52,30 +52,22 @@
 			   <tbody>
 
 			   	<?php					
-					while(empty($directories)){chdir('..'); $directories = glob('nexus');}
+					while (empty($directories)){chdir('..'); $directories = glob('nexus');}
 					require_once(getcwd().'/nexus/main.php');
-					
-					// $controller = Controller::recoverGET('page');
-					// if(!$controller->isNumber($page)){$page = 1;}
-									
+
 					$suggestions = Blog::getAllSuggestions();
-					// $suggestions = Blog::getSuggestions(20);
 
-					foreach($suggestions as $suggestion):
-				?>
-					
+					foreach ($suggestions as $suggestion) :
+				?>					
 					<tr class="message" id="message<?php echo $suggestion->id; ?>"> 
-
 						<td class="checkbox"><input type="checkbox" /></td>
 						<td class="pseudo"><?php echo $suggestion->pseudo; ?></td>			
 						<td class="date"><?php echo $suggestion->getDateOn2Rows(); ?></td>						
 						<td class="suggestion" ><?php echo $suggestion->contenu; ?></td>										
 						<td class="operations">							
 							<img class="supprimer_suggestion"src="images/delete.png" title="Supprimer" alt="Supprimer" data-suggestion="<?php echo $suggestion->id; ?>" />
-						</td>
-						
-					</tr>			
-					
+						</td>						
+					</tr>	
 				<?php						
 					endforeach;		
 				?>

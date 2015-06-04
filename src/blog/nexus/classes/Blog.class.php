@@ -49,12 +49,10 @@
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
 				$this->nombreArticlesPage = 0;
-			}
-			else {
+			} else {
 				do {
 					$this->articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);							
-				}
-				while ($donnees = $requete->fetch());
+				} while ($donnees = $requete->fetch());
 			}
 															
 			$connexionBDD = NULL;				
@@ -76,12 +74,10 @@
 			
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
-			}
-			else {
+			} else {
 				do {
 					$articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);							
-				}
-				while ($donnees = $requete->fetch());
+				} while ($donnees = $requete->fetch());
 			}
 															
 			$connexionBDD = NULL;				
@@ -104,8 +100,7 @@
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles enregistrés</h5>';
 				$number =  0;
-			}
-			else {
+			} else {
 				$number = $donnees['total'];
 			}
 															
@@ -135,8 +130,7 @@
 															ORDER BY rand() LIMIT 1");
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'article sélectionné</h5>';
-			}
-			else {
+			} else {
 				$article = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);
 			}
 															
@@ -188,12 +182,10 @@
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
 				$this->nombreArticlesPage = 0;
-			}
-			else {
+			} else {
 				do {
 					$this->articles[] = new Article($donnees['id'],$donnees['titre'], $donnees['date'], $donnees['contenu']);							
-				}
-				while ($donnees = $requete->fetch());
+				} while ($donnees = $requete->fetch());
 			}
 									
 			$connexionBDD = NULL;		
@@ -214,12 +206,10 @@
 			
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';				
-			}
-			else {
+			} else {
 				do {
 					$messages[$donnees['id']] = new Commentaire($donnees['id'],$donnees['pseudo'], $donnees['date'], $donnees['message']);
-				}
-				while ($donnees = $requete->fetch());
+				} while ($donnees = $requete->fetch());
 			}
 													
 			return $messages;
@@ -244,12 +234,10 @@
 			
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';				
-			}
-			else {
+			} else {
 				do {
 					$suggestions[$donnees['id']] = new Suggestion($donnees['id'],$donnees['pseudo'], $donnees['mail'], $donnees['date'], $donnees['message']);
-				}
-				while ($donnees = $requete->fetch());
+				} while ($donnees = $requete->fetch());
 			}
 													
 			return $suggestions;

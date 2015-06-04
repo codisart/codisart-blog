@@ -42,7 +42,7 @@
 				define('FIRST_PAGE',1);
 
 				// Affichage si première page.
-				echo  (FIRST_PAGE === $page) ? '<div id=""><br/><h2>Derniers Articles</h2><br/></div><hr />' : "";	
+				echo (FIRST_PAGE === $page) ? '<div id=""><br/><h2>Derniers Articles</h2><br/></div><hr />' : "";	
 			
 				$thisBlog = new Blog();					
 				$articles = $thisBlog->getArticles($page, $nombreArticles);								
@@ -82,22 +82,22 @@
 			?>	
 				<div id="navigationBlog">				
 				<?php
-					if($nombreArticles != 0) {
+					if ($nombreArticles != 0) {
 						$max_pages = ceil(Blog::getAllArticles()->count()/$nombreArticles);
 
-						if($page > 1 && $page < $max_pages) { ?>
+						if ($page > 1 && $page < $max_pages) { ?>
 							<div  style="float:left">
 								<a href="index.php?page=<?php echo $page-1; echo $nombreArticles === 10 ? '': '&n='.$nombreArticles; ?>">Recents articles</a>
 							</div>
 						<?php }									
 						
-						if($page < $max_pages) { ?>
+						if ($page < $max_pages) { ?>
 							<div  style="float:right">
 								<a href="index.php?page=<?php echo $page+1; echo $nombreArticles === 10 ? '': '&n='.$nombreArticles; ?>">Anciens articles</a>
 							</div>
 						<?php }
 
-						if($page > $max_pages) { ?>
+						if ($page > $max_pages) { ?>
 							<div  style="float:left">
 								<a href="index.php?page=1">Retour à la première page</a>
 							</div>

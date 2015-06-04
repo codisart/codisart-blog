@@ -9,14 +9,12 @@
 	<?php
 		$onglets = glob("*.php");
 		
-		foreach ($onglets as $onglet)
-		{	
+		foreach ($onglets as $onglet) {	
 			$onglet = preg_replace("#.php$#", "", $onglet);
 			${$onglet} = '';
 		}
 		
-		if(!isset($onglet_actif))
-		{
+		if (!isset($onglet_actif)) {
 			$chemin = $_SERVER['PHP_SELF'];
 			$onglet_actif = preg_replace("#.php$#", "", basename($chemin));
 		}

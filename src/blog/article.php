@@ -36,20 +36,16 @@
 						->recoverPOST('idArticle', 'id')
 						->recoverPOST('action');
 					
-					if(!$asali) {
+					if (!$asali) {
 						$controller 
 							->recoverPOST('comment', 'comment')
 							->recoverPOST('mail', 'mail')
 							->recoverPOST('pseudo', 'pseudo');
 
-						if('ajouter' === $action)
-						{
-							if($controller->isString($comment) && $controller->isEmailAdresse($mail) && $controller->isString($pseudo) && $controller->isNumber($id))
-							{					
+						if ('ajouter' === $action) {
+							if ($controller->isString($comment) && $controller->isEmailAdresse($mail) && $controller->isString($pseudo) && $controller->isNumber($id)) {					
 								Commentaire::ajouter($id, $pseudo, $mail, $comment);
-							}
-							else 
-							{						
+							} else  {						
 								echo '<h5 class="error">Votre mail n\'est pas valide !</h5>';		
 							}
 						}	
@@ -90,7 +86,7 @@
 				<h2 id="nombreCommentaires" ><?php echo $comments->count(); ?> commentaires postés. <a href="#formCommentaire">Laisser un commentaire</a></h2>
 					
 				<?php
-					foreach($comments as $comment):
+					foreach ($comments as $comment):
 				?>
 					<div class="commentaire">
 						<h3><?php echo $comment->pseudo; ?> <em><?php echo $comment->date; ?></em></h3>

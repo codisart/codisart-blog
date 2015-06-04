@@ -29,7 +29,7 @@
 					$controller ->recoverGET('a','annee')
 								->recoverGET('m','mois');
 
-					if(!$controller->isNumber($annee) || !$controller->isNumber($mois)) {
+					if (!$controller->isNumber($annee) || !$controller->isNumber($mois)) {
 						header('Location: ./');
 						exit;
 					}
@@ -42,8 +42,8 @@
 				<?php
 					$articles = Article::getArticlesMois($annee,$mois);				
 					
-					if(false != $articles):
-						foreach ($articles as $article):
+					if (false != $articles) :
+						foreach ($articles as $article) :
 				?>
 					<br/>
 					<div class="article">
@@ -118,7 +118,7 @@
 						<?php							
 							$archives = Blog::getArchives();
 							
-							foreach ($archives as $mois => $lien):
+							foreach ($archives as $mois => $lien) :
 						?>
 							<li><a href="<?php echo $lien; ?>"><?php echo $mois; ?></a></li>
 						<?php
