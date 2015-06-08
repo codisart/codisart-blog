@@ -33,11 +33,11 @@
 
     function loadFile($file) {
 
-		if(is_file(CLASSES."/$file.class.php")) {
+		if (is_file(CLASSES."/$file.class.php")) {
 			require CLASSES."/$file.class.php";
 		}
 		
-		if(is_file(LIBS."/$file.lib.php")) {
+		if (is_file(LIBS."/$file.lib.php")) {
 			 require LIBS."/$file.lib.php";
 		}
     }

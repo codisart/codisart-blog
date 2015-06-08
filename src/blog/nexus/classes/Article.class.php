@@ -34,7 +34,7 @@
 				$date = $donnees['date'];
 				$contenu = $donnees['contenu'];
 				
-				$connexionBDD = NULL;				
+				unset($connexionBDD);
 			}
 			
 			$this->titre = $titre;
@@ -112,7 +112,7 @@
 				} while ($donnees = $requete->fetch());
 			}
 						
-			$connexionBDD = NULL;			
+			unset($connexionBDD);		
 			return $this->commentaires;
 		}
 		
@@ -182,20 +182,19 @@
 				ORDER BY id DESC
 			");
 			
-			if (false === $requete->execute(array('mois' => $mois))) {				
-				$connexionBDD = NULL;
+			if (false === $requete->execute(array('mois' => $mois))) {	
+				unset($connexionBDD);
 				return false;
 			}
 
 			if (false === ($donnees = $requete->fetch())) {
-				$connexionBDD = NULL;
+				unset($connexionBDD);
 				return false;
 			}
 
 			do {
 				$articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
-			}
-			while ($donnees = $requete->fetch());
+			} while ($donnees = $requete->fetch());
 			
 			return $articles;			
 		}	

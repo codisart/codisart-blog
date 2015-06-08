@@ -79,8 +79,6 @@
 			do {
 				$this->messages[$donnees['id']] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['message']);							
 			} while ($donnees = $requete->fetch());
-
-			unset($connexionBDD);
 			
 			return $this->messages;
 		}		
@@ -90,20 +88,11 @@
 
 		// Fonctions / Méthodes		
 		public static function ajouter($pseudo, $mail, $contenu) {
-
-			if($pseudo != "" && $mail != "" && $contenu !="") {			
-				$connexionBDD = connexionBDD();
-											
-				$requete = $connexionBDD->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
-			
-				if (!$requete->execute(array($pseudo, $mail, $contenu))) {				
-					echo '<h5 class="error">Cet article a déjà été supprimé ou n\'existe pas !</h5>';
-				} else {
-					echo '<h5 class="success">votre message a bien été enregistré !!</h5>';
-				}
-					
-				unset($connexionBDD);				
-				return true;			
+			//TODO add exception 
+			if ($pseudo != "" && $mail != "" && $contenu !="") {
+				$requete = $connexionBDD()->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
+				
+				return !$requete->execute(array($pseudo, $mail, $contenu)));			
 			}
 
 			echo '<h5 class="error">Vous n\'avez pas rempli correctement  le formulaire</h5>';

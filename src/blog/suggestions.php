@@ -62,7 +62,7 @@
 
 				if (!$asali) {
 					$controller->recoverPOST('suggestion')->recoverPOST('email')->recoverPOST('pseudo');
-				}				
+				}			
 				if ($controller->isPlainText($suggestion) && $controller->isEmailAdresse($email) && $controller->isString($pseudo)) {	
 					Suggestion::ajouter($pseudo, $email, $suggestion);
 					unset($pseudo, $email, $suggestion);
