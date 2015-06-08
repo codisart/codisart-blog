@@ -164,7 +164,7 @@
 						<?php							
 							$archives = Blog::getArchives();
 							
-							foreach ($archives as $mois => $lien):
+							foreach ($archives as $mois => $lien) :
 						?>
 							<li><a href="<?php echo $lien; ?>"><?php echo $mois; ?></a></li>
 						<?php

@@ -53,9 +53,7 @@
 					<input id="submit" name="submit" value="Valider" type="submit" class="button">
 				</p>
 			</form>
-				
-				
-	
+			
 			<?php
 				require_once('nexus/main.php');
 					
