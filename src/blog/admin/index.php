@@ -48,7 +48,7 @@
 				</thead>
 		   
 				<tbody id="list_articles"><?php				
-						do{$directories = glob('nexus');} while (empty($directories) && chdir('..'));
+						do {$directories = glob('nexus');} while (empty($directories) && chdir('..'));
 						require_once(getcwd().'/nexus/main.php');
 						
 						defined('REPARTITION') || define('REPARTITION', 10);

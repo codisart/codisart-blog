@@ -39,7 +39,7 @@
 					
 					<p>
 						<input type="hidden" name="action" value="<?php echo $action; ?>" />
-						<?php if($controller->isNumber($id)){ ?><input type="hidden" name="idArticle" value="<?php echo $id; ?>" /><?php } ?>
+						<?php if ($controller->isNumber($id)){ ?><input type="hidden" name="idArticle" value="<?php echo $id; ?>" /><?php } ?>
 						<input class="button" type="submit"  value="Enregistrer l'article" />
 					</p>
 				</form>

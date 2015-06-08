@@ -29,11 +29,11 @@
 					
 					$controller = Controller::recoverGET('page', 'expression');
 					
-					if (!$controller->isString($expression)){
+					if (!$controller->isString($expression)) {
 						header('Location: ./index.php');
 						exit;
 					}					
-					if (!$controller->isNumber($page)){
+					if (!$controller->isNumber($page)) {
 						$page = 1;
 					}
 					

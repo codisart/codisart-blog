@@ -75,7 +75,7 @@
 				
 				$nbreMess = $suggestions->count();				
 				
-				foreach ($suggestions as $suggestion):
+				foreach ($suggestions as $suggestion) :
 			?>
 				<div class="message">
 					<h3><?php echo htmlspecialchars($suggestion->pseudo); ?>  <em><?php echo $suggestion->date; ?></em></h3>

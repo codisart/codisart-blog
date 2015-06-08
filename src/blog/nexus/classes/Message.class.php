@@ -12,7 +12,7 @@
 			
 			$this->id = $id;
 			
-			if($pseudo == '' && $date == 0 && $mail == "" && $contenu == '') {
+			if ($pseudo == '' && $date == 0 && $mail == "" && $contenu == '') {
 				$pseudo = "Toto";
 				$date= "12";
 				$mail = "toto@gmail.com";

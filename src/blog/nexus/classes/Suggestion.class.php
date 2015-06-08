@@ -44,7 +44,7 @@
 		 *  Permet la lecture seule des membres
 		 */		
 		public function __get ($nom) {
-            if(isset($this->$nom)) {
+            if (isset($this->$nom)) {
 				return $this->$nom;
 			}
 			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
@@ -68,11 +68,13 @@
 
 								
 			if (false === ($donnees = $requete->fetch())) {
-				$page--;
-				if($page <= 0) {
+				--$page;
+
+				if ($page <= 0) {
 					echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
 					$this->nombreMessagesPage = 0;
 				}
+				
 				header('Location : '.$this->adresse.'?page='.$page);				
 			}
 

@@ -20,8 +20,7 @@
 
 			if (is_null($offset)) {
 				$this->contenu[] = $value;
-			}
-			else {
+			} else {
 				$this->contenu[$offset] = $value;
 			}
 			
@@ -70,7 +69,7 @@
 			}
 
 			foreach ($collection as $key => $value) {
-				if(isset($this[$key])) {
+				if (isset($this[$key])) {
 					$this[] = $value;
 				} else {
 					$this[$key] = $value;
