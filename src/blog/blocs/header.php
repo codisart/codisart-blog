@@ -4,8 +4,6 @@
 		<h1><a href="index.php">CodisArt</a></h1>
 	</div>
 
-	<?php //<div id="ad">Acheter ICI </div> ?>
-
 	<?php
 		$onglets = glob("*.php");
 
@@ -21,7 +19,7 @@
 
 		${$onglet_actif} = " actif";
 	?>
-	<div class="navigation">	
+	<div class="navigation">
 		<a class="onglet<?php echo $index; ?>" href="index.php">Accueil</a>
 		<a class="onglet<?php echo $projects; ?>" href="projects.php">Projets</a>
 		<a class="onglet<?php echo $suggestions; ?>" href="suggestions.php">Suggestions</a>
