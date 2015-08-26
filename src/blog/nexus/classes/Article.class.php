@@ -1,5 +1,7 @@
 <?php
-
+	/**
+	*	@property-read string $titre
+	*/
 	class Article {
 
 		private $titre;
@@ -192,7 +194,7 @@
 				return false;
 			}
 
-			$articles = new Collection();			
+			$articles = new Collection();
 			do {
 				$articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
 			} while ($donnees = $requete->fetch());
