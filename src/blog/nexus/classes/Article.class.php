@@ -1,7 +1,7 @@
 <?php
 	/**
-	*	@property-read string $titre
-	*/
+	 *	@property-read string $titre
+	 */
 	class Article {
 
 		private $titre;
