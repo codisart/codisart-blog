@@ -63,7 +63,7 @@
 				if (!$asali) {
 					$controller->recoverPOST('suggestion')->recoverPOST('email')->recoverPOST('pseudo');
 				}
-				if ($controller->isPlainText($suggestion) && $controller->isEmailAddress($email) && $controller->isString($pseudo)) {	
+				if ($controller->isPlainText($suggestion) && $controller->isEmailAddress($email) && $controller->isString($pseudo)) {
 					Suggestion::ajouter($pseudo, $email, $suggestion);
 					unset($pseudo, $email, $suggestion);
 				}
@@ -82,10 +82,7 @@
 
 					<p>
 						<?php echo nl2br($suggestion->message);  ?>
-					</p>
-				<!--h4>
-					<img src="images/mail.png" title="mail" style="float:left;" /> : <?php //echo $message->email;  ?>
-				</h4-->
+					</p>					
 			</div>
 			<?php
 				endforeach;

@@ -1,14 +1,13 @@
 <?php
-	
+
 	class User {
-		
-		public function __construct() {		
-			
+
+		public function __construct() {
+
 		}
 
 		static public function validLogin($username, $password) {
 			$passwordToCompare = self::getPassword($username);
-			//$passwordToCompare = 'cl697710';
 
 			if ($username == 'punkka' && $password == $passwordToCompare) {
 				return true;
@@ -18,10 +17,10 @@
 		static public function getPassword($username) {
 			// requete table Users
 			$connexionBDD = connexionBDD();
-						
+
 			$requete = $connexionBDD->query("
 				SELECT password
-				FROM users 
+				FROM users
 				WHERE name ='$username'
 				LIMIT 0,1
 			");
@@ -30,7 +29,7 @@
 				return false;
 			}
 			$password = $donnees['password'];
-						
+
 			$connexionBDD = null;
 
 			return $password;
