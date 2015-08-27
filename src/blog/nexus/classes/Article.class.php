@@ -1,7 +1,9 @@
 <?php
 
 	/**
-	 *	@property-read string $titre
+	 *	@property-read string $id
+ 	 *	@property-read string $titre
+ 	 *	@property-read string $date
 	 */
 	class Article {
 
