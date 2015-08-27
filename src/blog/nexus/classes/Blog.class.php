@@ -9,7 +9,8 @@
 		 * constructeur de la classe
 		 */
 		public function __construct() {
-
+			$this->page = 1;
+			$this->nombreArticlesPage = 10;
 		}
 
 
@@ -32,7 +33,11 @@
 		/**
 		 *	@return Collection les articles de la page demandée
 		 */
-		public function getArticles($page, $nombreArticlesPage = 10) {
+		public function getArticles($page = 1, $nombreArticlesPage = 10) {
+			if(!empty($this->articles)) {
+				return $this->articles;
+			}
+			
 			$this->page = $page;
 			$this->nombreArticlesPage = $nombreArticlesPage;
 
@@ -193,11 +198,10 @@
 					contenu,
 					date
 				FROM news
-				WHERE contenu LIKE '%$query%'
-					OR titre LIKE '%$query%'
+				WHERE contenu LIKE '%".$query."%'
+					OR titre LIKE '%".$query."%'
 				ORDER BY date DESC, id DESC
-				LIMIT $limit, $nombreArticlesPage
-			");
+				LIMIT ".$limit.", ".$nombreArticlesPage);
 
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
