@@ -37,7 +37,7 @@
 			if (!empty($this->articles)) {
 				return $this->articles;
 			}
-			
+
 			$this->page = $page;
 			$this->nombreArticlesPage = $nombreArticlesPage;
 
@@ -211,6 +211,7 @@
 				return $this;
 			}
 
+			$this->articles = new Collection();
 			do {
 				$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
 			} while ($donnees = $requete->fetch());

@@ -29,18 +29,22 @@
 
 					$controller = Controller::getInstance();
 					$controller
-						->recoverGET('expression');
+						->recoverGET('expression')
+						->recoverGET('page');
 
 					if (!$controller->isString($expression)) {
 						header('Location: ./index.php');
 						exit;
 					}
+					
 					if (!$controller->isNumber($page)) {
 						$page = 1;
 					}
+					$nombreArticles = 10;
 
-					$blog = new Blog($page, 10);
-					$articles = $blog->filtreRecherche($expression)->getArticles();
+					$thisBlog = new Blog();
+					$articles = $thisBlog->filtreRecherche($expression)->getArticles();
+
 
 					foreach ($articles as $article) :
 				?>
@@ -76,22 +80,29 @@
 
 
 				<div id="navigationBlog">
-
 				<?php
-					if ($page > 1) {
-					?>
-						<div  style="float:left">
-							<a href="recherche.php?expression=<?php echo $expression; ?>&page=<?php echo $page-1; ?>">Recents articles</a>
-						</div>
-					<?php
-					}
+					if ($nombreArticles != 0) {
+						var_dump($articles);
+						$max_pages = ceil($articles->count()/$nombreArticles);
 
-					if ($page < ceil(Article::getTotal()/10)) {
-					?>
-						<div  style="float:right">
-							<a href="recherche.php?expression=<?php echo $expression; ?>&page=<?php echo $page+1; ?>">Anciens articles</a>
-						</div>
-					<?php
+						if ($page > 1 && $page < $max_pages) { ?>
+							<div  style="float:left">
+								<a href="index.php?page=<?php echo $page-1; echo $nombreArticles === 10 ? '': '&n='.$nombreArticles; ?>">Recents articles</a>
+							</div>
+						<?php }
+
+						if ($page < $max_pages) { ?>
+							<div  style="float:right">
+								<a href="index.php?page=<?php echo $page+1; echo $nombreArticles === 10 ? '': '&n='.$nombreArticles; ?>">Anciens articles</a>
+							</div>
+						<?php }
+
+						if ($page > $max_pages) { ?>
+							<div  style="float:left">
+								<a href="index.php?page=1">Retour à la première page</a>
+							</div>
+						<?php }
+
 					}
 				?>
 				</div>
@@ -124,7 +135,7 @@
 				<h3 class="siderTitre">Archives</h3>
 				<ul id="archives">
 				<?php
-					$archives = Blog::archives();
+					$archives = Blog::getArchives(); // On récupère un simple array.
 
 					foreach ($archives as $mois => $lien):
 				?>
