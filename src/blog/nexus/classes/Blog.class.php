@@ -34,7 +34,7 @@
 		 *	@return Collection les articles de la page demandée
 		 */
 		public function getArticles($page = 1, $nombreArticlesPage = 10) {
-			if(!empty($this->articles)) {
+			if (!empty($this->articles)) {
 				return $this->articles;
 			}
 			
