@@ -1,9 +1,12 @@
 <?php
 
+	/**
+	 *	@property-read string $adresse
+	 */
 	class Suggestion {
 
 		// private $page;
-		// private $adresse;
+		private $adresse;
 		// private $nombreMessagesPage;
 		// private $viewMessage;
 		// private $messages;

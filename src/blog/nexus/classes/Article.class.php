@@ -1,20 +1,15 @@
 <?php
+
 	/**
 	 *	@property-read string $titre
 	 */
 	class Article {
 
 		private $titre;
-
 		private $date;
-
 		private $contenu;
-
 		private $id;
-
 		private $commentaires;
-
-
 
 		public function __construct($id, $titre = '', $date = 0, $contenu = '') {
 			$this->id = $id;
