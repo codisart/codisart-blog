@@ -2,8 +2,8 @@
 
 	/**
 	 *	@property-read string $id
- 	 *	@property-read string $titre
- 	 *	@property-read string $date
+	 *	@property-read string $titre
+	 *	@property-read string $date
 	 */
 	class Article {
 
@@ -49,11 +49,11 @@
 		 */
 		public function __get($nom) {
 
-            if (isset($this->$nom)) {
+			if (isset($this->$nom)) {
 				return $this->$nom;
 			}
 			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
-        }
+		}
 
 
 
