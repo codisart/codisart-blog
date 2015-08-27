@@ -49,7 +49,7 @@
 
 						<div class="entete bleu"></div>
 
-						<h3><a href="article.php?idArticle=<?php echo $article->id;?>"><?php echo $article->titre; ?></a></h3>
+						<h3><a href="article.php?idArticle=<?php echo $article->id; ?>"><?php echo $article->titre; ?></a></h3>
 
 						<h6>by <span>punkka</span>, posté le <?php echo $article->date; ?></h6>
 
