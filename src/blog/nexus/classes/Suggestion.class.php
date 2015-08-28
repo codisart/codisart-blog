@@ -5,11 +5,12 @@
 	 */
 	class Suggestion extends Item {
 
-		// private $page;
+		protected $page;
 		protected $adresse;
-		// private $nombreMessagesPage;
-		// private $viewMessage;
-		// private $messages;
+		protected $pseudo;
+		protected $mail;
+		protected $date;
+		protected $message;
 
 		public function __construct($id, $pseudo = '', $mail = '', $date = 0, $message = '') {
 			$this->id = $id;
