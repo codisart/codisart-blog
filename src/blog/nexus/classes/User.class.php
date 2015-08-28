@@ -15,10 +15,9 @@
 		}
 
 		static public function getPassword($username) {
-			// requete table Users
-			$connexionBDD = connexionBDD();
 
-			$requete = $connexionBDD->query("
+			// requete table Users
+			$requete = connexionBDD()->query("
 				SELECT password
 				FROM users
 				WHERE name ='$username'
@@ -29,8 +28,6 @@
 				return false;
 			}
 			$password = $donnees['password'];
-
-			$connexionBDD = null;
 
 			return $password;
 		}
