@@ -32,7 +32,7 @@ abstract class Item {
 
 		if (!connexionBDD()->query("DELETE FROM $table WHERE id ='$id'")) {
 			echo 'Cet article a déjà été supprimé ou n\'existe pas !';
-			return  	false;
+			return false;
 		}
 
 		return true;
