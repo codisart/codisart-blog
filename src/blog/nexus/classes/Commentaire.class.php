@@ -19,18 +19,18 @@
 		/**
 		 *  Permet la lecture seule des membres
 		 */
-		public function __get ($nom) {
+		public function __get($nom) {
 
-            if (isset($this->$nom)) {
+			if (isset($this->$nom)) {
 				return $this->$nom;
 			}
 			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
-        }
+		}
 
 
 		public static function ajouter($idArticle, $pseudo, $mail, $comment) {
 
-			if ($pseudo != "" && $mail != "" && $comment !="") {
+			if ($pseudo != "" && $mail != "" && $comment != "") {
 
 				$requete = connexionBDD()->prepare("INSERT INTO commentaires (id_news, pseudo, mail, commentaire) VALUES (?, ?, ?, ?)");
 
