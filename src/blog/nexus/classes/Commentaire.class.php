@@ -7,7 +7,7 @@
 		protected $date;
 		protected $contenu;
 
-		public function __construct($id, $pseudo, $date, $contenu) {
+		public function __construct($id, $pseudo = '', $date = 0, $contenu = '') {
 
 			$this->id = $id;
 			$this->pseudo = $pseudo;
