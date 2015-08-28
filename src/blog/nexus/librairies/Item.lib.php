@@ -1,5 +1,8 @@
 <?php
 
+/**
+ *	@property-read string $id
+ */
 abstract class Item {
 
 	// Methode Magique
