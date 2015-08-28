@@ -36,7 +36,7 @@
 						header('Location: ./index.php');
 						exit;
 					}
-					
+
 					if (!$controller->isNumber($page)) {
 						$page = 1;
 					}
@@ -44,7 +44,7 @@
 
 					$thisBlog = new Blog();
 					$articles = $thisBlog->filtreRecherche($expression)->getArticles();
-
+					$maxPages = ceil($articles->count()/$nombreArticles);
 
 					foreach ($articles as $article) :
 				?>
@@ -80,31 +80,7 @@
 
 
 				<div id="navigationBlog">
-				<?php
-					if ($nombreArticles != 0) {
-						var_dump($articles);
-						$max_pages = ceil($articles->count()/$nombreArticles);
-
-						if ($page > 1 && $page < $max_pages) { ?>
-							<div  style="float:left">
-								<a href="index.php?page=<?php echo $page-1; echo $nombreArticles === 10 ? '': '&n='.$nombreArticles; ?>">Recents articles</a>
-							</div>
-						<?php }
-
-						if ($page < $max_pages) { ?>
-							<div  style="float:right">
-								<a href="index.php?page=<?php echo $page+1; echo $nombreArticles === 10 ? '': '&n='.$nombreArticles; ?>">Anciens articles</a>
-							</div>
-						<?php }
-
-						if ($page > $max_pages) { ?>
-							<div  style="float:left">
-								<a href="index.php?page=1">Retour à la première page</a>
-							</div>
-						<?php }
-
-					}
-				?>
+					<?php include "blocs/navigation.php"; ?>
 				</div>
 
 			</div>

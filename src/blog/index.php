@@ -46,6 +46,7 @@
 
 				$thisBlog = new Blog();
 				$articles = $thisBlog->getArticles($page, $nombreArticles);
+				$maxPages = ceil(Blog::getNombreAllArticles()/$nombreArticles);
 
 				// Affichage view
 				foreach ($articles as $article):
@@ -81,30 +82,7 @@
 				endforeach;
 			?>
 				<div id="navigationBlog">
-				<?php
-					if ($nombreArticles != 0) {
-						$max_pages = ceil(Blog::getAllArticles()->count()/$nombreArticles);
-
-						if ($page > 1 && $page < $max_pages) { ?>
-							<div  style="float:left">
-								<a href="index.php?page=<?php echo $page-1; echo $nombreArticles === 10 ? '': '&n='.$nombreArticles; ?>">Recents articles</a>
-							</div>
-						<?php }
-
-						if ($page < $max_pages) { ?>
-							<div  style="float:right">
-								<a href="index.php?page=<?php echo $page+1; echo $nombreArticles === 10 ? '': '&n='.$nombreArticles; ?>">Anciens articles</a>
-							</div>
-						<?php }
-
-						if ($page > $max_pages) { ?>
-							<div  style="float:left">
-								<a href="index.php?page=1">Retour à la première page</a>
-							</div>
-						<?php }
-
-					}
-				?>
+					<?php include "blocs/navigation.php"; ?>
 				</div>
 			</div>
 
