@@ -26,7 +26,7 @@ abstract class Item {
 	public function supprimer($table) {
 		if (empty($table) || empty($this->id)) {
 			// @TODO throw execption
-			return $false;
+			return false;
 		}
 		$id = $this->id;
 
