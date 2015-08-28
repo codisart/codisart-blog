@@ -10,7 +10,8 @@
 				->recoverPOST('action');
 
 	if ($controller->isNumber($id) && 'supprimer' === $action) {
-		Commentaire::supprimer($id);
+		$comment = new Commentaire($id);
+		$comment->supprimer();
 	}
 	// @TODO Retour sur la page des commentaires avec l'id de l'article parent.
 	header('Location: ../commentaires.php');

@@ -3,10 +3,10 @@
 	/**
 	 *	@property-read string $adresse
 	 */
-	class Suggestion {
+	class Suggestion extends Item {
 
 		// private $page;
-		private $adresse;
+		protected $adresse;
 		// private $nombreMessagesPage;
 		// private $viewMessage;
 		// private $messages;
@@ -41,17 +41,7 @@
 			$this->message = $message;
 		}
 
-		// Methode Magique
 
-		/**
-		 *  Permet la lecture seule des membres
-		 */
-		public function __get ($nom) {
-            if (isset($this->$nom)) {
-				return $this->$nom;
-			}
-			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
-        }
 
 		/**
 		 *	@return Collection les messages de la page demandée.
@@ -89,13 +79,11 @@
 		}
 
 
-
-
 		// Fonctions / Méthodes
 		public static function ajouter($pseudo, $mail, $contenu) {
 			// @TODO add exception
 			if ($pseudo != "" && $mail != "" && $contenu !="") {
-				$requete = $connexionBDD()->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
+				$requete = connexionBDD()->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
 
 				return !$requete->execute(array($pseudo, $mail, $contenu));
 			}
@@ -105,15 +93,7 @@
 		}
 
 		public function supprimer() {
-			$id = $this->id;
-
-			$connexionBDD = connexionBDD();
-
-			if (!$connexionBDD->query("DELETE FROM messages WHERE id ='$id'")) {
-				echo 'Ce message a déjà été supprimé ou n\'existe pas !';
-			}
-
-			unset($connexionBDD);
+			parent::supprimer('messages');
 		}
 
 		public function getDateOn2Rows() {

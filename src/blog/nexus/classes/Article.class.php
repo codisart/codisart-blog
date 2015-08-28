@@ -5,14 +5,15 @@
 	 *	@property-read string $titre
 	 *	@property-read string $date
 	 */
-	class Article {
+	class Article extends Item{
 
-		private $titre;
-		private $date;
-		private $contenu;
-		private $id;
-		private $commentaires;
+		protected $titre;
+		protected $date;
+		protected $contenu;
+		protected $id;
+		protected $commentaires;
 
+		// @TODO ne pas hydrater tout le temps.
 		public function __construct($id, $titre = '', $date = 0, $contenu = '') {
 			$this->id = $id;
 
@@ -42,23 +43,7 @@
 		}
 
 
-		// Methode Magique
-
-		/**
-		 *  Permet la lecture seule des membres
-		 */
-		public function __get($nom) {
-
-			if (isset($this->$nom)) {
-				return $this->$nom;
-			}
-			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
-		}
-
-
-
-
-		// A mettre dnas une librairie
+		// @TODO A mettre dans une librairie.
 		public function formatDateFrench() {
 			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 
@@ -148,14 +133,7 @@
 
 		// Fonctions / Méthodes
 		public function supprimer() {
-			$id = $this->id;
-
-			if (!connexionBDD()->query("DELETE FROM news WHERE id ='$id'")) {
-				echo 'Cet article a déjà été supprimé ou n\'existe pas !';
-				return false;
-			}
-
-			return true;
+			parent::supprimer('news');
 		}
 
 

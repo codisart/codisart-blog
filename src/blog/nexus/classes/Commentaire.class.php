@@ -1,10 +1,11 @@
 <?php
 
-	class Commentaire {
-		private $id;
-		private $pseudo;
-		private $date;
-		private $contenu;
+	class Commentaire extends Item {
+
+		protected $id;
+		protected $pseudo;
+		protected $date;
+		protected $contenu;
 
 		public function __construct($id, $pseudo, $date, $contenu) {
 
@@ -13,20 +14,6 @@
 			$this->date = $date;
 			$this->contenu = $contenu;
 		}
-
-		// Methode Magique
-
-		/**
-		 *  Permet la lecture seule des membres
-		 */
-		public function __get($nom) {
-
-			if (isset($this->$nom)) {
-				return $this->$nom;
-			}
-			return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
-		}
-
 
 		public static function ajouter($idArticle, $pseudo, $mail, $comment) {
 
@@ -49,16 +36,8 @@
 		}
 
 
-		public static function supprimer($idContenu) {
-
-			$requete = connexionBDD()->prepare("DELETE FROM commentaires WHERE id = :id");
-
-			if (false === $requete->execute(array('id' => $idContenu))) {
-				echo '<h5 class="error">On ne peut pas supprimer ce contenu !</h5>';								
-				return false;
-			}
-
-			return true;
+		public function supprimer() {
+			parent::supprimer('commentaires');
 		}
 
 		public function getDateOn2Rows() {
