@@ -1,6 +1,6 @@
 <?php
 
-	while (empty($directories)){chdir('..');$directories = glob('nexus');}
+	while (empty($directories)) {chdir('..'); $directories = glob('nexus'); }
 	require_once(getcwd().'/nexus/main.php');
 
 	$controller = Controller::getInstance();
