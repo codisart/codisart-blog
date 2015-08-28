@@ -5,7 +5,7 @@
 	 *	@property-read string $titre
 	 *	@property-read string $date
 	 */
-	class Article extends Item{
+	class Article extends Item {
 
 		protected $titre;
 		protected $date;
@@ -63,7 +63,7 @@
 			$contenu = $this->getContenu();
 			$contenu_limite = '';
 
-			if (substr_count($contenu, ' ') - $nbreMots > 10) {
+			if (substr_count($contenu, ' ')-$nbreMots > 10) {
 				$contenu = explode(' ', $contenu);
 				for ($i = 0; $i < 20; $i++) {
 					$contenu_limite .= $contenu[$i].' ';

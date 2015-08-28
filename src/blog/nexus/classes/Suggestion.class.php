@@ -52,7 +52,7 @@
 
 			$this->messages = new Collection();
 
-			$limit = ($this->page -1)*$this->nombreMessagesPage;
+			$limit = ($this->page-1)*$this->nombreMessagesPage;
 
 			$requete = connexionBDD()->query("SELECT id, pseudo, date, mail, message
 															FROM messages
@@ -82,7 +82,7 @@
 		// Fonctions / Méthodes
 		public static function ajouter($pseudo, $mail, $contenu) {
 			// @TODO add exception
-			if ($pseudo != "" && $mail != "" && $contenu !="") {
+			if ($pseudo != "" && $mail != "" && $contenu != "") {
 				$requete = connexionBDD()->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
 
 				return !$requete->execute(array($pseudo, $mail, $contenu));

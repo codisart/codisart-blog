@@ -17,8 +17,11 @@
 
         // Fonctions / Méthodes
 
+		/**
+		 * @param string $table
+		 */
 		public function supprimer($table) {
-            if(empty($table) || empty($this->id)) {
+            if (empty($table) || empty($this->id)) {
                 // @TODO throw execption
                 return $false;
             }
@@ -31,4 +34,4 @@
 
 			return true;
 		}
-    }
+	}
