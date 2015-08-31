@@ -78,51 +78,14 @@
 					endforeach;
 				?>
 
-
 				<div id="navigationBlog">
 					<?php include "blocs/navigation.php"; ?>
 				</div>
-
 			</div>
 
 			<div id="secondaire">
-				<h3 class="siderTitre">Who am I ?</h3>
-
-				<p class="presentation">
-					<img src="images/profil.jpg" width="100" style="float:left" alt="profil"/>
-
-					Bienvenue sur mon blog.<br/>  Je m'appelle <em>LoudVoice</em>.<br/>
-					Je suis un passionné de médias en tout genre avec une grosse préférence pour la littérature, le cinéma et les jeux vidéos.<br/>
-					J'ai aussi un très grand intéret pour la sociologie, les mathématiques et l'histoire.
-					Par passion et hobby, je développe des sites et des applications internet depuis trois ans.<br/>
-				</p>
-
-
-				<h3 class="siderTitre">Recherche</h3>
-
-				<form id="form_recherche" action="index.php">
-					<p>
-						<input id="champ_recherche" onfocus="inputRecherche(this);" onblur="inputRecherche(this)" type="text" value="Rechercher" />
-						<input type="submit" value="OK" />
-					</p>
-				</form>
-
-
-				<h3 class="siderTitre">Archives</h3>
-				<ul id="archives">
-				<?php
-					$archives = Blog::getArchives(); // On récupère un simple array.
-
-					foreach ($archives as $mois => $lien):
-				?>
-					<li><a href="<?php echo $lien; ?>"><?php echo $mois; ?></a></li>
-				<?php
-					endforeach;
-				?>
-				</ul>
-
+				<?php include "blocs/sidebar.php"; ?>
 			</div>
-
 		</div>
 
 		<?php include "blocs/footer.html"; ?>
