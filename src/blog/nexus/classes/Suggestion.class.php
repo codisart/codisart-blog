@@ -43,43 +43,6 @@
 		}
 
 
-
-		/**
-		 *	@return Collection les messages de la page demandée.
-		 */
-		public function getCommentaires($page, $nombreMessagesPage = 10) {
-			$this->page = $page;
-			$this->nombreMessagesPage = $nombreMessagesPage;
-
-			$this->messages = new Collection();
-
-			$limit = ($this->page-1)*$this->nombreMessagesPage;
-
-			$requete = connexionBDD()->query("SELECT id, pseudo, date, mail, message
-															FROM messages
-															ORDER BY id DESC
-															LIMIT $limit, $nombreMessagesPage");
-
-
-			if (false === ($donnees = $requete->fetch())) {
-				--$page;
-
-				if ($page <= 0) {
-					echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
-					$this->nombreMessagesPage = 0;
-				}
-
-				header('Location : '.$this->adresse.'?page='.$page);
-			}
-
-			do {
-				$this->messages[$donnees['id']] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['message']);
-			} while ($donnees = $requete->fetch());
-
-			return $this->messages;
-		}
-
-
 		// Fonctions / Méthodes
 		public static function ajouter($pseudo, $mail, $contenu) {
 			// @TODO add exception
@@ -93,13 +56,14 @@
 			return false;
 		}
 
+
 		public function supprimer() {
 			parent::supprimer('messages');
 		}
 
+
 		public function getDateOn2Rows() {
 			$date = $this->date;
-
 			return str_replace(' ', "\n", $date);
 		}
 
