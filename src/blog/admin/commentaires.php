@@ -32,11 +32,8 @@
 			</ul>
 		</nav>
 
-
 		<div class="contenu grand">
-
 			<table class="workspace">
-
 				<tr>
 				   <th class="pseudo">Pseudo</th>
 				   <th class="date">date</th>
@@ -56,31 +53,21 @@
 					$comments = $article->getAllCommentaires();
 
 					foreach ($comments as $comment):
-
 				?>
-
 				<tr class="commentaire" id="commentaire<?php echo $comment->id; ?>">
-
 					<td class="pseudo"><?php echo $comment->pseudo; ?></td>
-
 					<td class="date"><?php echo $comment->getDateOn2Rows(); ?></td>
-
 					<td class="content"><?php echo $comment->contenu; ?></td>
-
 					<td class="operations">
 						<img class="delete_comment" src="images/delete.png" title="Supprimer" alt="delete" width="20" data-comment="<?php echo $comment->id; ?>"/>
 					</td>
-
 				</tr>
-
 				<?php
 					endforeach;
 				?>
 
 			</table>
-
 		</div>
-
 	</div>
 
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -104,5 +91,4 @@
 		});
 	</script>
 </body>
-
 </html>
