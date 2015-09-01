@@ -11,7 +11,7 @@
 			$connexionBDD->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 			$connexionBDD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 		} catch (Exception $e) {
-			echo 'Connexion échouée : ' . $e->getMessage();
+			echo 'Connexion échouée : '.$e->getMessage();
 			return null;
 		}
 
