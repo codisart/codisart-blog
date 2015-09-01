@@ -46,27 +46,9 @@
 						foreach ($articles as $article) :
 				?>
 					<br/>
+
 					<div class="article">
-
-						<div class="entete bleu"></div>
-
-						<h3><?php echo $article->titre; ?></h3>
-
-						<h6>by <span>zeroth</span>, posté le <?php echo $article->date; ?></h6>
-
-						<p>
-							<?php echo nl2br($article->getContenu()); ?>
-						</p>
-
-						<em>
-							<a style="float:left;" href="commentaires.php?idArticle=<?php echo $article->id; ?>">
-								Commentaires(<?php echo $article->getAllCommentaires()->count(); ?>)
-							</a>
-							<a style="float:right;" href="">
-								Catégorie
-							</a>
-						</em>
-
+						<?php include "blocs/article-row.php"; ?>
 					</div>
 
 					<hr/>
