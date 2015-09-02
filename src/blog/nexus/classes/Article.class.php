@@ -47,7 +47,7 @@
 		public function formatDateFrench() {
 			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 
-			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n", strtotime($this->date))-1].date(" Y, H:i:s", strtotime($this->date));
+			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n", strtotime($this->date)) - 1].date(" Y, H:i:s", strtotime($this->date));
 
 			return $this;
 		}
@@ -63,7 +63,7 @@
 			$contenu = $this->getContenu();
 			$contenu_limite = '';
 
-			if (substr_count($contenu, ' ')-$nbreMots > 10) {
+			if (substr_count($contenu, ' ') - $nbreMots > 10) {
 				$contenu = explode(' ', $contenu);
 				for ($i = 0; $i < 20; $i++) {
 					$contenu_limite .= $contenu[$i].' ';

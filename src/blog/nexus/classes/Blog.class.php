@@ -41,7 +41,7 @@
 			$this->page = $page;
 			$this->nombreArticlesPage = $nombreArticlesPage;
 
-			$limit = ($this->page-1)*$this->nombreArticlesPage;
+			$limit = ($this->page - 1)*$this->nombreArticlesPage;
 
 			$requete = connexionBDD()->query("
 				SELECT id, titre, contenu, date
@@ -154,7 +154,7 @@
 			$archives = new Collection();
 
 			while ($donnees = $requete->fetch()) {
-				$mois = $listeMois[$donnees['mois']-1].' '.$donnees['year'];
+				$mois = $listeMois[$donnees['mois'] - 1].' '.$donnees['year'];
 				$lien = "archives.php?a={$donnees['year']}&m={$donnees['mois']}";
 				$archives[$mois] = $lien;
 			}
@@ -167,7 +167,7 @@
 			$page = $this->page;
 			$nombreArticlesPage = $this->nombreArticlesPage;
 
-			$limit = ($page-1)*$nombreArticlesPage;
+			$limit = ($page - 1)*$nombreArticlesPage;
 
 			$requete = connexionBDD()->query("
 				SELECT id, titre, contenu, date
