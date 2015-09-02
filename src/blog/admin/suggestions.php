@@ -50,7 +50,6 @@
 				</thead>
 
 			   <tbody>
-
 			   	<?php
 					while (empty($directories)){chdir('..'); $directories = glob('nexus');}
 					require_once(getcwd().'/nexus/main.php');
@@ -74,7 +73,6 @@
 					<tr>
 						<td class="load_more" colspan="5">Charger plus de suggestions</td>
 					</tr>
-
 				</tbody>
 
 			</table>

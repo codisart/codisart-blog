@@ -14,9 +14,10 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/admin_favicon.ico" />
 </head>
 
+
 <body>
 
-	<div id="global">
+	<div class="global">
 
 		<header class="header">
 			<h1>Bienvenue sur le back-office du blog !</h1>
@@ -33,14 +34,19 @@
 		</nav>
 
 		<div class="contenu grand">
-			<table class="workspace">
-				<tr>
-				   <th class="pseudo">Pseudo</th>
-				   <th class="date">date</th>
-				   <th class="commentaires">Message</th>
-				   <th class="operations">operations</th>
-			   </tr>
 
+			<table class="workspace">
+
+				<thead>
+					<tr>
+						<th class="pseudo">Pseudo</th>
+						<th class="date">date</th>
+						<th class="commentaires">Message</th>
+						<th class="operations">operations</th>
+					</tr>
+				</thead>
+
+				<tbody>
 				<?php
 					while(empty($directories)){chdir('..'); $directories = glob('nexus');}
 					require_once(getcwd().'/nexus/main.php');
@@ -54,17 +60,18 @@
 
 					foreach ($comments as $comment):
 				?>
-				<tr class="commentaire" id="commentaire<?php echo $comment->id; ?>">
-					<td class="pseudo"><?php echo $comment->pseudo; ?></td>
-					<td class="date"><?php echo $comment->getDateOn2Rows(); ?></td>
-					<td class="content"><?php echo $comment->contenu; ?></td>
-					<td class="operations">
-						<img class="delete_comment" src="images/delete.png" title="Supprimer" alt="delete" width="20" data-comment="<?php echo $comment->id; ?>"/>
-					</td>
-				</tr>
+					<tr class="commentaire" id="commentaire<?php echo $comment->id; ?>">
+						<td class="pseudo"><?php echo $comment->pseudo; ?></td>
+						<td class="date"><?php echo $comment->getDateOn2Rows(); ?></td>
+						<td class="content"><?php echo $comment->contenu; ?></td>
+						<td class="operations">
+							<img class="delete_comment" src="images/delete.png" title="Supprimer" alt="delete" width="20" data-comment="<?php echo $comment->id; ?>"/>
+						</td>
+					</tr>
 				<?php
 					endforeach;
 				?>
+				</tbody>
 
 			</table>
 		</div>
