@@ -48,7 +48,8 @@
 			</div>
 		<?php
 		
-	} else if ($action === 'supprimer' && $controller->isNumber($id)) {
+	}
+	else if ($action === 'supprimer' && $controller->isNumber($id)) {
 
 		$form_title = "Suppression de l'article"
 
@@ -72,7 +73,8 @@
 				
 			<?php
 			exit();
-	} else {
+	}
+	else {
 		echo '<span class="error" >Erreur</span>';
 	}
 	
