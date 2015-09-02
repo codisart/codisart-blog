@@ -80,7 +80,8 @@
 
 			if (false === $maxLength) {
 				return true;
-			} else if (strlen($variable) === $maxLength) {
+			}
+			else if (strlen($variable) === $maxLength) {
 				return true;
 			}
 

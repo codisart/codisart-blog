@@ -22,7 +22,8 @@ function createMiniature() {
 		imagecopyresampled($sourceMin, $source, 0, 0, 0, 0, $largeurMin, 89, $largeur, $hauteur);
 
 		imagecopymerge($miniature, $sourceMin, $miniatureX, 0, 0, 0, 144, 89, 100);
-	} else {
+	}
+	else {
 		$hauteurMin = $hauteur / $proportionL;
 
 		$sourceMin = imagecreatetruecolor(144, $hauteurMin);
@@ -43,11 +44,13 @@ function resize_to($maxWidth, $maxHeight) {
 	if ($this->info[0] <= $max_width && $this->info[1] <= $max_height) {
 		$new_height = $this->info[1];
 		$new_width = $this->info[0];
-	} else {
+	}
+	else {
 		if ($max_width/$this->info[0] > $max_height/$this->info[1]) {
 			$new_width = (int)round($this->info[0]*($max_height/$this->info[1]));
 			$new_height = $max_height;
-		} else {
+		}
+		else {
 			$new_width = $max_width;
 			$new_height = (int)round($this->info[1]*($max_width/$this->info[0]));
 		}
@@ -56,7 +59,7 @@ function resize_to($maxWidth, $maxHeight) {
 	$new_img = imagecreatetruecolor($new_width, $new_height);
 
 	// If image is PNG or GIF, set it transparent
-	if (($this->info[2] == 1) OR ($this->info[2]==3)) {
+	if (($this->info[2] == 1) or ($this->info[2]==3)) {
 		imagealphablending($new_img, false);
 		imagesavealpha($new_img, true);
 		$transparent = imagecolorallocatealpha($new_img, 255, 255, 255, 127);
