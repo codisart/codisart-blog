@@ -17,36 +17,37 @@
 <body>
 
 	<div id="global">
-	<?php
-		include "blocs/header.php";
-	?>
+		<?php
+			include "blocs/header.php";
+		?>
+
 		<div id="contenu">
 
 			<div id="principal">
-			<?php
-				require_once('nexus/main.php');
+				<?php
+					require_once('nexus/main.php');
 
-				$controller = Controller::getInstance();
-				$controller ->recoverGET('page')
-							->recoverGET('p', 'page')
-							->recoverGET('n', 'nombreArticles');
+					$controller = Controller::getInstance();
+					$controller ->recoverGET('page')
+								->recoverGET('p', 'page')
+								->recoverGET('n', 'nombreArticles');
 
-				$page = $controller->isNumber($page) ? $page : 1;
-				$nombreArticles = $controller->isNumber($nombreArticles) ? $nombreArticles : 10;
+					$page = $controller->isNumber($page) ? $page : 1;
+					$nombreArticles = $controller->isNumber($nombreArticles) ? $nombreArticles : 10;
 
-				// Definition de la première page
-				define('FIRST_PAGE', 1);
+					// Definition de la première page
+					define('FIRST_PAGE', 1);
 
-				// Affichage si première page.
-				echo (FIRST_PAGE === $page) ? '<div id=""><br/><h2>Derniers Articles</h2><br/></div><hr />' : "";
+					// Affichage si première page.
+					echo (FIRST_PAGE === $page) ? '<div id=""><br/><h2>Derniers Articles</h2><br/></div><hr />' : "";
 
-				$thisBlog = new Blog();
-				$articles = $thisBlog->getArticles($page, $nombreArticles);
-				$maxPages = ceil(Blog::getNombreAllArticles()/$nombreArticles);
+					$thisBlog = new Blog();
+					$articles = $thisBlog->getArticles($page, $nombreArticles);
+					$maxPages = ceil(Blog::getNombreAllArticles()/$nombreArticles);
 
-				// Affichage view
-				foreach ($articles as $article):
-			?>
+					// Affichage view
+					foreach ($articles as $article):
+				?>
 				<br/>
 
 				<div class="article">
@@ -54,9 +55,10 @@
 				</div>
 
 				<hr/>
-			<?php
-				endforeach;
-			?>
+				<?php
+					endforeach;
+				?>
+				
 				<div id="navigationBlog">
 					<?php include "blocs/navigation.php"; ?>
 				</div>
@@ -71,17 +73,6 @@
 	<?php include "blocs/footer.html"; ?>
 
 	</div>
-
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery.placeholder.js"></script>
-
-	<script>
-		(function($) {
-			$(document).ready(function() {
-				$.placeholder();
-			})
-		})(jQuery);
-	</script>
 
 </body>
 

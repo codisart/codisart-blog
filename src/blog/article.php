@@ -16,7 +16,6 @@
 <body>
 
 	<div id="global">
-
 		<?php
 			include "blocs/header.php";
 		?>
@@ -33,14 +32,14 @@
 					$controller = Controller::getInstance();
 					$controller
 						->recoverPOST('asali')
-						->recoverPOST('idArticle', 'id')
-						->recoverPOST('action');
+						->recoverPOST('idArticle', 'id');
 
 					if (!$asali) {
 						$controller
 							->recoverPOST('comment', 'comment')
 							->recoverPOST('mail', 'mail')
-							->recoverPOST('pseudo', 'pseudo');
+							->recoverPOST('pseudo', 'pseudo')
+							->recoverPOST('action');
 
 						if ('ajouter' === $action) {
 							if ($controller->isString($comment) && $controller->isEmailAddress($mail) && $controller->isString($pseudo) && $controller->isNumber($id)) {
@@ -52,10 +51,8 @@
 						}
 					}
 
-					$controller ->recoverGET('idArticle', 'id');
-
+					$controller->recoverGET('idArticle', 'id');
 					$article = new Article($id);
-
 				?>
 
 				<br/>
@@ -100,93 +97,44 @@
 					endforeach;
 				?>
 
-					<hr/>
+				<hr/>
 
-					<form id="formCommentaire" action="article.php?idArticle=<?php echo $id; ?>" method="POST">
+				<form id="formCommentaire" action="article.php?idArticle=<?php echo $id; ?>" method="POST">
+					<h2>Laisser un commentaire :</h2>
 
-						<h2>Laisser un commentaire :</h2>
+					<p>
+						<input id="pseudo" name="pseudo" type="text" required="required" value="" >
+						<label for="pseudo" >Pseudo <em>(obligatoire)</em></label>
+						<input type="hidden" name="idArticle" value="<?php echo $id; ?>">
+						<input type="hidden" name="action" value="ajouter">
+					</p>
 
-						<p>
-							<input id="pseudo" name="pseudo" type="text" required="required" value="" >
-							<label for="pseudo" >Pseudo <em>(obligatoire)</em></label>
-							<input type="hidden" name="idArticle" value="<?php echo $id; ?>">
-							<input type="hidden" name="action" value="ajouter">
-						</p>
+					<p>
+						<input id="mail" name="mail" type="text" required="required" value="" >
+						<label for="mail" >Email <em>(obligatoire)</em> <strong>*ne sera pas publié</strong></label>
+					</p>
 
-						<p>
-							<input id="mail" name="mail" type="text" required="required" value="" >
-							<label for="mail" >Email <em>(obligatoire)</em> <strong>*ne sera pas publié</strong></label>
-						</p>
+					<p>
+						<textarea id="comment" name="comment" cols="50" rows="9" required="required"></textarea>
+					</p>
 
-						<p>
-							<textarea id="comment" name="comment" cols="50" rows="9" required="required"></textarea>
-						</p>
+					<p>
+						<input type="text" name="asali" id="asali" value="" />
+						<input id="submit" name="submit" value="Valider" type="submit" class="button">
+					</p>
+				</form>
 
-						<p>
-							<input type="text" name="asali" id="asali" value="" />
-							<input id="submit" name="submit" value="Valider" type="submit" class="button">
-						</p>
-					</form>
-
-
-				</div>
+			</div>
 
 			<div id="secondaire">
-
-				<div class="encart">
-					<h3 class="siderTitre">Who am I ?</h3>
-
-					<p class="profil">
-						<img src="images/profil.jpg" alt="profil"/>
-
-						Bienvenue sur mon blog.<br/><br/>Je m'appelle "Talk2loud" <br/><em>aka</em> "Talky" <br/><em>aka</em> "The loudest" <br/><br/>
-						<!--Bienvenue sur mon blog.<br/>  Je m'appelle <em>LoudVoice</em>.<br/>
-						Je suis un passionné de médias en tout genre avec une grosse préférence pour la littérature, le cinéma et les jeux vidéos.<br/>
-						J'ai aussi un très grand intéret pour la sociologie, les mathématiques et l'histoire.
-						Par passion et hobby, je développe des sites et des applications internet depuis trois ans.<br/>	-->
-					</p>
-				</div>
-
-				<div class="encart">
-					<h3 class="siderTitre">Recherche</h3>
-
-					<form id="form_recherche" action="recherche.php" class="recherche">
-						<p>
-							<input id="champ_recherche" class="saisie" name="expression" onfocus="inputRecherche(this);" onblur="inputRecherche(this)" type="text" value="Rechercher" />
-							<input class="bouton" type="submit" value="OK" />
-						</p>
-					</form>
-				</div>
-
-				<div class="encart">
-					<h3 class="siderTitre">Archives</h3>
-
-					<ul class="archives">
-						<?php
-							$archives = Blog::getArchives();
-
-							foreach ($archives as $mois => $lien) :
-						?>
-							<li><a href="<?php echo $lien; ?>"><?php echo $mois; ?></a></li>
-						<?php
-							endforeach;
-						?>
-					</ul>
-				</div>
-
-				<div class="encart">
-					<h3 class="siderTitre" title="Article aléatoire"><a href="article.php?idArticle=<?php echo Blog::getRandomArticle()->id; ?>">Random</a></h3>
-				</div>
-
+				<?php include "blocs/sidebar.php"; ?>
 			</div>
 
 		</div>
 
-		<?php include "blocs/footer.html"; ?>
+	<?php include "blocs/footer.html"; ?>
 
 	</div>
-
-	<script type="text/javascript" src="script.js"></script>
 
 </body>
 </html>
