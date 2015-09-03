@@ -141,6 +141,9 @@
 
 		// @TODO modifier while pour la do structure.
 		public static function getArchives() {
+			// @TODO mettre les mois dans une enum
+			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+
 			$requete = connexionBDD()->query("
 				SELECT
 					DISTINCT DATE_FORMAT(date, '%c') as mois,
@@ -149,15 +152,18 @@
 				ORDER BY date DESC
 			");
 
-			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-
 			$archives = new Collection();
 
-			while ($donnees = $requete->fetch()) {
+			if (false === ($donnees = $requete->fetch())) {
+				return $archives;
+			}
+
+			do {
 				$mois = $listeMois[$donnees['mois'] - 1].' '.$donnees['year'];
 				$lien = "archives.php?a={$donnees['year']}&m={$donnees['mois']}";
 				$archives[$mois] = $lien;
 			}
+			while ($donnees = $requete->fetch());
 
 			return $archives;
 		}
@@ -239,7 +245,7 @@
 			do {
 				$suggestions[$donnees['id']] = new Suggestion($donnees['id'], $donnees['pseudo'], $donnees['mail'], $donnees['date'], $donnees['message']);
 			} while ($donnees = $requete->fetch());
-			
+
 			return $suggestions;
 		}
 

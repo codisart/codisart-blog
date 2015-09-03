@@ -26,21 +26,27 @@
 	</form>
 </div>
 
-<div class="encart">
-	<h3 class="siderTitre">Archives</h3>
+<?php
+	$archives = Blog::getArchives(); // On récupère une collection.
 
-	<ul class="archives">
-	<?php
-		$archives = Blog::getArchives(); // On récupère un simple array.
+	if(!empty($archives)) {
+?>
+	<div class="encart">
+		<h3 class="siderTitre">Archives</h3>
 
-		foreach ($archives as $mois => $lien):
-	?>
-		<li><a href="<?php echo $lien; ?>"><?php echo $mois; ?></a></li>
-	<?php
-		endforeach;
-	?>
-	</ul>
-</div>
+		<ul class="archives">
+		<?php
+			foreach ($archives as $mois => $lien):
+		?>
+			<li><a href="<?php echo $lien; ?>"><?php echo $mois; ?></a></li>
+		<?php
+			endforeach;
+		?>
+		</ul>
+	</div>
+<?php
+	}
+?>
 
 <div class="encart">
 	<h3 class="siderTitre" title="Article aléatoire"><a href="article.php?idArticle=<?php echo Blog::getRandomArticle()->id; ?>">Random</a></h3>
