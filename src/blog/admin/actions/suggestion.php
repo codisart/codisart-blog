@@ -10,7 +10,7 @@
 	$controller->recoverPOST('idSuggestion', 'id')
 				->recoverPOST('action');
 
-	if ('supprimer' === $action && $controller->isNumber($id)) {		
+	if ('supprimer' === $action && $controller->isNumber($id)) {
 		$suggestion = new Suggestion($id);		
 		$suggestion->supprimer();
 	}
