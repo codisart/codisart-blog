@@ -139,7 +139,6 @@
 			return $article;
 		}
 
-		// @TODO modifier while pour la do structure.
 		public static function getArchives() {
 			// @TODO mettre les mois dans une enum
 			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
