@@ -12,7 +12,7 @@
 		
 	$titre = $contenu = $form_title = "";
 		
-	if ('ajouter' === $action || ('modifier' === $action && $controller->isNumber($id))) {			
+	if ('ajouter' === $action || ('modifier' === $action && $controller->isNumber($id))) {
 		$form_title = "Nouvel article";
 	
 		if ('modifier' === $action) {
