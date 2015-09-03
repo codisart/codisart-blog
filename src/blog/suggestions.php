@@ -81,7 +81,7 @@
 					<h3><?php echo htmlspecialchars($suggestion->pseudo); ?>  <em><?php echo $suggestion->date; ?></em></h3>
 
 					<p>
-						<?php echo nl2br($suggestion->message);  ?>
+						<?php echo nl2br($suggestion->message); ?>
 					</p>					
 			</div>
 			<?php

@@ -9,7 +9,7 @@
 		public function __toString() {
 			$string = "<pre>\n Le controller existe et contient les valeurs suivantes: \n ";
 
-			foreach ($this->variables as $key => $variable ) {
+			foreach ($this->variables as $key => $variable) {
 				$string .= "\t $key est egale a $variable \n";
 			}
 			$string .= "</pre>";
@@ -153,7 +153,7 @@
 			$patternTelephoneNumber = '#^0[1-8]([-. ]?[0-9]{2}){4}$#';
 
 			if (preg_match($patternTelephoneNumber, $nombre)) {
-				$nombre = str_replace(array("-","_"," "), "", $nombre);
+				$nombre = str_replace(array("-", "_", " "), "", $nombre);
 				return true;
 			}
 
