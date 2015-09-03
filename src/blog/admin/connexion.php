@@ -47,7 +47,7 @@
 				$nom_redirection_apache = basename($_SERVER['PHP_SELF']);
 				$url_variables = empty($_SERVER['QUERY_STRING']) ? "" : '?'.$_SERVER['QUERY_STRING'];
 			?>
-			<form action="<?php echo ($nom_page_appelee != $nom_redirection_apache || $nom_fichier == $nom_page_appelee ?  'index.php' : $nom_redirection_apache).$url_variables; ?>" method="POST">
+			<form action="<?php echo ($nom_page_appelee != $nom_redirection_apache || $nom_fichier == $nom_page_appelee ? 'index.php' : $nom_redirection_apache).$url_variables; ?>" method="POST">
 				<p>
 					<input type="text" class="textbox" name="login" placeholder="Identifiant" value="<?php echo isset($login) ? $login : ''; ?>"/>
 				</p>
