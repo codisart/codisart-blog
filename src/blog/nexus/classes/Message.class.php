@@ -14,9 +14,9 @@
 			
 			if ($pseudo == '' && $date == 0 && $mail == "" && $contenu == '') {
 				$pseudo = "Toto";
-				$date= "12";
+				$date = "12";
 				$mail = "toto@gmail.com";
-				$contenu ="Blahblahblah";
+				$contenu = "Blahblahblah";
 			}
 
 			$this->pseudo = $pseudo;
@@ -61,7 +61,7 @@
 		//fonctions / Méthodes				
 		public static function ajouter($pseudo, $mail, $contenu) {
 
-			if ($pseudo != "" && $mail != "" && $contenu !="") {			
+			if ($pseudo != "" && $mail != "" && $contenu != "") {			
 				$connexionBDD = connexionBDD();
 											
 				$requete = $connexionBDD->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
@@ -80,7 +80,7 @@
 			return false;
 		}
 		
-		public function supprimer()  {
+		public function supprimer() {
 			$id = $this->id;
 					
 			$connexionBDD = connexionBDD();
