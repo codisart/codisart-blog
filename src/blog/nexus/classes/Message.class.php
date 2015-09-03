@@ -26,23 +26,23 @@
 		}
 		
 		//fonctions get / Getters 
-		public function getPseudo() {		
+		public function getPseudo() {
 			return $this->pseudo;
 		}
 		
-		public function getDate() {		
+		public function getDate() {
 			return $this->date;
 		}
 		
-		public function getEmail() {		
+		public function getEmail() {
 			return $this->mail;
 		}
 
-		public function getContenu() {		
+		public function getContenu() {
 			return nl2br(htmlspecialchars($this->contenu));
 		}
 
-		public function getID() {		
+		public function getID() {
 			return $this->id;
 		}
 		
@@ -61,13 +61,13 @@
 		//fonctions / Méthodes				
 		public static function ajouter($pseudo, $mail, $contenu) {
 
-			if ($pseudo != "" && $mail != "" && $contenu != "") {			
+			if ($pseudo != "" && $mail != "" && $contenu != "") {
 				$connexionBDD = connexionBDD();
 											
 				$requete = $connexionBDD->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
 				
 				$notification = '<h5 class="success">votre message a bien été enregistré !!</h5>';
-				if (!$requete->execute(array($pseudo, $mail, $contenu))) {				
+				if (!$requete->execute(array($pseudo, $mail, $contenu))) {
 					$notification = '<h5 class="error">Cet article a déjà été supprimé ou n\'existe pas !</h5>';
 				}
 				echo $notification;
