@@ -12,17 +12,17 @@ abstract class Item {
 	 */
 	final public function __get($name) {
 		$reflection = new ReflectionClass($this);
-        $properties = array_keys($reflection->getdefaultProperties());
+		$properties = array_keys($reflection->getdefaultProperties());
 
-        if (isset($this->$name)) {
-            return $this->$name;
-        }
+		if (isset($this->$name)) {
+			return $this->$name;
+		}
 		else if(in_array($name, $properties)) {
 			$this->hydrate();
-	        return $this->$name;
+			return $this->$name;
 		}
 		// @TODO throw Exception
-        return false;
+		return false;
 	}
 
 	private function hydrate() {
