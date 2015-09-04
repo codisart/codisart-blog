@@ -92,7 +92,12 @@
 
 			if (false !== ($donnees = $requete->fetch())) {
 				do {
-					$this->commentaires[] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['commentaire']);
+					$commentaire = new Commentaire($donnees['id']);
+					$commentaire->setPseudo($donnees['pseudo']);
+					$commentaire->setDate($donnees['date']);
+					$commentaire->setCommentaire($donnees['commentaire']);
+					$this->commentaires[] = $commentaire;
+
 				} while ($donnees = $requete->fetch());
 			}
 

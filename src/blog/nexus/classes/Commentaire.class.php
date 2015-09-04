@@ -7,12 +7,25 @@
 		protected $date;
 		protected $contenu;
 
-		public function __construct($id, $pseudo = '', $date = 0, $contenu = '') {
-
+		public function __construct($id) {
 			$this->id = $id;
-			$this->pseudo = $pseudo;
-			$this->date = $date;
-			$this->contenu = $contenu;
+		}
+
+		protected function hydrate() {
+			echo 'plop';
+			$requete = connexionBDD()->query("
+				SELECT id, pseudo, date, commentaire
+				FROM commentaires
+				WHERE id='{$this->id}'
+				ORDER BY id DESC
+				LIMIT 0,1
+			");
+
+			$donnees = $requete->fetch();
+
+			$this->pseudo = $donnees['pseudo'];
+			$this->date = $donnees['date'];
+			$this->contenu = $donnees['contenu'];
 		}
 
 		public static function ajouter($idArticle, $pseudo, $mail, $comment) {
@@ -44,5 +57,22 @@
 			$date = $this->date;
 
 			return str_replace(' ', "<br/>", $date);
+		}
+
+
+
+
+		public function setPseudo($pseudo) {
+			$this->pseudo = $pseudo;
+		}
+
+
+		public function setDate($date) {
+			$this->date = $date;
+		}
+
+
+		public function setCommentaire($commentaire) {
+			$this->contenu = $commentaire;
 		}
 	}

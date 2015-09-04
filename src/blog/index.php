@@ -58,7 +58,7 @@
 				<?php
 					endforeach;
 				?>
-				
+
 				<div id="navigationBlog">
 					<?php include "blocs/navigation.php"; ?>
 				</div>

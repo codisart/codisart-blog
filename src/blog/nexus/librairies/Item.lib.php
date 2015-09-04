@@ -10,14 +10,24 @@ abstract class Item {
 	/**
 	 *  Permet la lecture seule des membres
 	 */
-	final private function __get($nom) {
+	final public function __get($name) {
+		$reflection = new ReflectionClass($this);
+        $properties = array_keys($reflection->getdefaultProperties());
 
-		if (isset($this->$nom)) {
-			return $this->$nom;
+        if (isset($this->$name)) {
+            return $this->$name;
+        }
+		else if(in_array($name, $properties)) {
+			$this->hydrate();
+	        return $this->$name;
 		}
-		return "<p class=\"error\">Impossible d'accéder à l'attribut <strong>$nom</strong>, désolé !</p>";
+		// @TODO throw Exception
+        return false;
 	}
 
+	private function hydrate() {
+		return true;
+	}
 	// Fonctions / Méthodes
 
 	/**
