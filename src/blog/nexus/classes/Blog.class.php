@@ -200,7 +200,7 @@
 		 *	@return Collection $messages collection des messages
 		 */
 		static public function getAllSuggestions() {
-			$messages = new Collection();
+			$suggestions = new Collection();
 
 			$requete = connexionBDD()->query("
 				SELECT id, pseudo, date, mail, message
@@ -210,14 +210,14 @@
 
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';
-				return $messages;
+				return $suggestions;
 			}
 
 			do {
-				$messages[$donnees['id']] = new Commentaire($donnees['id'], $donnees['pseudo'], $donnees['date'], $donnees['message']);
+				$suggestions[$donnees['id']] = new Suggestion($donnees['id'], $donnees['pseudo'], $donnees['mail'], $donnees['date'], $donnees['message']);
 			} while ($donnees = $requete->fetch());
 
-			return $messages;
+			return $suggestions;
 		}
 
 
