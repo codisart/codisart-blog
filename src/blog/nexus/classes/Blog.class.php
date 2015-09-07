@@ -220,32 +220,4 @@
 			return $suggestions;
 		}
 
-
-		/**
-		 * 	@param int $limite nombres de suggestions à récupérer
-		 * 	@param int $origin première suggestion à récupérer
-		 *	@return Collection $suggestions collection des suggestions
-		 */
-		static public function getSuggestions($limite, $origin = 0) {
-			$suggestions = new Collection();
-
-			$requete = connexionBDD()->query("
-				SELECT id, pseudo, date, mail, message
-				FROM messages
-				ORDER BY date DESC, id DESC
-				LIMIT $origin, $limite
-			");
-
-			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';
-				return $suggestions;
-			}
-
-			do {
-				$suggestions[$donnees['id']] = new Suggestion($donnees['id'], $donnees['pseudo'], $donnees['mail'], $donnees['date'], $donnees['message']);
-			} while ($donnees = $requete->fetch());
-
-			return $suggestions;
-		}
-
 	}

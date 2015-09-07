@@ -68,12 +68,7 @@
 					unset($pseudo, $email, $suggestion);
 				}
 
-				$controller->recoverGET('limite');
-				$limite = $controller->isNumber($limite) ? $limite : 15;
-
-				$suggestions = Blog::getSuggestions($limite);
-
-				$nbreMess = $suggestions->count();
+				$suggestions = Blog::getAllSuggestions();
 
 				foreach ($suggestions as $suggestion) :
 			?>
@@ -82,7 +77,7 @@
 
 					<p>
 						<?php echo nl2br($suggestion->message); ?>
-					</p>					
+					</p>
 			</div>
 			<?php
 				endforeach;
