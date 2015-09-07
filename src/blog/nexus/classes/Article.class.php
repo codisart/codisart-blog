@@ -146,7 +146,6 @@
 			$requete = connexionBDD()->prepare("INSERT INTO news (titre, contenu) VALUES ( ?, ?)");
 
 			if (!$requete->execute(array($titre, $contenu))) {
-				echo 'Cet article a déjà été supprimé ou n\'existe pas !';
 				return false;
 			}
 
