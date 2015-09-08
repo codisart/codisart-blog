@@ -31,20 +31,25 @@ abstract class Item {
 	// Fonctions / Méthodes
 
 
-	public static function save($datas) {
-		$cols = implode(',', array_keys($datas));
-		$questionMarks = implode(',' , array_fill(0, count($cols), '?'));
+	public static function save($datas, $table) {
+		$colonnesNamesArr = array_keys($datas);
+		$colonnesNamesStr = implode(',', array_keys($datas));
+		foreach ($colonnesNamesArr as &$value) {
+			$value = ':'.$value;
+		}
+		$marqueursStr = implode(',', $colonnesNamesArr);
 
 		$requete = connexionBDD()->prepare(
 			"INSERT INTO ".
 			$table.
 			" (".
-			$cols.
+			$colonnesNamesStr.
 			") VALUES (".
-			$questionMarks.
-			")");
+			$marqueursStr.
+			")"
+		);
 
-		if (!$requete->execute(array($titre, $contenu))) {
+		if (!$requete->execute($datas)) {
 			return false;
 		}
 
