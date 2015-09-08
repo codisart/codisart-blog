@@ -17,7 +17,7 @@ abstract class Item {
 		if (isset($this->$name)) {
 			return $this->$name;
 		}
-		else if(in_array($name, $properties)) {
+		else if (in_array($name, $properties)) {
 			$this->hydrate();
 			return $this->$name;
 		}
@@ -29,7 +29,6 @@ abstract class Item {
 		return true;
 	}
 	// Fonctions / Méthodes
-
 
 	public static function save($datas, $table) {
 		$colonnesNamesArr = array_keys($datas);
