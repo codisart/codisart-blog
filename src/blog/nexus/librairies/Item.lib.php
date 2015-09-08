@@ -30,6 +30,27 @@ abstract class Item {
 	}
 	// Fonctions / Méthodes
 
+
+	public static function save($datas) {
+		$cols = implode(',', array_keys($datas));
+		$questionMarks = implode(',' , array_fill(0, count($cols), '?'));
+
+		$requete = connexionBDD()->prepare(
+			"INSERT INTO ".
+			$table.
+			" (".
+			$cols.
+			") VALUES (".
+			$questionMarks.
+			")");
+
+		if (!$requete->execute(array($titre, $contenu))) {
+			return false;
+		}
+
+		return true;
+	}
+
 	/**
 	 * @param string $table
 	 */

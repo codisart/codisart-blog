@@ -142,14 +142,16 @@
 		}
 
 
-		public function ajouter($titre, $contenu) {
-			$requete = connexionBDD()->prepare("INSERT INTO news (titre, contenu) VALUES ( ?, ?)");
-
-			if (!$requete->execute(array($titre, $contenu))) {
-				return false;
+		public static function ajouter($titre, $contenu) {
+			if (!empty($titre) && !empty($contenu)) {
+				return self::save(
+					array(
+						'titre' 	=> $titre,
+						'contenu' 	=> $contenu,
+					),
+					'news'
+				);
 			}
-
-			return true;
 		}
 
 
