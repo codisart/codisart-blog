@@ -17,7 +17,7 @@ abstract class Item {
 		if (isset($this->$name)) {
 			return $this->$name;
 		}
-		else if(in_array($name, $properties)) {
+		else if (in_array($name, $properties)) {
 			$this->hydrate();
 			return $this->$name;
 		}
@@ -33,7 +33,7 @@ abstract class Item {
 
 	public static function save($datas) {
 		$cols = implode(',', array_keys($datas));
-		$questionMarks = implode(',' , array_fill(0, count($cols), '?'));
+		$questionMarks = implode(',', array_fill(0, count($cols), '?'));
 
 		$requete = connexionBDD()->prepare(
 			"INSERT INTO ".
