@@ -3,7 +3,7 @@
 
 <h3><a href="article.php?idArticle=<?php echo $article->id; ?>"><?php echo $article->titre; ?></a></h3>
 
-<h6>par <span>punkka</span>, posté le <?php echo $article->date; ?></h6>
+<h6>par <span>punkka</span>, posté le <?php echo $article->getDate('fr'); ?></h6>
 
 <p>
 <?php echo nl2br($article->getContenu()); ?>

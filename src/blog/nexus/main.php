@@ -25,8 +25,10 @@
 	define("CLASSES", __DIR__."/classes");
 	define("LIBS", __DIR__."/librairies");
 
-	function loadFile($file) {
-
+	function loadFile($class) {
+		$parts = explode('\\', $class);
+		$file = end($parts);
+		
 		if (is_file(CLASSES."/$file.class.php")) {
 			require CLASSES."/$file.class.php";
 		}

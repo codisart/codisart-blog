@@ -18,8 +18,8 @@
 			$this->id = $id;
 
 			$this->titre = !empty($titre) ? $titre : null;
-			$this->date = !empty($date) ? $titre : null;
-			$this->contenu = !empty($contenu) ? $titre : null;
+			$this->date = !empty($date) ? $date : null;
+			$this->contenu = !empty($contenu) ? $contenu : null;
 		}
 
 		protected function hydrate() {
@@ -38,15 +38,11 @@
 			$this->contenu = $donnees['contenu'];
 		}
 
-
-		// @TODO A mettre dans une librairie.
-		public function formatDateFrench() {
-			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-
-			$this->date = date("j ", strtotime($this->date)).$listeMois[date("n", strtotime($this->date)) - 1].date(" Y, H:i:s", strtotime($this->date));
-
-			return $this;
+		public function getDate($langue) {
+			$date = new Codisart\Nexus\DateTime($this->date);
+			return $date->format('j F Y à H:i:s');
 		}
+
 
 
 		public function getContenu() {

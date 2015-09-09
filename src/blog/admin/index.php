@@ -1,4 +1,4 @@
-<?php
+ <?php
 	if (!isset($_SESSION)){session_start();}
 	if (!isset($_SESSION['login'])){require 'connexion.php';exit();}
 ?>
@@ -64,7 +64,7 @@
 
 						<td class="titre"><?php echo $article->titre; ?></td>
 
-						<td class="date"><?php echo $article->date; ?></td>
+						<td class="date"><?php echo $article->getDate('fr'); ?></td>
 
 						<td class="commentaires">
 							<a href="commentaires.php?id_article=<?php echo $article->id; ?>" title="Voir les commentaires de cet article">
