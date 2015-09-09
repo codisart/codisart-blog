@@ -17,29 +17,25 @@
 		public function __construct($id, $titre = '', $date = 0, $contenu = '') {
 			$this->id = $id;
 
-			if ($titre == '' && $date == 0 && $contenu == '') {
-				$connexionBDD = connexionBDD();
+			$this->titre = !empty($titre) ? $titre : null;
+			$this->date = !empty($date) ? $titre : null;
+			$this->contenu = !empty($contenu) ? $titre : null;
+		}
 
-				$requete = $connexionBDD->query("
-					SELECT id, titre, contenu, date
-					FROM news
-					WHERE id='$id'
-					ORDER BY id DESC
-					LIMIT 0,1
-				");
+		protected function hydrate() {
+			$requete = connexionBDD()->query("
+				SELECT id, titre, contenu, date
+				FROM news
+				WHERE id='{$this->id}'
+				ORDER BY id DESC
+				LIMIT 0,1
+			");
 
-				$donnees = $requete->fetch();
+			$donnees = $requete->fetch();
 
-				$titre = $donnees['titre'];
-				$date = $donnees['date'];
-				$contenu = $donnees['contenu'];
-
-				unset($connexionBDD);
-			}
-
-			$this->titre = $titre;
-			$this->date = $date;
-			$this->contenu = $contenu;
+			$this->titre = $donnees['titre'];
+			$this->date = $donnees['date'];
+			$this->contenu = $donnees['contenu'];
 		}
 
 

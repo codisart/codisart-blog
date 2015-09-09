@@ -25,9 +25,7 @@ abstract class Item {
 		return false;
 	}
 
-	private function hydrate() {
-		return true;
-	}
+	abstract protected function hydrate();
 	// Fonctions / Méthodes
 
 	public static function save(array $datas, $table) {

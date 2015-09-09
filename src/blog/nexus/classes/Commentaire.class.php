@@ -12,7 +12,6 @@
 		}
 
 		protected function hydrate() {
-			echo 'plop';
 			$requete = connexionBDD()->query("
 				SELECT id, pseudo, date, commentaire
 				FROM commentaires
