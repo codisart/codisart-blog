@@ -30,7 +30,7 @@ abstract class Item {
 	}
 	// Fonctions / Méthodes
 
-	public static function save($datas, $table) {
+	public static function save(array $datas, $table) {
 		$colonnesNamesArr = array_keys($datas);
 		$colonnesNamesStr = implode(',', array_keys($datas));
 		foreach ($colonnesNamesArr as &$value) {
