@@ -38,7 +38,7 @@
 			$this->contenu = $donnees['contenu'];
 		}
 
-		public function getDate($langue) {
+		public function getDate() {
 			$date = new Codisart\Nexus\DateTime($this->date);
 			return $date->format('j F Y à H:i:s');
 		}
