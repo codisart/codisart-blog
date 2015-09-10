@@ -24,6 +24,7 @@
 				$formatParts = preg_split('/(?<![\\\\])F/', $format);
 				$finalPart = array_pop($formatParts);
 
+				$dateString = "";
 				foreach ($formatParts as $key => $part) {
 					$dateString .= parent::format($part).$this->listeMois[parent::format('n')];
 				}
