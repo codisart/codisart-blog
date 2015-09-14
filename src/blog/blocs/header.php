@@ -1,6 +1,6 @@
-﻿<div class="header">
+<div class="header">
 
-	<div class="logo">
+		<div class="logo">
 		<h1><a href="index.php">CodisArt</a></h1>
 	</div>
 
