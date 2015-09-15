@@ -15,33 +15,28 @@
 		public function __construct($id, $pseudo = '', $mail = '', $date = 0, $message = '') {
 			$this->id = $id;
 
-			if ($pseudo == '' && $mail == '' && $date == 0 && $message == '') {
-				$connexionBDD = connexionBDD();
-
-				$requete = $connexionBDD->query("
-					SELECT id, pseudo, mail, date, message
-					FROM messages
-					WHERE id='$id'
-					ORDER BY id DESC
-					LIMIT 0,1
-				");
-
-				$donnees = $requete->fetch();
-
-				$pseudo = $donnees['pseudo'];
-				$mail = $donnees['mail'];
-				$date = $donnees['date'];
-				$message = $donnees['message'];
-
-				unset($connexionBDD);
-			}
-
-			$this->pseudo = $pseudo;
-			$this->mail = $mail;
-			$this->date = $date;
-			$this->message = $message;
+			$this->pseudo = !empty($pseudo) ? $pseudo : null;
+			$this->mail = !empty($mail) ? $mail : null;
+			$this->date = !empty($date) ? $date : null;
+			$this->message = !empty($message) ? $message : null;
 		}
 
+		protected function hydrate() {
+			$requete = connexionBDD()->query("
+				SELECT id, pseudo, mail, date, message
+				FROM messages
+				WHERE id='{$this->id}'
+				ORDER BY id DESC
+				LIMIT 0,1
+			");
+
+			$donnees = $requete->fetch();
+
+			$this->pseudo = $donnees['pseudo'];
+			$this->mail = $donnees['mail'];
+			$this->date = $donnees['date'];
+			$this->message = $donnees['message'];
+		}
 
 		// Fonctions / Méthodes
 		public static function ajouter($pseudo, $mail, $contenu) {
