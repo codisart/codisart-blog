@@ -13,7 +13,6 @@
 		protected $id;
 		protected $commentaires;
 
-		// @TODO ne pas hydrater tout le temps.
 		public function __construct($id, $titre = '', $date = 0, $contenu = '') {
 			$this->id = $id;
 
