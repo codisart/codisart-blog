@@ -3,7 +3,7 @@
 
 	class DateTime extends \DateTime{
 
-		private $listeMois = array(
+		const MOIS = array(
 			1 => "Janvier",
 			2 => "Février",
 			3 => "Mars",
@@ -26,7 +26,7 @@
 
 				$dateString = "";
 				foreach ($formatParts as $key => $part) {
-					$dateString .= parent::format($part).$this->listeMois[parent::format('n')];
+					$dateString .= parent::format($part).self::MOIS[parent::format('n')];
 				}
 				$dateString .= parent::format($finalPart);
 

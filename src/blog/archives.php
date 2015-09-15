@@ -34,10 +34,8 @@
 						exit;
 					}
 
-					$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-
 				?>
-					<div id=""><br/><h2><?php echo "{$listeMois[$mois - 1]} $annee"; ?></h2><br/></div><hr />
+					<div id=""><br/><h2><?php echo Codisart\Nexus\DateTime::Mois[$mois]." ".$annee; ?></h2><br/></div><hr />
 
 				<?php
 					$articles = Article::getArticlesMois($annee, $mois);

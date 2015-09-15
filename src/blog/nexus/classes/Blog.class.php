@@ -140,8 +140,6 @@
 		}
 
 		public static function getArchives() {
-			// @TODO mettre les mois dans une enum
-			$listeMois = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
 
 			$requete = connexionBDD()->query("
 				SELECT
@@ -158,7 +156,7 @@
 			}
 
 			do {
-				$mois = $listeMois[$donnees['mois'] - 1].' '.$donnees['year'];
+				$mois = Codisart\Nexus\DateTime::Mois[$donnees['mois']].' '.$donnees['year'];
 				$lien = "archives.php?a={$donnees['year']}&m={$donnees['mois']}";
 				$archives[$mois] = $lien;
 			}
