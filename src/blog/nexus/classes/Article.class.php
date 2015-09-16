@@ -68,9 +68,7 @@
 
 
 		public function getAllCommentaires() {
-			$connexionBDD = connexionBDD();
-
-			$requete = $connexionBDD->prepare("
+			$requete = connexionBDD()->prepare("
 				SELECT id, pseudo, date, commentaire
 				FROM commentaires
 				WHERE id_news = :id
@@ -92,7 +90,6 @@
 				} while ($donnees = $requete->fetch());
 			}
 
-			unset($connexionBDD);
 			return $this->commentaires;
 		}
 
@@ -157,12 +154,10 @@
 			");
 
 			if (false === $requete->execute(array('mois' => $mois))) {
-				unset($connexionBDD);
 				return false;
 			}
 
 			if (false === ($donnees = $requete->fetch())) {
-				unset($connexionBDD);
 				return false;
 			}
 
