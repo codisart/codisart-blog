@@ -22,14 +22,15 @@
 		}
 
 		protected function hydrate() {
-			$requete = connexionBDD()->query("
+			$requete = connexionBDD()->prepare("
 				SELECT id, titre, contenu, date
 				FROM news
-				WHERE id='{$this->id}'
+				WHERE id=:id
 				ORDER BY id DESC
 				LIMIT 0,1
 			");
 
+			$requete->execute(array('id' => $this->id));
 			$donnees = $requete->fetch();
 
 			$this->titre = $donnees['titre'];

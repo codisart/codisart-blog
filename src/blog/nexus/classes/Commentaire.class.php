@@ -53,9 +53,6 @@
 			return str_replace(' ', "<br/>", $date);
 		}
 
-
-
-
 		public function setPseudo($pseudo) {
 			$this->pseudo = $pseudo;
 		}
