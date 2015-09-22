@@ -44,6 +44,7 @@
 
 					$thisBlog = new Blog();
 					$articles = $thisBlog->filtreRecherche($expression)->getArticles();
+					// @TODO attention : renvoie toujours moins de 10 articles.
 					$maxPages = ceil($articles->count()/$nombreArticles);
 
 					foreach ($articles as $article) :
@@ -79,7 +80,10 @@
 				?>
 
 				<div id="navigationBlog">
-					<?php include "blocs/navigation.php"; ?>
+					<?php
+						$url = 'recherche.php';
+						include "blocs/navigation.php";
+					?>
 				</div>
 			</div>
 

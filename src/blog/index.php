@@ -60,7 +60,10 @@
 				?>
 
 				<div id="navigationBlog">
-					<?php include "blocs/navigation.php"; ?>
+					<?php
+						$url = 'index.php';
+						include "blocs/navigation.php";
+					?>
 				</div>
 			</div>
 
