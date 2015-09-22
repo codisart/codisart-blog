@@ -156,7 +156,7 @@
 			}
 
 			do {
-				$mois = Codisart\Nexus\DateTime::Mois[$donnees['mois']].' '.$donnees['year'];
+				$mois = Codisart\Nexus\DateTime::MOIS[$donnees['mois']].' '.$donnees['year'];
 				$lien = "archives.php?a={$donnees['year']}&m={$donnees['mois']}";
 				$archives[$mois] = $lien;
 			}
