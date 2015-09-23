@@ -64,7 +64,11 @@
 					$controller->recoverPOST('suggestion')->recoverPOST('email')->recoverPOST('pseudo');
 				}
 				if ($controller->isPlainText($suggestion) && $controller->isEmailAddress($email) && $controller->isString($pseudo)) {
-					Suggestion::ajouter($pseudo, $email, $suggestion);
+					try {
+						Suggestion::ajouter($pseudo, $email, $suggestion);
+					} catch (Exception $e) {						
+						echo 'Exception reçue : ',  $e->getMessage(), "\n";
+					}
 					unset($pseudo, $email, $suggestion);
 				}
 

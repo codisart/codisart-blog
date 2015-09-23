@@ -9,7 +9,7 @@
 		try {
 			$connexionBDD = new \PDO(SERVER, USER, PASS);
 			$connexionBDD->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-			$connexionBDD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+			$connexionBDD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
 		catch (Exception $e) {
 			echo 'Connexion échouée : '.$e->getMessage();
@@ -28,7 +28,7 @@
 	function loadFile($class) {
 		$parts = explode('\\', $class);
 		$file = end($parts);
-		
+
 		if (is_file(CLASSES."/$file.class.php")) {
 			require CLASSES."/$file.class.php";
 		}

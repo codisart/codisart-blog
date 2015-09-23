@@ -40,15 +40,12 @@
 
 		// Fonctions / Méthodes
 		public static function ajouter($pseudo, $mail, $contenu) {
-			// @TODO add exception
-			if ($pseudo != "" && $mail != "" && $contenu != "") {
-				$requete = connexionBDD()->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
-
-				return !$requete->execute(array($pseudo, $mail, $contenu));
+			if (empty($pseudo) || empty($mail) || empty($contenu)) {
+				throw new Exception('Les paramètres ne sont pas correctement renseignés.');
 			}
 
-			echo '<h5 class="error">Vous n\'avez pas rempli correctement  le formulaire</h5>';
-			return false;
+			$requete = connexionBDD()->prepare("INSERT INTO message (pseudo, mail, message) VALUES (?, ?, ?)");
+			return $requete->execute(array($pseudo, $mail, $contenu));
 		}
 
 
