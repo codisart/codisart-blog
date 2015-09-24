@@ -67,7 +67,7 @@
 					try {
 						Suggestion::ajouter($pseudo, $email, $suggestion);
 					} catch (Exception $e) {						
-						echo 'Exception reçue : ',  $e->getMessage(), "\n";
+						echo 'Exception reçue : ', $e->getMessage(), "\n";
 					}
 					unset($pseudo, $email, $suggestion);
 				}
