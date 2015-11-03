@@ -1,5 +1,8 @@
 <?php
 
+	/**
+	 * @property string $_table
+	 */
 	class Commentaire extends Item {
 		protected $_table = 'commentaires';
 

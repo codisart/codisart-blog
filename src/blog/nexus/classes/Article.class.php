@@ -1,9 +1,10 @@
 <?php
 
 	/**
-	 *	@property-read string $id
-	 *	@property-read string $titre
-	 *	@property-read string $date
+	 * @property string $_table
+	 * @property-read string $id
+	 * @property-read string $titre
+	 * @property-read string $date
 	 */
 	class Article extends Item {
 

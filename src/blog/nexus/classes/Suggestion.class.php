@@ -1,7 +1,8 @@
 <?php
 
 	/**
-	 *	@property-read string $adresse
+	 * @property string $_table
+	 * @property-read string $adresse
 	 */
 	class Suggestion extends Item {
 
