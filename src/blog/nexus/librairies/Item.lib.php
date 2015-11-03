@@ -28,6 +28,9 @@ abstract class Item {
 	abstract protected function hydrate();
 	// Fonctions / Méthodes
 
+	/**
+	 * @param string $table
+	 */
 	public static function save(array $datas, $table) {
 		$colonnesNamesArr = array_keys($datas);
 		$colonnesNamesStr = implode(',', array_keys($datas));
@@ -55,7 +58,7 @@ abstract class Item {
 
 	public function supprimer() {
 		if (empty($this->_table) || empty($this->id)) {
-        	throw new Exception("L'opération de supression de cet article ne peut pas s'effectuer.");
+			throw new Exception("L'opération de supression de cet article ne peut pas s'effectuer.");
 		}
 		$id = $this->id;
 
