@@ -1,6 +1,7 @@
 <?php
-
-	include('config.php');
+	if (file_exists('config.php')) {
+		include('config.php');
+	}
 	require('default.config.php');
 
 
