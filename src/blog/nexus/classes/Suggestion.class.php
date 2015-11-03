@@ -5,6 +5,8 @@
 	 */
 	class Suggestion extends Item {
 
+		protected $_table = 'messages';
+
 		protected $page;
 		protected $adresse;
 		protected $pseudo;
@@ -47,12 +49,6 @@
 			$requete = connexionBDD()->prepare("INSERT INTO message (pseudo, mail, message) VALUES (?, ?, ?)");
 			return $requete->execute(array($pseudo, $mail, $contenu));
 		}
-
-
-		public function supprimer() {
-			parent::supprimer('messages');
-		}
-
 
 		public function getDateOn2Rows() {
 			$date = $this->date;

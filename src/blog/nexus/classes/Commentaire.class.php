@@ -1,6 +1,7 @@
 <?php
 
 	class Commentaire extends Item {
+		protected $_table = 'commentaires';
 
 		protected $id;
 		protected $pseudo;
@@ -40,11 +41,6 @@
 
 			echo '<h5 class="error">Vous n\'avez pas rempli correctement le formulaire</h5>';
 			return false;
-		}
-
-
-		public function supprimer() {
-			parent::supprimer('commentaires');
 		}
 
 		public function getDateOn2Rows() {

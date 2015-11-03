@@ -7,6 +7,8 @@
 	 */
 	class Article extends Item {
 
+		protected $_table = 'news';
+
 		protected $titre;
 		protected $date;
 		protected $contenu;
@@ -127,7 +129,7 @@
 
 		// Fonctions / Méthodes
 		public function supprimer() {
-			parent::supprimer('news');
+			parent::supprimer();
 		}
 
 

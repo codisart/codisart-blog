@@ -53,17 +53,13 @@ abstract class Item {
 		return true;
 	}
 
-	/**
-	 * @param string $table
-	 */
-	public function supprimer($table) {
-		if (empty($table) || empty($this->id)) {
-			// @TODO throw execption
-			return false;
+	public function supprimer() {
+		if (empty($this->_table) || empty($this->id)) {
+        	throw new Exception("L'opération de supression de cet article ne peut pas s'effectuer.");
 		}
 		$id = $this->id;
 
-		if (!connexionBDD()->query("DELETE FROM $table WHERE id ='$id'")) {
+		if (!connexionBDD()->query("DELETE FROM $this->_table WHERE id ='$id'")) {
 			echo 'Cet article a déjà été supprimé ou n\'existe pas !';
 			return false;
 		}
