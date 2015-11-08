@@ -66,7 +66,8 @@
 				if ($controller->isPlainText($suggestion) && $controller->isEmailAddress($email) && $controller->isString($pseudo)) {
 					try {
 						Suggestion::ajouter($pseudo, $email, $suggestion);
-					} catch (Exception $e) {						
+					}
+					catch (Exception $e) {
 						echo 'Exception reçue : ', $e->getMessage(), "\n";
 					}
 					unset($pseudo, $email, $suggestion);

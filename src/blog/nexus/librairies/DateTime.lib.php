@@ -1,7 +1,7 @@
 <?php
 	namespace Codisart\Nexus;
 
-	class DateTime extends \DateTime{
+	class DateTime extends \DateTime {
 
 		const MOIS = array(
 			1 => "Janvier",
@@ -20,7 +20,7 @@
 
 
 		public function format($format) {
-			if(preg_match('/(?<![\\\\])F/', $format)) {
+			if (preg_match('/(?<![\\\\])F/', $format)) {
 				$formatParts = preg_split('/(?<![\\\\])F/', $format);
 				$finalPart = array_pop($formatParts);
 
