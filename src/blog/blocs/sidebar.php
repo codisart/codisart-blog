@@ -29,7 +29,7 @@
 <?php
 	$archives = Blog::getArchives(); // On récupère une collection.
 
-	if(!empty($archives)) {
+	if (!empty($archives)) {
 ?>
 	<div class="encart">
 		<h3 class="siderTitre">Archives</h3>
