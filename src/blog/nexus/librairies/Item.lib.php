@@ -1,7 +1,8 @@
 <?php
 
 /**
- *	@property-read string $id
+ *	@property-read 	string $id
+ *	@property 		string $_table
  */
 abstract class Item {
 
