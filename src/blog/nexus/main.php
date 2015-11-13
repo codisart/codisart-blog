@@ -1,12 +1,14 @@
 <?php
-	if (file_exists('config.php')) {
-		include('config.php');
+
+	define('NEXUSDIR', __DIR__ . '/');
+
+	if (is_file(NEXUSDIR.'config.php')) {
+		include(NEXUSDIR.'config.php');
 	}
-	require('default.config.php');
+	require(NEXUSDIR.'default.config.php');
 
 
 	function connexionBDD() {
-
 		try {
 			$connexionBDD = new \PDO(SERVER, USER, PASS);
 			$connexionBDD->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
