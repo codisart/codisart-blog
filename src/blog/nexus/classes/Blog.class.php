@@ -135,9 +135,7 @@
 				return null;
 			}
 
-			$article = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
-
-			return $article;
+			return new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
 		}
 
 		public static function getArchives() {
