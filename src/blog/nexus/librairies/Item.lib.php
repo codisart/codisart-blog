@@ -9,7 +9,8 @@ abstract class Item {
 	// Methode Magique
 
 	/**
-	 *  Permet la lecture seule des membres
+	 *  Permet la lecture seule des propriétes des classes filles.
+	 *  @return mixed
 	 */
 	final public function __get($name) {
 		$reflection = new ReflectionClass($this);
@@ -26,6 +27,9 @@ abstract class Item {
 		return false;
 	}
 
+	/**
+	 * @return void
+	 */
 	abstract protected function hydrate();
 	// Fonctions / Méthodes
 
