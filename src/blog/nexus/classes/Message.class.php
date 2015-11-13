@@ -9,12 +9,12 @@
 		private $id;
 
 		/**
-		 * [__construct description]
-		 * @param [type]  $id      [description]
-		 * @param string  $pseudo  [description]
-		 * @param integer $date    [description]
-		 * @param string  $mail    [description]
-		 * @param string  $contenu [description]
+		 * Constructeur de classe
+		 * @param integer  $id     l'identifiant du message en base de donnée
+		 * @param string  $pseudo  le pseudo de l'internaute qui a écrit le message
+		 * @param integer $date    la date à laquelle l'internaute a écrit son message
+		 * @param string  $mail    l'adresse email de l'internaute qui a écrit le message
+		 * @param string  $contenu le contenu du message
 		 */
 		public function __construct($id, $pseudo = "", $date = 0, $mail = "", $contenu = "") {
 
@@ -112,8 +112,7 @@
 
 		/**
 		 * @TODO Throw Exception
-		 * [supprimer description]
-		 * @return [type] [description]
+		 * Supprime un message de la base de données
 		 */
 		public function supprimer() {
 			if (!connexionBDD()->query("DELETE FROM messages WHERE id ='$this->id'")) {
