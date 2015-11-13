@@ -1,6 +1,6 @@
 <?php
 
-	define('NEXUSDIR', __DIR__ . '/');
+	define('NEXUSDIR', __DIR__.'/');
 
 	if (is_file(NEXUSDIR.'config.php')) {
 		include(NEXUSDIR.'config.php');
