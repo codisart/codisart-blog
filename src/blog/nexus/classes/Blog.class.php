@@ -31,6 +31,7 @@
 
 
 		/**
+		 * 	@TODO throw Exception when no articles
 		 *	@return Collection les articles de la page demandée
 		 */
 		public function getArticles($page = 1, $nombreArticlesPage = 10) {
