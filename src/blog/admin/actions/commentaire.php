@@ -11,7 +11,8 @@
 
 	if ($controller->isNumber($id) && 'supprimer' === $action) {
 		$comment = new Commentaire($id);
+		$idArticle = $comment->getArticle()->id;
 		$comment->supprimer();
+		header('Location: ../commentaires.php?id_article='.$idArticle);die;
 	}
-	// @TODO Retour sur la page des commentaires avec l'id de l'article parent.
 	header('Location: ../commentaires.php');

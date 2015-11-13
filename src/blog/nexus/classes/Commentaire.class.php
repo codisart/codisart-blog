@@ -52,6 +52,22 @@
 			return str_replace(' ', "<br/>", $date);
 		}
 
+		public function getArticle() {
+			$requete = connexionBDD()->query("
+				SELECT news.id, news.titre, news.contenu, news.date
+				FROM news
+					INNER JOIN commentaires ON news.id = commentaires.id_news
+				WHERE commentaires.id='{$this->id}'
+				ORDER BY id DESC
+				LIMIT 0,1
+			");
+
+			if (false === ($donnees = $requete->fetch())) {
+				return null;
+			}
+
+			return new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
+		}
 		public function setPseudo($pseudo) {
 			$this->pseudo = $pseudo;
 		}
