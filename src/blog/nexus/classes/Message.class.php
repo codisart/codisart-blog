@@ -8,6 +8,14 @@
 		private $contenu;
 		private $id;
 
+		/**
+		 * [__construct description]
+		 * @param [type]  $id      [description]
+		 * @param string  $pseudo  [description]
+		 * @param integer $date    [description]
+		 * @param string  $mail    [description]
+		 * @param string  $contenu [description]
+		 */
 		public function __construct($id, $pseudo = "", $date = 0, $mail = "", $contenu = "") {
 
 			$this->id = $id;
@@ -25,40 +33,67 @@
 			$this->contenu = $contenu;
 		}
 
-		//fonctions get / Getters
+		/**
+		 * Retourne le pseudo de l'internaute qui a écrit le message
+		 * @return string
+		 */
 		public function getPseudo() {
 			return $this->pseudo;
 		}
 
+		/**
+		 * Retourne la date à laquelle l'internaute a écrit son message
+		 * @return string
+		 */
 		public function getDate() {
 			return $this->date;
 		}
 
+		/**
+		 * Retourne l'adresse email de l'internaute qui a écrit le message
+		 * @return string
+		 */
 		public function getEmail() {
 			return $this->mail;
 		}
 
+		/**
+		 * Retourne le contenu du message
+		 * @return string
+		 */
 		public function getContenu() {
 			return nl2br(htmlspecialchars($this->contenu));
 		}
 
+		/**
+		 * Retourne l'identifiant du message en base de donnée
+		 * @return integer
+		 */
 		public function getID() {
 			return $this->id;
 		}
 
+		/**
+		 * Retourne le nombre total de messages en base de données
+		 * @return integer
+		 */
 		public static function getTotal() {
-			$connexionBDD = connexionBDD();
-
-			$requete = $connexionBDD->query("SELECT COUNT(*) AS total
-																	FROM messages");
+			$requete = connexionBDD()->query("
+				SELECT COUNT(1) AS total
+				FROM messages
+			");
 
 			$donnees = $requete->fetch();
-
 			return $donnees['total'];
 		}
 
-
-		//fonctions / Méthodes
+		/**
+		 * Retourne un booléen explicitant le résultat de l'ajout d'un nouveau message en base de données
+		 * @param  string $pseudo  le pseudo de l'internaute qui a écrit le message
+		 * @param  string $mail    l'adresse email de l'internaute qui a écrit le message
+		 * @param  string $contenu le contenu du message
+		 * @return boolean
+		 */
 		public static function ajouter($pseudo, $mail, $contenu) {
 
 			if ($pseudo != "" && $mail != "" && $contenu != "") {
@@ -75,15 +110,14 @@
 			return false;
 		}
 
+		/**
+		 * @TODO Throw Exception
+		 * [supprimer description]
+		 * @return [type] [description]
+		 */
 		public function supprimer() {
-			$id = $this->id;
-
-			$connexionBDD = connexionBDD();
-
-			if (!$connexionBDD->query("DELETE FROM messages WHERE id ='$id'")) {
+			if (!connexionBDD()->query("DELETE FROM messages WHERE id ='$this->id'")) {
 				echo '<h5 class="error">Ce message a déjà été supprimé ou n\'existe pas !</h5>';
 			}
-
-			unset($connexionBDD);
 		}
 	}
