@@ -1,9 +1,11 @@
 <?php
 	class Blog {
 
-		private $page;
-		private $nombreArticlesPage;
-		private $articles;
+		protected $page;
+		protected $nombreArticlesPage;
+		protected $articles;
+
+		protected $_filtres;
 
 		/**
 		 * constructeur de la classe
@@ -11,6 +13,8 @@
 		public function __construct() {
 			$this->page = 1;
 			$this->nombreArticlesPage = 10;
+
+			$this->_filtres = array();
 		}
 
 
