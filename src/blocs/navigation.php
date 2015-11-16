@@ -4,7 +4,7 @@
 		if ($page > 1 && $page < $maxPages) {
 			echo '
 				<div  style="float:left">
-					<a href="'.$url.'?page='.($page - 1).($nombreArticles === 10 ? '' : '&n='.$nombreArticles).'">Recents articles</a>
+					<a href="'.$url.'?&page='.($page - 1).($nombreArticles === 10 ? '' : '&n='.$nombreArticles).'">Recents articles</a>
 				</div>';
 		}
 

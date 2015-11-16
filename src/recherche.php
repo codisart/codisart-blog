@@ -81,7 +81,7 @@
 
 				<div id="navigationBlog">
 					<?php
-						$url = 'recherche.php';
+						$url = "recherche.php?expression=$expression";
 						include "blocs/navigation.php";
 					?>
 				</div>

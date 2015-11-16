@@ -209,7 +209,7 @@
 		}
 
 		protected function buildWhereConditions() {
-			$where = 0;
+			$where = '';
 			if (!empty($this->_filtres)) {
 				$where = 'WHERE 1 = 1 ';
 				foreach ($this->_filtres as $key => $filtre) {
