@@ -206,7 +206,7 @@
 
 		protected function buildWhereConditions() {
 			$where = 0;
-			if(!empty($this->_filtres)) {
+			if (!empty($this->_filtres)) {
 				$where = 'WHERE 1 = 1 ';
 				foreach ($this->_filtres as $key => $filtre) {
 					$where .= 'AND '.$filtre;
