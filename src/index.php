@@ -32,12 +32,12 @@
 								->recoverGET('p', 'page')
 								->recoverGET('n', 'nombreArticles');
 
-					$page = $controller->isNumber($page) ? $page : 1;
+					$page = $controller->isNumber($page) ? (int) $page : 1;
 					$nombreArticles = $controller->isNumber($nombreArticles) ? $nombreArticles : 10;
 
 					// Definition de la première page
 					define('FIRST_PAGE', 1);
-
+					
 					// Affichage si première page.
 					echo (FIRST_PAGE === $page) ? '<div id=""><br/><h2>Derniers Articles</h2><br/></div><hr />' : "";
 
@@ -61,7 +61,7 @@
 
 				<div id="navigationBlog">
 					<?php
-						$url = 'index.php';
+						$url = 'index.php?';
 						include "blocs/navigation.php";
 					?>
 				</div>
