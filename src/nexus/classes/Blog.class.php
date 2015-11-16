@@ -44,9 +44,12 @@
 
 			$limit = ($this->page - 1)*$this->nombreArticlesPage;
 
+			$where = $this->buildWhereConditions();
+
 			$requete = connexionBDD()->query("
 				SELECT id, titre, contenu, date
 				FROM news
+				$where
 				ORDER BY date DESC, id DESC
 				LIMIT $limit, $nombreArticlesPage
 			");
@@ -62,7 +65,6 @@
 				$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
 			} while ($donnees = $requete->fetch());
 
-
 			return $this->articles;
 		}
 
@@ -70,12 +72,15 @@
 		/**
 		 *	@return Collection Tous les articles en base de données.
 		 */
-		public static function getAllArticles() {
+		public function getAllArticles() {
 			$articles = new Collection();
+
+			$where = $this->buildWhereConditions();
 
 			$requete = connexionBDD()->query("
 				SELECT id, titre, contenu, date
 				FROM news
+				$where
 				ORDER BY date DESC, id DESC
 			");
 
@@ -95,11 +100,13 @@
 		/**
 		 *	@return int nombre total de tous les articles.
 		 */
-		public static function getNombreAllArticles() {
+		public function getNombreAllArticles() {
+			$where = $this->buildWhereConditions();
 
 			$requete = connexionBDD()->query("
 				SELECT COUNT(1) as total
 				FROM news
+				$where
 			");
 
 			if (false === ($donnees = $requete->fetch())) {
@@ -166,29 +173,9 @@
 
 
 		public function filtreRecherche($query) {
-			$page = $this->page;
-			$nombreArticlesPage = $this->nombreArticlesPage;
+			$this->_filtres[] = "contenu LIKE '%{$query}%' OR titre LIKE '%{$query}%'";
 
-			$limit = ($page - 1)*$this->nombreArticlesPage;
-
-			$requete = connexionBDD()->query("
-				SELECT id, titre, contenu, date
-				FROM news
-				WHERE contenu LIKE '%".$query."%'
-					OR titre LIKE '%".$query."%'
-				ORDER BY date DESC, id DESC
-				LIMIT ".$limit.", ".$this->nombreArticlesPage
-			);
-
-			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
-				return $this;
-			}
-
-			$this->articles = new Collection();
-			do {
-				$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
-			} while ($donnees = $requete->fetch());
+			unset($this->articles);
 
 			return $this;
 		}
@@ -215,6 +202,17 @@
 			} while ($donnees = $requete->fetch());
 
 			return $suggestions;
+		}
+
+		protected function buildWhereConditions() {
+			$where = 0;
+			if(!empty($this->_filtres)) {
+				$where = 'WHERE 1 = 1 ';
+				foreach ($this->_filtres as $key => $filtre) {
+					$where .= 'AND '.$filtre;
+				}
+			}
+			return $where;
 		}
 
 	}

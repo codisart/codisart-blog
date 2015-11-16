@@ -55,7 +55,7 @@
 
 						$thisBlog = new Blog();
 						$articles = $thisBlog->getArticles(1, REPARTITION);
-						$totalArticles = $thisBlog::getNombreAllArticles();
+						$totalArticles = $thisBlog->getNombreAllArticles();
 
 						foreach ($articles as $article):
 					?>

@@ -23,7 +23,6 @@
 		<div id="contenu">
 
 			<div id="principal">
-
 				<?php
 					require_once('nexus/main.php');
 
@@ -37,6 +36,8 @@
 						exit;
 					}
 
+					echo '<div id=""><br/><h2>Recherche de l\'expression : '.$expression.'</h2><br/></div><hr />';
+
 					if (!$controller->isNumber($page)) {
 						$page = 1;
 					}
@@ -44,8 +45,7 @@
 
 					$thisBlog = new Blog();
 					$articles = $thisBlog->filtreRecherche($expression)->getArticles();
-					// @TODO attention : renvoie toujours moins de 10 articles.
-					$maxPages = ceil($articles->count()/$nombreArticles);
+					$maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
 
 					foreach ($articles as $article) :
 				?>

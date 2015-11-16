@@ -43,7 +43,7 @@
 
 					$thisBlog = new Blog();
 					$articles = $thisBlog->getArticles($page, $nombreArticles);
-					$maxPages = ceil(Blog::getNombreAllArticles()/$nombreArticles);
+					$maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
 
 					// Affichage view
 					foreach ($articles as $article):
