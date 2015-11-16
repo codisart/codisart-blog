@@ -169,7 +169,7 @@
 			$page = $this->page;
 			$nombreArticlesPage = $this->nombreArticlesPage;
 
-			$limit = ($page - 1)*$nombreArticlesPage;
+			$limit = ($page - 1)*$this->nombreArticlesPage;
 
 			$requete = connexionBDD()->query("
 				SELECT id, titre, contenu, date
@@ -177,7 +177,7 @@
 				WHERE contenu LIKE '%".$query."%'
 					OR titre LIKE '%".$query."%'
 				ORDER BY date DESC, id DESC
-				LIMIT ".$limit.", ".$nombreArticlesPage
+				LIMIT ".$limit.", ".$this->nombreArticlesPage
 			);
 
 			if (false === ($donnees = $requete->fetch())) {
