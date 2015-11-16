@@ -44,7 +44,7 @@
 					$nombreArticles = 10;
 
 					$thisBlog = new Blog();
-					$articles = $thisBlog->filtreRecherche($expression)->getArticles();
+					$articles = $thisBlog->filtreRecherche($expression)->getArticles($page, $nombreArticles);
 					$maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
 
 					foreach ($articles as $article) :
