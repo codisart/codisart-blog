@@ -153,13 +153,8 @@
 				ORDER BY rand() LIMIT 1
 			");
 
-			if (false === $requete->execute()) {
-				return false;
-			}
-
-			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas d\'article sélectionné</h5>';
-				return null;
+			if (false === $requete->execute() || false === ($donnees = $requete->fetch())) {
+				throw new Exception("Error Processing Request", 1);
 			}
 
 			return new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
