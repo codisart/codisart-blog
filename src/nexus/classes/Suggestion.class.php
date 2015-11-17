@@ -56,10 +56,13 @@
 			$requete = connexionBDD()->prepare("INSERT INTO message (pseudo, mail, message) VALUES (?, ?, ?)");
 			return $requete->execute(array($pseudo, $mail, $contenu));
 		}
-
+		
+		/**
+		 * Renvoie la date de l'objet avec un retour à la ligne entre la date et l'heure.
+		 * @return string
+		 */
 		public function getDateOn2Rows() {
-			$date = $this->date;
-			return str_replace(' ', "\n", $date);
+			return str_replace(' ', "\n", $this->date);
 		}
 
 	}

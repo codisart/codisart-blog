@@ -51,9 +51,7 @@
 		 * @return string
 		 */
 		public function getDateOn2Rows() {
-			$date = $this->date;
-
-			return str_replace(' ', "<br/>", $date);
+			return str_replace(' ', "<br/>", $this->date);
 		}
 
 		public function getArticle() {
