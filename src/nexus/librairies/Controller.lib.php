@@ -17,7 +17,10 @@
 			return $string;
 		}
 
-
+		/**
+		 * Retourne une instance du controller
+		 * @return Controller
+		 */
 		static public function getInstance() {
 			 if (is_null(self::$instance)) {
 			   self::$instance = new Controller();
@@ -129,7 +132,7 @@
 		public function isPlainText(&$text) {
 			if (!is_string($text) || $text == "") {
 				return false;
-			}	
+			}
 
 			$text = strip_tags($text);
 			return true;
