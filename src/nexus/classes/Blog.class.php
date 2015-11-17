@@ -228,7 +228,7 @@
 		}
 
 		protected function buildWhereConditions() {
-			$where =  array();
+			$where = array();
 
 			if (!empty($this->_filtres)) {
 				$where['condition'] = 'WHERE 1 = 1 ';
