@@ -28,19 +28,17 @@
 
 			 return self::$instance;
 		}
-
-
-
-		public function recoverPOST($key, $newKey = false) {
+		
+		public function recoverPOST($key, $newKey = null) {
 			return $this->recoverGLOBAL($_POST, $key, $newKey);
 		}
-
-		public function recoverGET($key, $newKey = false) {
+		
+		public function recoverGET($key, $newKey = null) {
 			return $this->recoverGLOBAL($_GET, $key, $newKey);
 		}
-
-		protected function recoverGLOBAL($superglobale, $key, $newKey = false) {
-			if (false === $newKey) {
+		
+		protected function recoverGLOBAL($superglobale, $key, $newKey = null) {
+			if (null === $newKey) {
 				$newKey = $key;
 			}
 
