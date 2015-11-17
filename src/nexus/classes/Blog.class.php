@@ -50,13 +50,17 @@
 
 			$where = $this->buildWhereConditions();
 
-			$requete = connexionBDD()->query("
+			$requete = connexionBDD()->prepare("
 				SELECT id, titre, contenu, date
 				FROM news
-				$where
+				{$where['condition']}
 				ORDER BY date DESC, id DESC
 				LIMIT $limit, $nombreArticlesPage
 			");
+
+			if (false === $requete->execute($where['values'])) {
+				return false;
+			}
 
 			$this->articles = new Collection();
 			if (false === ($donnees = $requete->fetch())) {
@@ -81,12 +85,16 @@
 
 			$where = $this->buildWhereConditions();
 
-			$requete = connexionBDD()->query("
+			$requete = connexionBDD()->prepare("
 				SELECT id, titre, contenu, date
 				FROM news
-				$where
+				{$where['condition']}
 				ORDER BY date DESC, id DESC
 			");
+
+			if (false === $requete->execute($where['values'])) {
+				return false;
+			}
 
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
@@ -107,11 +115,15 @@
 		public function getNombreAllArticles() {
 			$where = $this->buildWhereConditions();
 
-			$requete = connexionBDD()->query("
+			$requete = connexionBDD()->prepare("
 				SELECT COUNT(1) as total
 				FROM news
-				$where
+				{$where['condition']}
 			");
+
+			if (false === $requete->execute($where['values'])) {
+				return false;
+			}
 
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'articles enregistrés</h5>';
@@ -135,11 +147,15 @@
 		 *	@return Article un article au hasard.
 		 */
 		public static function getRandomArticle() {
-			$requete = connexionBDD()->query("
+			$requete = connexionBDD()->prepare("
 				SELECT id, titre, contenu, date
 				FROM news
 				ORDER BY rand() LIMIT 1
 			");
+
+			if (false === $requete->execute()) {
+				return false;
+			}
 
 			if (false === ($donnees = $requete->fetch())) {
 				echo '<h5 class="error">Il n\'y a pas d\'article sélectionné</h5>';
@@ -151,13 +167,17 @@
 
 		public static function getArchives() {
 
-			$requete = connexionBDD()->query("
+			$requete = connexionBDD()->prepare("
 				SELECT
 					DISTINCT DATE_FORMAT(date, '%c') as mois,
 					DATE_FORMAT(date, '%Y') as year
 				FROM news
 				ORDER BY date DESC
 			");
+
+			if (false === $requete->execute()) {
+				return false;
+			}
 
 			$archives = new Collection();
 
@@ -177,7 +197,11 @@
 
 
 		public function filtreRecherche($query) {
-			$this->_filtres[] = "contenu LIKE '%{$query}%' OR titre LIKE '%{$query}%'";
+			$this->_filtres[] = array(
+				"condition" => "contenu LIKE :term OR titre LIKE :term",
+				"marker" => ":term",
+				"value" => "%{$query}%"
+			);
 
 			unset($this->articles);
 
@@ -209,11 +233,13 @@
 		}
 
 		protected function buildWhereConditions() {
-			$where = '';
+			$where =  array();
+
 			if (!empty($this->_filtres)) {
-				$where = 'WHERE 1 = 1 ';
+				$where['condition'] = 'WHERE 1 = 1 ';
 				foreach ($this->_filtres as $key => $filtre) {
-					$where .= 'AND '.$filtre;
+					$where['condition'] .= 'AND '.$filtre['condition'];
+					$where['values'][$filtre['marker']] = $filtre['value'];
 				}
 			}
 			return $where;
