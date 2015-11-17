@@ -41,7 +41,13 @@
 			$this->message = $donnees['message'];
 		}
 
-		// Fonctions / Méthodes
+		/**
+		 * Ajouter une nouvelle suggestion en vase de données
+		 * @param  string $pseudo  le pseudo de l'internaute ayant ajouté la suggestion
+		 * @param  string $mail    l'adresse email de l'internaute ayant ajouté la suggestion
+		 * @param  string $contenu le contenu de la suggestion
+		 * @return bool
+		 */
 		public static function ajouter($pseudo, $mail, $contenu) {
 			if (empty($pseudo) || empty($mail) || empty($contenu)) {
 				throw new Exception('Les paramètres ne sont pas correctement renseignés.');
