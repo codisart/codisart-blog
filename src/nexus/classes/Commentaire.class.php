@@ -46,6 +46,10 @@
 			return false;
 		}
 
+		/**
+		 * Renvoie la date de l'objet avec un retour à la ligne entre la date et l'heure.
+		 * @return string
+		 */
 		public function getDateOn2Rows() {
 			$date = $this->date;
 
