@@ -14,13 +14,18 @@
 			}
 		}
 
+		/**
+		 * retourne le password de l'utilisateur
+		 * @param  string $username pseudo de l'utilisateur
+		 * @return string
+		 */
 		static public function getPassword($username) {
 
 			// requete table Users
 			$requete = connexionBDD()->query("
 				SELECT password
 				FROM users
-				WHERE name ='$username'
+				WHERE name = '$username'
 				LIMIT 0,1
 			");
 
