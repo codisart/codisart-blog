@@ -65,10 +65,11 @@ abstract class Item {
 		if (empty($this->_table) || empty($this->id)) {
 			throw new Exception("L'opération de supression de cet article ne peut pas s'effectuer.");
 		}
-		$id = $this->id;
 
-		if (!connexionBDD()->query("DELETE FROM $this->_table WHERE id ='$id'")) {
-			echo 'Cet article a déjà été supprimé ou n\'existe pas !';
+		$requete = connexionBDD()->prepare("DELETE FROM $this->_table WHERE id = :id");
+
+		if (!$requete->execute(array('id' => $this->id)) {
+			throw new Exception("Le message identifié par $this->id a déjà été supprimé de la table $this->_table ou n\'existe pas !");
 			return false;
 		}
 
