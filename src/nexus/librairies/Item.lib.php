@@ -68,7 +68,7 @@ abstract class Item {
 
 		$requete = connexionBDD()->prepare("DELETE FROM $this->_table WHERE id = :id");
 
-		if (!$requete->execute(array('id' => $this->id)) {
+		if (!$requete->execute(array('id' => $this->id))) {
 			throw new Exception("Le message identifié par $this->id a déjà été supprimé de la table $this->_table ou n\'existe pas !");
 			return false;
 		}

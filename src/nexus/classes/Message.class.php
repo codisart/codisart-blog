@@ -121,7 +121,7 @@
 				throw new Exception("L'identifiant de message $this->id n'est pas valide");
 			}
 
-			if (!$requete->execute(array('id' => $this->id)) {
+			if (!$requete->execute(array('id' => $this->id))) {
 				throw new Exception("Le message identifié par $this->id a déjà été supprimé ou n\'existe pas !");
 			}
 		}
