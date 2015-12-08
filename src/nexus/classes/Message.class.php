@@ -115,8 +115,14 @@
 		 * Supprime un message de la base de données
 		 */
 		public function supprimer() {
-			if (!connexionBDD()->query("DELETE FROM messages WHERE id ='$this->id'")) {
-				echo '<h5 class="error">Ce message a déjà été supprimé ou n\'existe pas !</h5>';
+			$requete = connexionBDD()->prepare("DELETE FROM messages WHERE id = :id");
+
+			if (empty($this->id)) {
+				throw new Exception("L'identifiant de message $this->id n'est pas valide");
+			}
+
+			if (!$requete->execute(array('id' => $this->id)) {
+				throw new Exception("Le message identifié par $this->id a déjà été supprimé ou n\'existe pas !");
 			}
 		}
 	}
