@@ -6,6 +6,7 @@
 		protected $articles;
 
 		protected $_filtres;
+		protected $_where;
 
 		/**
 		 * constructeur de la classe
@@ -78,7 +79,7 @@
 
 
 		/**
-		 *	@return Collection Tous les articles en base de données.
+		 *	@return Collection Tous les articles en base de données selon filtres.
 		 */
 		public function getAllArticles() {
 			$articles = new Collection();
@@ -126,7 +127,6 @@
 			}
 
 			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas d\'articles enregistrés</h5>';
 				return 0;
 			}
 
@@ -160,8 +160,8 @@
 			return new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
 		}
 
-		public static function getArchives() {
 
+		public static function getArchives() {
 			$requete = connexionBDD()->prepare("
 				SELECT
 					DISTINCT DATE_FORMAT(date, '%c') as mois,
@@ -171,6 +171,7 @@
 			");
 
 			if (false === $requete->execute()) {
+				// @TODO throw exception
 				return false;
 			}
 
@@ -192,13 +193,15 @@
 
 
 		public function filtreRecherche($query) {
+			$this->articles = null;
+			$this->_where = null;
+
 			$this->_filtres[] = array(
 				"condition" => "contenu LIKE :term OR titre LIKE :term",
-				"marker" => ":term",
-				"value" => "%{$query}%"
+				"value" => array(
+					":term" => "%{$query}%"
+				)
 			);
-
-			unset($this->articles);
 
 			return $this;
 		}
@@ -207,16 +210,20 @@
 		 *	@return Collection $messages collection des messages
 		 */
 		static public function getAllSuggestions() {
-			$suggestions = new Collection();
-
-			$requete = connexionBDD()->query("
+			$requete = connexionBDD()->prepare("
 				SELECT id, pseudo, date, mail, message
 				FROM messages
 				ORDER BY date DESC, id DESC
 			");
 
+			if (false === $requete->execute()) {
+				// @TODO throw exception
+				return false;
+			}
+
+			$suggestions = new Collection();
+
 			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas de messages sélectionnés</h5>';
 				return $suggestions;
 			}
 
@@ -228,16 +235,24 @@
 		}
 
 		protected function buildWhereConditions() {
-			$where = array();
+			if(!empty($this->_where['condition'])) {
+				return $this->_where;
+			}
+
+			$this->_where = array(
+				'condition' => "",
+				'values' => array()
+			);
 
 			if (!empty($this->_filtres)) {
-				$where['condition'] = 'WHERE 1 = 1 ';
+				$this->_where['condition'] = 'WHERE 1 = 1 ';
 				foreach ($this->_filtres as $key => $filtre) {
-					$where['condition'] .= 'AND '.$filtre['condition'];
-					$where['values'][$filtre['marker']] = $filtre['value'];
+					$this->_where['condition'] .= 'AND '.$filtre['condition'];
+					$this->_where['values'] = array_merge($this->_where['values'] , $filtre['value']);
 				}
 			}
-			return $where;
+
+			return $this->_where;
 		}
 
 	}
