@@ -235,7 +235,7 @@
 		}
 
 		protected function buildWhereConditions() {
-			if(!empty($this->_where['condition'])) {
+			if (!empty($this->_where['condition'])) {
 				return $this->_where;
 			}
 
@@ -248,7 +248,7 @@
 				$this->_where['condition'] = 'WHERE 1 = 1 ';
 				foreach ($this->_filtres as $key => $filtre) {
 					$this->_where['condition'] .= 'AND '.$filtre['condition'];
-					$this->_where['values'] = array_merge($this->_where['values'] , $filtre['value']);
+					$this->_where['values'] = array_merge($this->_where['values'], $filtre['value']);
 				}
 			}
 
