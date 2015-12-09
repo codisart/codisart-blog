@@ -70,7 +70,6 @@ abstract class Item {
 
 		if (!$requete->execute(array('id' => $this->id))) {
 			throw new Exception("Le message identifié par $this->id a déjà été supprimé de la table $this->_table ou n\'existe pas !");
-			return false;
 		}
 
 		return true;
