@@ -23,8 +23,8 @@ abstract class Item {
 			$this->hydrate();
 			return $this->$name;
 		}
-		// @TODO throw Exception
-		return false;
+
+		throw new Exception("The property $name doesn't exist.");
 	}
 
 	/**
