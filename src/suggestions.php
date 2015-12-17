@@ -77,13 +77,14 @@
 					$suggestions = Blog::getAllSuggestions();
 				}
 				catch (Exception $e) {
-					echo '<!-- LOG : '.$e->getMessage().'-->' ;
+					echo '<!-- LOG : '.$e->getMessage().'-->';
 					$suggestions = null;
 				}
 
-				if(empty($suggestions)) {
+				if (empty($suggestions)) {
 					echo "<p>Il n'y a aucune suggestions à afficher </p>";
-				} else {
+				}
+				else {
 					foreach ($suggestions as $suggestion) {
 			?>
 			<div class="message">
