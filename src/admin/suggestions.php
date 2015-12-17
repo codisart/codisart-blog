@@ -68,7 +68,8 @@
 						<td class="load_more" colspan="5">Il n'y a aucune suggestions à afficher </td>
 					</tr>
 				<?php
-					} else {
+					}
+					else {
 						foreach ($suggestions as $suggestion) {
 				?>
 					<tr class="message" id="message<?php echo $suggestion->id; ?>">
