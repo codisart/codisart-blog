@@ -111,18 +111,17 @@
 		}
 
 		/**
-		 * @TODO Throw Exception
 		 * Supprime un message de la base de données
 		 */
 		public function supprimer() {
 			$requete = connexionBDD()->prepare("DELETE FROM messages WHERE id = :id");
 
-			if (empty($this->id)) {
-				throw new Exception("L'identifiant de message $this->id n'est pas valide");
+			if (empty($this->id) && !is_int($this->id)) {
+				throw new Exception("The value of the id is not valid : $this->id)");
 			}
 
 			if (!$requete->execute(array('id' => $this->id))) {
-				throw new Exception("Le message identifié par $this->id a déjà été supprimé ou n\'existe pas !");
+				throw new Exception("The message identifed by $this->id does not exist !");
 			}
 		}
 	}
