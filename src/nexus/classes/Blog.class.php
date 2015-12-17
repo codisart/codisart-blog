@@ -171,7 +171,7 @@
 			");
 
 			if (false === $requete->execute()) {
-				// @TODO throw exception
+				// @TODO catch exception
 				return false;
 			}
 
@@ -215,21 +215,13 @@
 				FROM messages
 				ORDER BY date DESC, id DESC
 			");
-
-			if (false === $requete->execute()) {
-				// @TODO throw exception
-				return false;
-			}
+			$requete->execute();
 
 			$suggestions = new Collection();
 
-			if (false === ($donnees = $requete->fetch())) {
-				return $suggestions;
-			}
-
-			do {
+			while ($requete && $donnees = $requete->fetch()) {
 				$suggestions[$donnees['id']] = new Suggestion($donnees['id'], $donnees['pseudo'], $donnees['mail'], $donnees['date'], $donnees['message']);
-			} while ($donnees = $requete->fetch());
+			}
 
 			return $suggestions;
 		}

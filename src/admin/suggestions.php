@@ -54,25 +54,41 @@
 					while (empty($directories)){chdir('..'); $directories = glob('nexus');}
 					require_once(getcwd().'/nexus/main.php');
 
-					$suggestions = Blog::getAllSuggestions();
+					try {
+						$suggestions = Blog::getAllSuggestions();
+					}
+					catch (Exception $e) {
+						echo '<!-- LOG : '.$e->getMessage().'-->' ;
+						$suggestions = null;
+					}
 
-					foreach ($suggestions as $suggestion) :
+					if(empty($suggestions)) {
+				?>
+					<tr>
+						<td class="load_more" colspan="5">Il n'y a aucune suggestions à afficher </td>
+					</tr>
+				<?php
+					} else {
+						foreach ($suggestions as $suggestion) {
 				?>
 					<tr class="message" id="message<?php echo $suggestion->id; ?>">
 						<td class="checkbox"><input type="checkbox" /></td>
 						<td class="pseudo"><?php echo $suggestion->pseudo; ?></td>
 						<td class="date"><?php echo $suggestion->getDateOn2Rows(); ?></td>
-						<td class="suggestion" ><?php echo $suggestion->contenu; ?></td>
+						<td class="suggestion" ><?php echo $suggestion->message; ?></td>
 						<td class="operations">
 							<img class="supprimer_suggestion"src="images/delete.png" title="Supprimer" alt="Supprimer" data-suggestion="<?php echo $suggestion->id; ?>" />
 						</td>
 					</tr>
 				<?php
-					endforeach;
+						}
 				?>
 					<tr>
 						<td class="load_more" colspan="5">Charger plus de suggestions</td>
 					</tr>
+				<?php
+						}
+				?>
 				</tbody>
 
 			</table>

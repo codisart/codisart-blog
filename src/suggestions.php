@@ -73,27 +73,35 @@
 					unset($pseudo, $email, $suggestion);
 				}
 
-				$suggestions = Blog::getAllSuggestions();
+				try {
+					$suggestions = Blog::getAllSuggestions();
+				}
+				catch (Exception $e) {
+					echo '<!-- LOG : '.$e->getMessage().'-->' ;
+					$suggestions = null;
+				}
 
-				foreach ($suggestions as $suggestion) :
+				if(empty($suggestions)) {
+					echo "<p>Il n'y a aucune suggestions à afficher </p>";
+				} else {
+					foreach ($suggestions as $suggestion) {
 			?>
-				<div class="message">
-					<h3><?php echo htmlspecialchars($suggestion->pseudo); ?>  <em><?php echo $suggestion->date; ?></em></h3>
+			<div class="message">
+				<h3><?php echo htmlspecialchars($suggestion->pseudo); ?>  <em><?php echo $suggestion->date; ?></em></h3>
 
-					<p>
-						<?php echo nl2br($suggestion->message); ?>
-					</p>
+				<p>
+					<?php echo nl2br($suggestion->message); ?>
+				</p>
 			</div>
-			<?php
-				endforeach;
-			?>
-
 			<div id="navigationSuggestions">
 				<?php
 					echo "<span>plus de suggestions</span>";
 				?>
 			</div>
-
+			<?php
+					}
+				}
+			?>
 
 		</div>
 
