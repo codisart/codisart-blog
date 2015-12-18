@@ -27,7 +27,13 @@
 </div>
 
 <?php
-	$archives = Blog::getArchives(); // On récupère une collection.
+	try {
+		$archives = Blog::getArchives(); // On récupère une collection.
+	}
+	catch (Exception $e) {
+		echo '<!-- LOG : '.$e->getMessage().'-->';
+		$archives = null;
+	}
 
 	if (!empty($archives)) {
 ?>

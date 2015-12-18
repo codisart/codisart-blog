@@ -170,23 +170,15 @@
 				ORDER BY date DESC
 			");
 
-			if (false === $requete->execute()) {
-				// @TODO catch exception
-				return false;
-			}
+			$requete->execute();
 
 			$archives = new Collection();
 
-			if (false === ($donnees = $requete->fetch())) {
-				return $archives;
-			}
-
-			do {
+			while ($requete && $donnees = $requete->fetch()) {
 				$mois = Codisart\Nexus\DateTime::MOIS[$donnees['mois']].' '.$donnees['year'];
 				$lien = "archives.php?a={$donnees['year']}&m={$donnees['mois']}";
 				$archives[$mois] = $lien;
 			}
-			while ($donnees = $requete->fetch());
 
 			return $archives;
 		}
@@ -215,6 +207,7 @@
 				FROM messages
 				ORDER BY date DESC, id DESC
 			");
+
 			$requete->execute();
 
 			$suggestions = new Collection();
