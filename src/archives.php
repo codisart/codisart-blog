@@ -35,7 +35,7 @@
 					}
 
 				?>
-					<div id=""><br/><h2><?php echo Codisart\Nexus\DateTime::Mois[$mois]." ".$annee; ?></h2><br/></div><hr />
+					<div id=""><br/><h2><?php echo Codisart\Nexus\DateTime::MOIS[$mois]." ".$annee; ?></h2><br/></div><hr />
 
 				<?php
 					$articles = Article::getArticlesMois($annee, $mois);
