@@ -37,16 +37,27 @@
 
 					// Definition de la première page
 					define('FIRST_PAGE', 1);
-					
+
 					// Affichage si première page.
 					echo (FIRST_PAGE === $page) ? '<div id=""><br/><h2>Derniers Articles</h2><br/></div><hr />' : "";
 
 					$thisBlog = new Blog();
-					$articles = $thisBlog->getArticles($page, $nombreArticles);
-					$maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
+					try {
+						$articles = $thisBlog->getArticles($page, $nombreArticles);
+						$maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
+					}
+					catch (Exception $e) {
+						echo '<!-- LOG : '.$e->getMessage().'-->';
+						$articles = null;
+						$maxPages = 0;
+					}
 
+					if (empty($articles)) {
+						echo "<p>Il n'y a aucun article à afficher </p>";
+					}
+					else {
 					// Affichage view
-					foreach ($articles as $article):
+						foreach ($articles as $article) {
 				?>
 				<br/>
 
@@ -56,7 +67,8 @@
 
 				<hr/>
 				<?php
-					endforeach;
+						}
+					}
 				?>
 
 				<div id="navigationBlog">

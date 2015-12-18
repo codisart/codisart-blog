@@ -82,7 +82,7 @@
 				}
 
 				if (empty($suggestions)) {
-					echo "<p>Il n'y a aucune suggestions à afficher </p>";
+					echo "<p>Il n'y a aucune suggestion à afficher </p>";
 				}
 				else {
 					foreach ($suggestions as $suggestion) {

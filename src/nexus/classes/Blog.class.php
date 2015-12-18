@@ -59,20 +59,13 @@
 				LIMIT $limit, $nombreArticlesPage
 			");
 
-			if (false === $requete->execute($where['values'])) {
-				return false;
-			}
+			$requete->execute($where['values']);
 
 			$this->articles = new Collection();
-			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
-				$this->nombreArticlesPage = 0;
-				return $this->articles;
-			}
 
-			do {
+			while ($requete && $donnees = $requete->fetch()) {
 				$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
-			} while ($donnees = $requete->fetch());
+			}
 
 			return $this->articles;
 		}
