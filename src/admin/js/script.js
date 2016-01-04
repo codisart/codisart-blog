@@ -2,12 +2,12 @@
 function formulaire(page, action, id) {
 	if(page && action ) {
 		$.lightbox(buildPetitContenu('loading'));
-					
+
 		var params = {'action' : action};
 		if(id) { params.id = id; }
-		
+
 		$.post('forms/'+ page, params,  function(data){
-			$.lightbox(data);	
+			$.lightbox(data);
 			CKEDITOR.replace( 'contenuArticle', {language: 'fr', skin : 'moono'});
 		})
 		.fail(function(jqXHR, textStatus) {
@@ -15,7 +15,7 @@ function formulaire(page, action, id) {
 		});
 	}
 	else {
-		$.lightbox(buildPetitContenu('Il manque des infos !!'));	
+		$.lightbox(buildPetitContenu('Il manque des infos !!'));
 	}
 }
 
@@ -24,7 +24,7 @@ function formulaire(page, action, id) {
  * @param  {[type]} data [description]
  * @return {[type]}      [description]
  *
- * TODO : Changer le nom de la fonction
+ * @todo : Changer le nom de la fonction
  */
 function buildPetitContenu(data) {
 	var contenu = "";
@@ -60,7 +60,7 @@ function loadArticles(that) {
 			$.lightbox(data);
 		})
 	// articles = loadMoreArticles($(this).data('count'), $(this).data('periode'));
-				
+
 				// for (article in articles) {
 
 				// }
@@ -71,14 +71,14 @@ function loadArticles(that) {
 /*
 function verificationMail(chaine) {
 	expression = new RegExp('^[a-z0-9._-]+@[a-z0-9._-]{2,}[.][a-z]{2,4}$');
-	
+
 	if (!expression.test(chaine) && chaine != '') {
 		$('#mailErreur').innerHTML = 'Veuillez rentrer une adresse valide !!';
 		$('#mail').focus();
 	}
 	else {
 		$('#mailErreur').innerHTML = '';
-	}	
+	}
 }
 */
 
@@ -93,6 +93,5 @@ $(document).ready(function() {
 	   ['Image','-','Link','Unlink','-', 'TextColor','BGColor'],
 	   ['Source']
 	] ;
-	
-});
 
+});
