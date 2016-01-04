@@ -54,14 +54,29 @@
 						defined('REPARTITION') || define('REPARTITION', 10);
 
 						$thisBlog = new Blog();
-						$articles = $thisBlog->getArticles(1, REPARTITION);
-						$totalArticles = $thisBlog->getNombreAllArticles();
+						try {
+							$articles = $thisBlog->getArticles(1, REPARTITION);
+							$totalArticles = $thisBlog->getNombreAllArticles();
+						}
+						catch (Exception $e) {
+							echo '<!-- LOG : '.$e->getMessage().'-->' ;
+							$articles = null;
+							$totalArticles = 0;
+						}
 
-						foreach ($articles as $article):
+
+						if(empty($articles)) {
 					?>
-
+						<tr>
+							<td colspan="4">Il n'y a aucun article à afficher </td>
+						</tr>
+					</tbody>
+					<?php
+						}
+						else {
+							foreach ($articles as $article) {
+					?>
 					<tr class="article" id="article<?php echo $article->id; ?>">
-
 						<td class="titre"><?php echo $article->titre; ?></td>
 
 						<td class="date"><?php echo $article->getDate('fr'); ?></td>
@@ -76,11 +91,9 @@
 							<img class="edit_article" src="images/edit.png" title="Modifier" alt="edit" width="20" data-article="<?php echo $article->id; ?>" />
 							<img class="delete_article" src="images/delete.png" title="Supprimer" alt="delete" width="20" data-article="<?php echo $article->id; ?>"/>
 						</td>
-
 					</tr>
-
 					<?php
-						endforeach;
+							}
 					?>
 				</tbody>
 
@@ -91,6 +104,9 @@
 						</td>
 					</tr>
 				</tbody>
+				<?php
+						}
+				?>
 
 			</table>
 		</div>

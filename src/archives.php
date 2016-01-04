@@ -38,9 +38,16 @@
 					<div id=""><br/><h2><?php echo Codisart\Nexus\DateTime::MOIS[$mois]." ".$annee; ?></h2><br/></div><hr />
 
 				<?php
-					$articles = Article::getArticlesMois($annee, $mois);
+					try {
+						// @todo à déplacer de article
+						$articles = Article::getArticlesMois($annee, $mois);
+					}
+					catch (Exception $e) {
+						echo '<!-- LOG : '.$e->getMessage().'-->' ;
+						$articles = null;
+					}
 
-					if (false != $articles) :
+					if (!empty($articles)) :
 						foreach ($articles as $article) :
 				?>
 					<br/>
