@@ -145,31 +145,4 @@
 				);
 			}
 		}
-
-
-		static public function getArticlesMois($year, $month) {
-			$mois = "$year/$month";
-
-			$requete = connexionBDD()->prepare("
-				SELECT id, titre, contenu, date
-				FROM news
-				WHERE DATE_FORMAT(date, '%Y/%c') = :mois
-				ORDER BY id DESC
-			");
-
-			if (false === $requete->execute(array('mois' => $mois))) {
-				return false;
-			}
-
-			if (false === ($donnees = $requete->fetch())) {
-				return false;
-			}
-
-			$articles = new Collection();
-			do {
-				$articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
-			} while ($donnees = $requete->fetch());
-
-			return $articles;
-		}
 	}

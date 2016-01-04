@@ -211,6 +211,38 @@
 			return $suggestions;
 		}
 
+		/**
+		 * return all articles for a chosen month of a chose year
+		 * @param  integer $year  the chosen year
+		 * @param  integer $month the chosen month
+		 * @return Collection        The list of the articles
+		 */
+		static public function getArticlesByMonth($year, $month) {
+			$formattedMonth = "$year/$month";
+
+			$requete = connexionBDD()->prepare("
+				SELECT id, titre, contenu, date
+				FROM news
+				WHERE DATE_FORMAT(date, '%Y/%c') = :mois
+				ORDER BY id DESC
+			");
+
+			if (false === $requete->execute(array('mois' => $formattedMonth))) {
+				return false;
+			}
+
+			if (false === ($donnees = $requete->fetch())) {
+				return false;
+			}
+
+			$articles = new Collection();
+			do {
+				$articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
+			} while ($donnees = $requete->fetch());
+
+			return $articles;
+		}
+
 		protected function buildWhereConditions() {
 			if (!empty($this->_where['condition'])) {
 				return $this->_where;

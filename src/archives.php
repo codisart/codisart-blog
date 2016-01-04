@@ -34,7 +34,7 @@
 						|| $mois > 12
 						|| $mois < 1
 						|| $annee < 2010
-						) {
+					) {
 						header('Location: ./');
 						exit;
 					}
@@ -44,8 +44,7 @@
 
 				<?php
 					try {
-						// @todo à déplacer de article
-						$articles = Article::getArticlesMois($annee, $mois);
+						$articles = Blog::getArticlesByMonth($annee, $mois);
 					}
 					catch (Exception $e) {
 						echo '<!-- LOG : '.$e->getMessage().'-->' ;
