@@ -29,7 +29,12 @@
 					$controller ->recoverGET('a', 'annee')
 								->recoverGET('m', 'mois');
 
-					if (!$controller->isNumber($annee) || !$controller->isNumber($mois)) {
+					if (!$controller->isNumber($mois)
+						|| !$controller->isNumber($annee)
+						|| $mois > 12
+						|| $mois < 1
+						|| $annee < 2010
+						) {
 						header('Location: ./');
 						exit;
 					}
