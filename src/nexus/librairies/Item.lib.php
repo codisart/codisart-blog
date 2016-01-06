@@ -7,7 +7,7 @@
 abstract class Item {
 
 	protected function __construct($data) {
-		if(is_array($data)) {
+		if (is_array($data)) {
 			$reflection = new ReflectionClass($this);
 			$properties = array_keys($reflection->getdefaultProperties());
 
