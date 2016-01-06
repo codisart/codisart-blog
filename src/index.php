@@ -31,7 +31,7 @@
 					$controller ->recoverGET('page')
 								->recoverGET('p', 'page')
 								->recoverGET('n', 'nombreArticles');
-								
+
 					$page = $controller->isNumber($page) ? (int) $page : 1;
 					$nombreArticles = $controller->isNumber($nombreArticles) ? $nombreArticles : 10;
 
@@ -48,12 +48,12 @@
 					}
 					catch (Exception $e) {
 						echo '<!-- LOG : '.$e->getMessage().'-->';
-						$articles = null;
+						$articles = new Collection;
 						$maxPages = 0;
 					}
 
-					if (empty($articles)) {
-						echo "<p>Il n'y a aucun article à afficher </p>";
+					if (!count($articles)) {
+						echo "<p>Il n'y a aucun article à afficher.</p>";
 					}
 					else {
 					// Affichage view

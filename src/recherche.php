@@ -27,9 +27,8 @@
 					require_once('nexus/main.php');
 
 					$controller = Controller::getInstance();
-					$controller
-						->recoverGET('expression')
-						->recoverGET('page');
+					$controller ->recoverGET('expression')
+								->recoverGET('page');
 
 					if (!$controller->isString($expression)) {
 						header('Location: ./index.php');
@@ -44,10 +43,21 @@
 					$nombreArticles = 10;
 
 					$thisBlog = new Blog();
-					$articles = $thisBlog->filtreRecherche($expression)->getArticles($page, $nombreArticles);
-					$maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
+					try {
+						$articles = $thisBlog->filtreRecherche($expression)->getArticles($page, $nombreArticles);
+						$maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
+					}
+					catch (Exception $e) {
+						echo '<!-- LOG : '.$e->getMessage().'-->';
+						$articles = new Collection;
+						$maxPages = 0;
+					}
 
-					foreach ($articles as $article) :
+					if (!count($articles)) {
+						echo "<p>Votre recherche n'a rien donnée.</p>";
+					}
+					else {
+						foreach ($articles as $article) {
 				?>
 					<br/>
 					<div class="article">
@@ -76,7 +86,8 @@
 
 					<hr/>
 				<?php
-					endforeach;
+						}
+					}
 				?>
 
 				<div id="navigationBlog">

@@ -108,11 +108,9 @@
 				{$where['condition']}
 			");
 
-			if (false === $requete->execute($where['values'])) {
-				return false;
-			}
+			$requete->execute($where['values']);
 
-			if (false === ($donnees = $requete->fetch())) {
+			if ($donnees = $requete->fetch()) {
 				return 0;
 			}
 
