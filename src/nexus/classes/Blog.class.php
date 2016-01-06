@@ -68,8 +68,6 @@
 		 *	@return Collection Tous les articles en base de données selon filtres.
 		 */
 		public function getAllArticles() {
-			$articles = new Collection();
-
 			$where = $this->buildWhereConditions();
 
 			$requete = connexionBDD()->prepare("
