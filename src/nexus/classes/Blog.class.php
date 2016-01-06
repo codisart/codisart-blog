@@ -187,7 +187,7 @@
 		/**
 		 *	@return Collection $messages collection des messages
 		 */
-		static public function getAllSuggestions() {
+		public function getAllSuggestions() {
 			$requete = connexionBDD()->prepare("
 				SELECT id, pseudo, date, mail, message
 				FROM messages
@@ -196,13 +196,7 @@
 
 			$requete->execute();
 
-			$suggestions = new Collection();
-
-			while ($requete && $donnees = $requete->fetch()) {
-				$suggestions[$donnees['id']] = new Suggestion($donnees['id'], $donnees['pseudo'], $donnees['mail'], $donnees['date'], $donnees['message']);
-			}
-
-			return $suggestions;
+			return $this->fetchAll($requete, 'Suggestion');
 		}
 
 		/**

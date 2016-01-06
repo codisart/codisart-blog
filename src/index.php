@@ -31,7 +31,7 @@
 					$controller ->recoverGET('page')
 								->recoverGET('p', 'page')
 								->recoverGET('n', 'nombreArticles');
-
+								
 					$page = $controller->isNumber($page) ? (int) $page : 1;
 					$nombreArticles = $controller->isNumber($nombreArticles) ? $nombreArticles : 10;
 

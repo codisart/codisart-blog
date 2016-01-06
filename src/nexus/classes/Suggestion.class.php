@@ -8,6 +8,7 @@
 
 		protected $_table = 'messages';
 
+		protected $id;
 		protected $page;
 		protected $adresse;
 		protected $pseudo;
@@ -16,12 +17,14 @@
 		protected $message;
 
 		public function __construct($id, $pseudo = '', $mail = '', $date = 0, $message = '') {
-			$this->id = $id;
+			if (!parent::__construct($id)) {
+				$this->id = $id;
 
-			$this->pseudo = !empty($pseudo) ? $pseudo : null;
-			$this->mail = !empty($mail) ? $mail : null;
-			$this->date = !empty($date) ? $date : null;
-			$this->message = !empty($message) ? $message : null;
+				$this->pseudo = !empty($pseudo) ? $pseudo : null;
+				$this->mail = !empty($mail) ? $mail : null;
+				$this->date = !empty($date) ? $date : null;
+				$this->message = !empty($message) ? $message : null;
+			}
 		}
 
 		protected function hydrate() {
@@ -56,7 +59,7 @@
 			$requete = connexionBDD()->prepare("INSERT INTO message (pseudo, mail, message) VALUES (?, ?, ?)");
 			return $requete->execute(array($pseudo, $mail, $contenu));
 		}
-		
+
 		/**
 		 * Renvoie la date de l'objet avec un retour à la ligne entre la date et l'heure.
 		 * @return string

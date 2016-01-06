@@ -54,8 +54,9 @@
 					while (empty($directories)){chdir('..'); $directories = glob('nexus');}
 					require_once(getcwd().'/nexus/main.php');
 
+					$thisBlog = new Blog();
 					try {
-						$suggestions = Blog::getAllSuggestions();
+						$suggestions = $thisBlog->getAllSuggestions();
 					}
 					catch (Exception $e) {
 						echo '<!-- LOG : '.$e->getMessage().'-->' ;

@@ -73,8 +73,9 @@
 					unset($pseudo, $email, $suggestion);
 				}
 
+				$thisBlog = new Blog();
 				try {
-					$suggestions = Blog::getAllSuggestions();
+					$suggestions = $thisBlog->getAllSuggestions();
 				}
 				catch (Exception $e) {
 					echo '<!-- LOG : '.$e->getMessage().'-->';
