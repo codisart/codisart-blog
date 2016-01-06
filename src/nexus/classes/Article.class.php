@@ -17,11 +17,12 @@
 		protected $commentaires;
 
 		public function __construct($id, $titre = '', $date = 0, $contenu = '') {
-			$this->id = $id;
-
-			$this->titre = !empty($titre) ? $titre : null;
-			$this->date = !empty($date) ? $date : null;
-			$this->contenu = !empty($contenu) ? $contenu : null;
+			if (!parent::__construct($id)) {
+				$this->id = $id;
+				$this->titre = !empty($titre) ? $titre : null;
+				$this->date = !empty($date) ? $date : null;
+				$this->contenu = !empty($contenu) ? $contenu : null;
+			}
 		}
 
 		protected function hydrate() {

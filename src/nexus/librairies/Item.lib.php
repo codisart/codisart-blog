@@ -6,6 +6,21 @@
  */
 abstract class Item {
 
+	protected function __construct($data) {
+		if(is_array($data)) {
+			$reflection = new ReflectionClass($this);
+			$properties = array_keys($reflection->getdefaultProperties());
+
+			foreach ($data as $key => $value) {
+				if (in_array($key, $properties)) {
+					$this->$key = $value;
+				}
+			}
+			return true;
+		}
+
+		return false;
+	}
 	// Methode Magique
 
 	/**

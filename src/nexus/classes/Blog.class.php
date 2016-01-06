@@ -1,5 +1,5 @@
 <?php
-	class Blog {
+	class Blog extends Reacher {
 
 		protected $page;
 		protected $nombreArticlesPage;
@@ -60,13 +60,7 @@
 
 			$requete->execute($where['values']);
 
-			$this->articles = new Collection();
-
-			while ($requete && $donnees = $requete->fetch()) {
-				$this->articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
-			}
-
-			return $this->articles;
+			return $this->fetchAll($requete, 'Article');
 		}
 
 
