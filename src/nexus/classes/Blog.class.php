@@ -170,7 +170,7 @@
 		}
 
 		/**
-		 *	@return Collection $messages collection des messages
+		 *	@return Collection collection des suggestions
 		 */
 		public function getAllSuggestions() {
 			$requete = connexionBDD()->prepare("
