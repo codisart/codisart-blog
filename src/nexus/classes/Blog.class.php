@@ -97,7 +97,7 @@
 
 			$requete->execute($where['values']);
 
-			if ($donnees = $requete->fetch()) {
+			if (!($donnees = $requete->fetch())) {
 				return 0;
 			}
 

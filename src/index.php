@@ -51,7 +51,7 @@
 						$articles = new Collection;
 						$maxPages = 0;
 					}
-
+					
 					if (!count($articles)) {
 						echo "<p>Il n'y a aucun article à afficher.</p>";
 					}
