@@ -79,20 +79,9 @@
 				ORDER BY date DESC, id DESC
 			");
 
-			if (false === $requete->execute($where['values'])) {
-				return false;
-			}
+			$requete->execute($where['values']);
 
-			if (false === ($donnees = $requete->fetch())) {
-				echo '<h5 class="error">Il n\'y a pas d\'articles sélectionnés</h5>';
-				return $articles;
-			}
-
-			do {
-				$articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
-			} while ($donnees = $requete->fetch());
-
-			return $articles;
+			return $this->fetchAll($requete, 'Article');
 		}
 
 
