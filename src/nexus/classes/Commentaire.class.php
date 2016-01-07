@@ -31,19 +31,19 @@
 			$this->contenu = $donnees['contenu'];
 		}
 
+
 		public static function ajouter($idArticle, $pseudo, $mail, $comment) {
-
-			if ($pseudo != "" && $mail != "" && $comment != "") {
-				$requete = connexionBDD()->prepare("INSERT INTO commentaires (id_news, pseudo, mail, commentaire) VALUES (?, ?, ?, ?)");
-
-				if (!$requete->execute(array($idArticle, $pseudo, $mail, $comment))) {
-					return false;
-				}
-				return true;
+			if (!empty($idArticle) && !empty($pseudo) && !empty($mail) && !empty($comment)) {
+				return self::save(
+					array(
+						'id_news'	=> $idArticle,
+						'pseudo' 	=> $pseudo,
+						'mail' 		=> $mail,
+						'commentaire' 	=> $comment,
+					),
+					'commentaires'
+				);
 			}
-
-			echo '<h5 class="error">Vous n\'avez pas rempli correctement le formulaire</h5>';
-			return false;
 		}
 
 		/**
