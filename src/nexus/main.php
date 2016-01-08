@@ -42,3 +42,20 @@
 	}
 
 	spl_autoload_register("loadFile");
+
+	define("VENDOR", __DIR__."/../vendor");
+
+	function loadVendorFile($class) {
+		$parts = explode('\\', $class);
+		array_shift($parts);
+		array_splice($parts, 1, 0, "src");
+		$path = implode('/', $parts);
+
+		if (is_file(VENDOR."/$path.php")) {
+			require VENDOR."/$path.php";
+		}
+	}
+
+	spl_autoload_register("loadVendorFile");
+	
+	$templates = new League\Plates\Engine('./blocs');
