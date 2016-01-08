@@ -12,13 +12,11 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 </head>
 
-
+<?php require_once('nexus/main.php'); ?>
 <body>
 
 	<div id="global">
-		<?php
-			include "blocs/header.php";
-		?>
+		<?=$templates->render('header') ?>
 
 		<div id="contenu">
 
@@ -27,8 +25,6 @@
 				<a id="retourArticle" href="index.php">Retour à la liste des articles</a>
 
 				<?php
-					require_once('nexus/main.php');
-
 					$controller = Controller::getInstance();
 					$controller
 						->recoverPOST('asali')
