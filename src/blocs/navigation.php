@@ -1,6 +1,6 @@
 <?php
 	if ($nombreArticles != 0) {
-		$url = isset($url) ? $url : 'index.php?';
+		
 		if ($page > 1 && $page < $maxPages) {
 			echo '
 				<div  style="float:left">

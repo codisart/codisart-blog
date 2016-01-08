@@ -7,26 +7,18 @@
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="styles/general.css" />
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-
-	<noscript>
-        <style> #global{display:none;} body{background: white;}</style>
-    </noscript>
 </head>
 
-
+<?php require_once('nexus/main.php'); ?>
 <body>
 
 	<div id="global">
-		<?php
-			include "blocs/header.php";
-		?>
+		<?=$templates->render('header') ?>
 
 		<div id="contenu">
 
 			<div id="principal">
 				<?php
-					require_once('nexus/main.php');
-
 					$controller = Controller::getInstance();
 					$controller ->recoverGET('page')
 								->recoverGET('p', 'page')
@@ -51,7 +43,7 @@
 						$articles = new Collection;
 						$maxPages = 0;
 					}
-					
+
 					if (!count($articles)) {
 						echo "<p>Il n'y a aucun article à afficher.</p>";
 					}
@@ -62,7 +54,7 @@
 				<br/>
 
 				<div class="article">
-					<?php include "blocs/article-row.php"; ?>
+					<?=$templates->render('article-row', array('article' => $article)) ?>
 				</div>
 
 				<hr/>
@@ -72,20 +64,22 @@
 				?>
 
 				<div id="navigationBlog">
-					<?php
-						$url = 'index.php?';
-						include "blocs/navigation.php";
-					?>
+					<?=$templates->render('navigation', array(
+						'url' => 'index.php?',
+						'maxPages' => $maxPages,
+						'page' => $page,
+						'nombreArticles' => $nombreArticles,
+					)) ?>
 				</div>
 			</div>
 
 			<div id="secondaire">
-				<?php include "blocs/sidebar.php"; ?>
+				<?=$templates->render('sidebar') ?>
 			</div>
 
 		</div>
 
-	<?php include "blocs/footer.html"; ?>
+	<?=$templates->render('footer') ?>
 
 	</div>
 
