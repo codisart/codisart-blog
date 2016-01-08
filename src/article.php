@@ -42,8 +42,18 @@
 							->recoverPOST('action');
 
 						if ('ajouter' === $action) {
-							if ($controller->isString($comment) && $controller->isEmailAddress($mail) && $controller->isString($pseudo) && $controller->isNumber($id)) {
-								Commentaire::ajouter($id, $pseudo, $mail, $comment);
+							if (
+								$controller->isString($comment)
+								&& $controller->isEmailAddress($mail)
+								&& $controller->isString($pseudo)
+								&& $controller->isNumber($id)
+							) {
+								try {
+									Commentaire::ajouter($id, $pseudo, $mail, $comment);
+								}
+								catch (Exception $e) {
+									echo '<!-- LOG : '.$e->getMessage().'-->';
+								}
 							}
 							else {
 								echo '<h5 class="error">Votre mail n\'est pas valide !</h5>';
