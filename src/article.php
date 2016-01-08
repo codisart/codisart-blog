@@ -137,12 +137,12 @@
 			</div>
 
 			<div id="secondaire">
-				<?php include "blocs/sidebar.php"; ?>
+				<?=$templates->render('sidebar') ?>
 			</div>
 
 		</div>
 
-	<?php include "blocs/footer.html"; ?>
+		<?=$templates->render('footer') ?>
 
 	</div>
 
