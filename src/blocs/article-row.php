@@ -1,17 +1,17 @@
 
 <div class="entete bleu"></div>
 
-<h3><a href="article.php?idArticle=<?php echo $article->id; ?>"><?php echo $article->titre; ?></a></h3>
+<h3><a href="article.php?idArticle=<?=$article->id ?>"><?=$article->titre ?></a></h3>
 
-<h6>par <span>punkka</span>, posté le <?php echo $article->getDate('fr'); ?></h6>
+<h6>par <span>punkka</span>, posté le <?=$article->getDate('fr') ?></h6>
 
 <p>
-<?php echo nl2br($article->getContenu()); ?>
+<?=nl2br($article->getContenu()) ?>
 </p>
 
 <em>
-	<a style="float:left;" href="article.php?idArticle=<?php echo $article->id; ?>#nombreCommentaires">
-		Commentaires(<?php echo $article->getAllCommentaires()->count(); ?>)
+	<a style="float:left;" href="article.php?idArticle=<?=$article->id ?>#nombreCommentaires">
+		Commentaires(<?=$article->getAllCommentaires()->count() ?>)
 	</a>
 
 	<a style="float:right;" href="">
