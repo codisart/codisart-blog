@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 </head>
 
+<?php require_once('nexus/main.php'); ?>
 <body>
 
 	<div id="global">
@@ -22,8 +23,6 @@
 			<div id="principal">
 
 				<?php
-					require_once('nexus/main.php');
-
 					$controller = Controller::getInstance();
 
 					$controller ->recoverGET('a', 'annee')
@@ -57,7 +56,7 @@
 					<br/>
 
 					<div class="article">
-						<?php include "blocs/article-row.php"; ?>
+						<?=$templates->render('article/row', array('article' => $article)) ?>
 					</div>
 
 					<hr/>
