@@ -23,7 +23,6 @@
 		<a class="onglet<?php echo $index; ?>" href="index.php">Accueil</a>
 		<a class="onglet<?php echo $projects; ?>" href="projects.php">Projets</a>
 		<a class="onglet<?php echo $suggestions; ?>" href="suggestions.php">Suggestions</a>
-		<a class="onglet<?php echo $challenges; ?>" href="challenges.php">Challenges</a>
 		<a class="onglet<?php echo $contact; ?>" href="contact.php">Contact</a>
 	</div>
 </div>
