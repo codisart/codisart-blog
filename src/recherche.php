@@ -12,20 +12,16 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 </head>
 
-
+<?php require_once('nexus/main.php'); ?>
 <body>
 
 	<div id="global">
-		<?php
-			include "blocs/header.php";
-		?>
+		<?=$templates->render('header') ?>
 
 		<div id="contenu">
 
 			<div id="principal">
 				<?php
-					require_once('nexus/main.php');
-
 					$controller = Controller::getInstance();
 					$controller ->recoverGET('expression')
 								->recoverGET('page');
@@ -60,28 +56,9 @@
 						foreach ($articles as $article) {
 				?>
 					<br/>
+
 					<div class="article">
-
-						<div class="entete bleu"></div>
-
-						<h3><a href="article.php?idArticle=<?php echo $article->id; ?>"><?php echo $article->titre; ?></a></h3>
-
-						<h6>by <span>punkka</span>, posté le <?php echo $article->date; ?></h6>
-
-						<p>
-							<?php echo nl2br($article->getContenu()); ?>
-						</p>
-
-						<em>
-							<a style="float:left;" href="article.php?idArticle=<?php echo $article->id; ?>#nombreCommentaires">
-								Commentaires(<?php echo $article->getAllCommentaires()->count(); ?>)
-							</a>
-
-							<a style="float:right;" href="">
-								Catégorie
-							</a>
-						</em>
-
+						<?=$templates->render('article/row', array('article' => $article)) ?>
 					</div>
 
 					<hr/>
@@ -91,24 +68,24 @@
 				?>
 
 				<div id="navigationBlog">
-					<?php
-						$url = "recherche.php?expression=$expression";
-						include "blocs/navigation.php";
-					?>
+					<?=$templates->render('navigation', array(
+						'url' => "recherche.php?expression=$expression",
+						'maxPages' => $maxPages,
+						'page' => $page,
+						'nombreArticles' => $nombreArticles,
+					)) ?>
 				</div>
 			</div>
 
 			<div id="secondaire">
-				<?php include "blocs/sidebar.php"; ?>
+				<?=$templates->render('sidebar') ?>
 			</div>
 		</div>
 
-		<?php include "blocs/footer.html"; ?>
-
+		<?=$templates->render('footer') ?>
 	</div>
 
 	<script type="text/javascript" src="script.js"></script>
-
 </body>
 
 </html>

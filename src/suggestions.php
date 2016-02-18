@@ -11,14 +11,11 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 </head>
 
-
+<?php require_once('nexus/main.php'); ?>
 <body>
 
 	<div id="global">
-
-		<?php
-			include "blocs/header.php";
-		?>
+		<?=$templates->render('header') ?>
 
 		<div id="contenu" class="contenu suggestions">
 
@@ -55,8 +52,6 @@
 			</form>
 
 			<?php
-				require_once('nexus/main.php');
-
 				$controller = Controller::getInstance();
 				$controller->recoverPOST('asali');
 
@@ -107,7 +102,7 @@
 
 		</div>
 
-	<?php include "blocs/footer.html"; ?>
+	<?=$templates->render('footer') ?>
 
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="../script_jquery.js"></script>
@@ -122,6 +117,5 @@
 	 	});
 	 });
 	</script>
-
 </body>
 </html>

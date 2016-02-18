@@ -16,9 +16,8 @@
 <body>
 
 	<div id="global">
-		<?php
-			include "blocs/header.php";
-		?>
+		<?=$templates->render('header') ?>
+
 		<div id="contenu">
 			<div id="principal">
 
@@ -73,15 +72,13 @@
 			</div>
 
 			<div id="secondaire">
-				<?php include "blocs/sidebar.php"; ?>
+				<?=$templates->render('sidebar') ?>
 			</div>
 		</div>
 
-		<?php include "blocs/footer.html"; ?>
-
+		<?=$templates->render('footer') ?>
 	</div>
 
 	<script type="text/javascript" src="script.js"></script>
-
 </body>
 </html>

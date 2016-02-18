@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" >
 
-<head> 
+<head>
 	<title>Contact</title>
 
 	<meta charset="utf-8" />
@@ -12,21 +12,18 @@
 	 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 </head>
 
+<?php require_once('nexus/main.php'); ?>
 <body>
-	
+
 	<div id="global">
-		<?php  
-			include "blocs/header.php"; 
-		?>
-		
+		<?=$templates->render('header') ?>
+
 		<div id="contenu">
-			
 			Email :: punkka[arobase]gmail.com
 		</div>
-	
-		<?php include "blocs/footer.html"; ?>
 
+		<?=$templates->render('footer') ?>
 	</div>
-				
+
 </body>
 </html>
