@@ -1,22 +1,22 @@
 <?php
-	
+
 	$directories = glob('nexus');
 	while (empty($directories)){chdir('..'); $directories = glob('nexus');}
 	require_once(getcwd().'/nexus/main.php');
-		
+
 	$controller = Controller::getInstance();
 	$controller->recoverPOST('login')->recoverPOST('password');
-	
+
 	if ($controller->isString($login) && $controller->isString($password)) {
 
 		if (User::validLogin($login, $password)) {
 			$_SESSION['login'] = $login;
-			
+
 			header("Location: ".basename($_SERVER['REQUEST_URI']));
-			exit();	
-		}	
+			exit();
+		}
 	}
-	
+
 ?>
 
 <!DOCTYPE html>
@@ -24,22 +24,22 @@
 
 <head>
 	<title>CodisArt</title>
-	
+
 	<meta charset="utf-8" />
-	
-	<link rel="stylesheet" href="css/admin.css" />	
-	<link rel="shortcut icon" type="image/x-icon" href="images/admin_favicon.ico" />
+
+	<link rel="stylesheet" href="css/admin.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
 
 <body>
-	
+
 	<div id="global">
 
 		<header>
-			<h1>Back office</h1>			
+			<h1>Back office</h1>
 		</header>
-		
+
 		<div class="contenu connexion">
 			<?php
 				$nom_fichier = basename(__FILE__);
@@ -58,19 +58,14 @@
 					<input class="button" type="submit" value="Login" />
 				</p>
 			</form>
-		
+
 		</div>
-		
+
 		<footer>
 			<h3>© punkka</h3>
-			<h4>Since 2010</h4>			
-		</footer>			
-		
+			<h4>Since 2010</h4>
+		</footer>
 	</div>
-	
-	<script type="text/javascript" src="../script.js"></script>
-	
-</body>
-		
-</html>
 
+</body>
+</html>

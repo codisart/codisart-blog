@@ -5,8 +5,8 @@
 	<title>Accueil</title>
 
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="styles/general.css" />
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="stylesheet" href="css/general.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
 <?php require_once('nexus/main.php'); ?>

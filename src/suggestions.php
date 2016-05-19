@@ -6,9 +6,9 @@
 
 	<meta charset="utf-8" />
 
-	<link href="styles/general.css" rel="stylesheet" />
+	<link href="css/general.css" rel="stylesheet" />
 
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
 <?php require_once('nexus/main.php'); ?>
@@ -28,7 +28,7 @@
 
 			<form id="formMessage" action="suggestions.php" onsubmit="return verificationForm();" method="post">
 
-				<img src="images/fermer.png" />
+				<img src="img/fermer.png" />
 				<h2>Laisser un message :</h2>
 
 				<p>
@@ -105,7 +105,6 @@
 	<?=$templates->render('footer') ?>
 
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="../script_jquery.js"></script>
 	<script>
 	 $(document).ready( function() {
 	 	$('#boutonForm').on('click', function (){

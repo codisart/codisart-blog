@@ -6,10 +6,9 @@
 
 	<meta charset="utf-8" />
 
-	<link href="styles/general.css" rel="stylesheet" />
-	<link href="styles/projects.css" rel="stylesheet" />
+	<link href="css/general.css" rel="stylesheet" />
 
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
 <?php require_once('nexus/main.php'); ?>
@@ -20,7 +19,7 @@
 
 		<div id="contenu" class="projets">
 			<div>
-				<a href="http://apymeal.alwaysdata.net/"><img src="images/APYMeal_screen.jpg" /></a>
+				<a href="http://apymeal.alwaysdata.net/"><img src="img/APYMeal_screen.jpg" /></a>
 				<h1>APYMeal</h1>
 
 				<p>
@@ -30,7 +29,7 @@
 			</div>
 
 			<div>
-				<a href="http://punkka.alwaysdata.net/projets/KiNaN/"><img src="images/KiNaN_screen.jpg" /></a>
+				<a href="http://punkka.alwaysdata.net/projets/KiNaN/"><img src="img/KiNaN_screen.jpg" /></a>
 				<h1>KiNaN</h1>
 
 				<p>
@@ -40,7 +39,7 @@
 			</div>
 
 			<div>
-				<a href="http://punkka.alwaysdata.net/projets/GiftReminder/"><img src="images/VisuelNonDisponible.jpg" /></a>
+				<a href="http://punkka.alwaysdata.net/projets/GiftReminder/"><img src="img/VisuelNonDisponible.jpg" /></a>
 				<h1>Gift Reminder</h1>
 
 				<p>
@@ -50,7 +49,5 @@
 		</div>
 
 	<?=$templates->render('footer') ?>
-
-	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

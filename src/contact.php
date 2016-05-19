@@ -6,10 +6,9 @@
 
 	<meta charset="utf-8" />
 
-	<link href="styles/general.css" rel="stylesheet" />
-	<link href="styles/contact.css" rel="stylesheet" />
+	<link href="css/general.css" rel="stylesheet" />
 
-	 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
 <?php require_once('nexus/main.php'); ?>

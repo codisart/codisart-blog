@@ -1,19 +1,19 @@
-			
-						
+
+
 						/**************************************************/
 						/*		  Fichier CSS pour le blog CodisArt	      */
-						/*		   			by punkka					  */			
+						/*		   			by punkka					  */
 						/*										 		  */
 						/**************************************************/
-						
-						
+
+
 /***** Global ****/
 
 /** Definition de la police Rockwell **/
-@font-face { 
+@font-face {
 	font-family: "Rockwell";
-	src: url(../images/rockwell.eot);
-	src: url(../images/rockwell.eot?#iefix) format('embedded-opentype'), url('../images/rockwell.ttf') format('truetype');
+	src: url(../font/rockwell.eot);
+	src: url(../font/rockwell.eot?#iefix) format('embedded-opentype'), url('../font/rockwell.ttf') format('truetype');
 }
 
 * {margin: 0; padding: 0;}
@@ -26,10 +26,10 @@ input { -webkit-appearance: none; -webkit-border-radius: 0; border-radius: 0;}
 textarea { -webkit-appearance: none; -webkit-border-radius: 0; border-radius: 0;}
 
 
-body {text-align: center; font-family: Rockwell; background: url(../images/stripes.png), url(../images/fond.png) top center no-repeat ; background-size: 12px 12px, 1400px 390px; background-color : #2a2a2a;}
+body {text-align: center; font-family: Rockwell; background: url(../img/stripes.png), url(../img/fond.png) top center no-repeat ; background-size: 12px 12px, 1400px 390px; background-color : #2a2a2a;}
 
 /** Hack IE : Alternative aux multiples backgrounds **/
-body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
+body { background : #3E3E3E url(../img/fond.png) top center no-repeat\9;}
 
 
 /*#global { width: 1200px;}*/
@@ -87,14 +87,14 @@ body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
 #principal .article h6 { font-size: 12px; color: #656565; text-align: left;	text-indent: 20px; padding: 0 20px 0;	font-weight: lighter; }
 #principal .article h6 span { color: #4792d2; }
 
-#principal .article p {font-size: 17px; color: #111111; font-family: Calibri, "Lucida Grande", sans-serif; padding: 0 20px 0; margin-top: 20px; margin-bottom: 25px;}	
+#principal .article p {font-size: 17px; color: #111111; font-family: Calibri, "Lucida Grande", sans-serif; padding: 0 20px 0; margin-top: 20px; margin-bottom: 25px;}
 
 #principal .article em {display: block; height: 20px; font-style: normal; font-size: 13px; text-indent: 0; padding: 0 20px 0;}
 #principal .article em a {color: #444444;}
 #principal .article em a:hover {text-decoration: underline; color: #a9a9a9;}
 
 #principal .article h3 em {font-size: 12px;}
-	
+
 #navigationBlog {width :700px; margin : 20px auto 0;	height : 40px; line-height : 40px; font-size : 16px; text-indent : 0;}
 #navigationBlog a{color : #e71647;}
 #navigationBlog a:hover{text-decoration : underline;}
@@ -109,10 +109,10 @@ body { background : #3E3E3E url(../images/fond.png) top center no-repeat\9;}
 
 #secondaire .encart .recherche p { height: 28px;}
 #secondaire .encart .recherche input { float: left; height: 26px; line-height: 26px; margin: 0; padding:0; border: 1px solid #2a2a2a; outline: none; box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;}
-	
+
 #secondaire .encart .recherche .saisie { width: 170px; font-family: Calibri, "Lucida Grande", sans-serif; font-size: 18px; color: #909090; padding: 0 0 0 7px; font-style: italic; border-right: none; margin-left: 12%; background: #FFFFFF; }
 #secondaire .encart .recherche .bouton { width: 30px; color: #FFFFFF; font-size: 15px; font-family: Rockwell; background: #2a2a2a; text-align: center; border-radius: 0;}
-	
+
 
 /***** projects.php *****/
 
@@ -163,21 +163,21 @@ hr{width:860px;  margin: auto}
 
 
 /***** article.php *****/
-						
+
 #retourArticle {line-height: 45px; color: #444444;}
 #retourArticle:hover {text-decoration: underline; color: #a9a9a9;}
 #nombreCommentaires {padding: 0 20px 25px; text-indent: 0; font-size: 18px; font-family: Calibri; font-weight: 900;}
-				
-#nombreCommentaires a{color : #444444; font-size : 13px; font-weight: 500;}		
-		
+
+#nombreCommentaires a{color : #444444; font-size : 13px; font-weight: 500;}
+
 .commentaire {padding : 0 20px 0;}
 .commentaire h3 {height : 35px; line-height : 35px; margin-bottom: 10px;}
 .commentaire h3 em {color : #4792d2; font-family : calibri; font-size: 12px; font-style: normal;}
 .commentaire p {padding : 10px 15px; margin : 0 20px 20px; border-radius: 10px; -moz-border-radius: 10px; background: #ffffff; font-family : Calibri; line-height : 16px; font-size : 15px; color : #333333;}
-		
-#formCommentaire {padding : 0 20px 0; text-indent : 0;}	
-			
-#formCommentaire h2 {padding-bottom:  25px; text-indent : 0; font-size : 18px; font-family : Calibri; font-weight : 900;}		
+
+#formCommentaire {padding : 0 20px 0; text-indent : 0;}
+
+#formCommentaire h2 {padding-bottom:  25px; text-indent : 0; font-size : 18px; font-family : Calibri; font-weight : 900;}
 
 #formCommentaire p {margin : 0; margin-bottom : 8px; text-indent : 0;}
 #formCommentaire p input[type=text] {color : #222222; font-style : normal;	width : 230px; border : 1px solid #6a6a6a;}

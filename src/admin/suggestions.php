@@ -11,7 +11,7 @@
 	<title>CodisArt - Back Office</title>
 
 	<link rel="stylesheet" href="css/admin.css" />
-	<link rel="shortcut icon" type="image/x-icon" href="images/admin_favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
 

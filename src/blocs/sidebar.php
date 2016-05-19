@@ -3,7 +3,7 @@
 	<h3 class="siderTitre">Who am I ?</h3>
 
 	<p class="profil">
-		<img src="images/profil.jpg" alt="profil"/>
+		<img src="img/profil.jpg" alt="profil"/>
 
 		Bienvenue sur mon blog.<br/><br/>Passionné de<br/> programmation,<br/> je développe des sites<br/> et des applications<br/> internet depuis 4 ans.
 		<br/>Je travaille dans une SS2I.<!--Bienvenue sur mon blog.<br/>  Je m'appelle <em>LoudVoice</em>.<br/>

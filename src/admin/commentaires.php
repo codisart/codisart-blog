@@ -11,7 +11,7 @@
 	<title>CodisArt - Back Office - Commentaires</title>
 
 	<link rel="stylesheet" href="css/admin.css" />
-	<link rel="shortcut icon" type="image/x-icon" href="images/admin_favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
 
@@ -65,7 +65,7 @@
 						<td class="date"><?php echo $comment->getDateOn2Rows(); ?></td>
 						<td class="content"><?php echo $comment->contenu; ?></td>
 						<td class="operations">
-							<img class="delete_comment" src="images/delete.png" title="Supprimer" alt="delete" width="20" data-comment="<?php echo $comment->id; ?>"/>
+							<img class="delete_comment" src="img/delete.png" title="Supprimer" alt="delete" width="20" data-comment="<?php echo $comment->id; ?>"/>
 						</td>
 					</tr>
 				<?php
@@ -89,10 +89,10 @@
 				formulaire('commentaire.php', 'supprimer', $(this).data("comment"));
 			})
 			.on('mouseover',function(){
-				this.src='images/delete_hover.png';
+				this.src='img/delete_hover.png';
 			})
 			.on('mouseout',function(){
-				this.src='images/delete.png';
+				this.src='img/delete.png';
 			});
 
 		});
