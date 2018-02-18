@@ -1,0 +1,7 @@
+{
+    "name": "codisart/codisart-blog",
+    "type": "projet",
+    "require": {
+        "league/plates": "^3.3"
+    }
+}
