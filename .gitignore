@@ -1,2 +1,5 @@
 logs/*
 src/nexus/config.php
+
+# Composer vendors
+vendor
