@@ -88,8 +88,8 @@
 						</td>
 
 						<td class="operations">
-							<img class="edit_article" src="images/edit.png" title="Modifier" alt="edit" width="20" data-article="<?php echo $article->id; ?>" />
-							<img class="delete_article" src="images/delete.png" title="Supprimer" alt="delete" width="20" data-article="<?php echo $article->id; ?>"/>
+							<img class="edit_article" src="img/edit.png" title="Modifier" alt="edit" width="20" data-article="<?php echo $article->id; ?>" />
+							<img class="delete_article" src="img/delete.png" title="Supprimer" alt="delete" width="20" data-article="<?php echo $article->id; ?>"/>
 						</td>
 					</tr>
 					<?php
@@ -121,7 +121,7 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="//cdn.ckeditor.com/4.4.5/full/ckeditor.js"></script>
 	<script type="text/javascript" src="//punkka.alwaysdata.net/blog/js/jquery.lightbox.min.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="../js/script.js"></script>
 
 	<script>
 		$(document).ready( function() {
@@ -135,10 +135,10 @@
 				formulaire('article.php', 'modifier', $(this).data("article"));
 			})
 			.on('mouseover',function(){
-				this.src='images/edit_hover.png';
+				this.src='img/edit_hover.png';
 			})
 			.on('mouseout',function(){
-				this.src='images/edit.png';
+				this.src='img/edit.png';
 			});
 
 
@@ -146,10 +146,10 @@
 				formulaire('article.php', 'supprimer', $(this).data("article"));
 			})
 			.on('mouseover',function(){
-				this.src='images/delete_hover.png';
+				this.src='img/delete_hover.png';
 			})
 			.on('mouseout',function(){
-				this.src='images/delete.png';
+				this.src='img/delete.png';
 			});
 
 

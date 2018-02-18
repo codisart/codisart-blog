@@ -47,8 +47,6 @@
 			return $date->format('j F Y à H:i:s');
 		}
 
-
-
 		public function getContenu() {
 			return nl2br($this->contenu);
 		}
