@@ -27,15 +27,15 @@
 </div>
 
 <?php
-    try {
-        $archives = Blog::getArchives(); // On récupère une collection.
-    }
-    catch (Exception $e) {
-        echo '<!-- LOG : '.$e->getMessage().'-->';
-        $archives = null;
-    }
+	try {
+		$archives = Blog\Blog::getArchives(); // On récupère une collection.
+	}
+	catch (Exception $e) {
+		echo '<!-- LOG : '.$e->getMessage().'-->';
+		$archives = null;
+	}
 
-    if (!empty($archives)) {
+	if (!empty($archives)) {
 ?>
 	<div class="encart">
 		<h3 class="siderTitre">Archives</h3>
@@ -55,5 +55,9 @@
 ?>
 
 <div class="encart">
-	<h3 class="siderTitre" title="Article aléatoire"><a href="article.php?idArticle=<?php echo Blog::getRandomArticle()->id; ?>">Random</a></h3>
+	<h3 class="siderTitre" title="Article aléatoire">
+		<a href="article.php?idArticle=<?= Blog\Blog::getRandomArticle()->id; ?>">
+			Random
+		</a>
+	</h3>
 </div>

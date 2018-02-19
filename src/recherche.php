@@ -21,39 +21,39 @@
 
 			<div id="principal">
 				<?php
-                    $controller = Controller::getInstance();
-                    $controller ->recoverGET('expression')
-                                ->recoverGET('page');
+					$controller = Controller::getInstance();
+					$controller ->recoverGET('expression')
+								->recoverGET('page');
 
-                    if (!$controller->isString($expression)) {
-                        header('Location: ./index.php');
-                        exit;
-                    }
+					if (!$controller->isString($expression)) {
+						header('Location: ./index.php');
+						exit;
+					}
 
-                    echo '<div id=""><br/><h2>Recherche de l\'expression : '.$expression.'</h2><br/></div><hr />';
+					echo '<div id=""><br/><h2>Recherche de l\'expression : '.$expression.'</h2><br/></div><hr />';
 
-                    if (!$controller->isNumber($page)) {
-                        $page = 1;
-                    }
-                    $nombreArticles = 10;
+					if (!$controller->isNumber($page)) {
+						$page = 1;
+					}
+					$nombreArticles = 10;
 
-                    $thisBlog = new Blog();
-                    try {
-                        $articles = $thisBlog->filtreRecherche($expression)->getArticles($page, $nombreArticles);
-                        $maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
-                    }
-                    catch (Exception $e) {
-                        echo '<!-- LOG : '.$e->getMessage().'-->';
-                        $articles = new Collection;
-                        $maxPages = 0;
-                    }
+					$thisBlog = new Blog();
+					try {
+						$articles = $thisBlog->filtreRecherche($expression)->getArticles($page, $nombreArticles);
+						$maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
+					}
+					catch (Exception $e) {
+						echo '<!-- LOG : '.$e->getMessage().'-->';
+						$articles = new \Codisart\Collection;
+						$maxPages = 0;
+					}
 
-                    if (!count($articles)) {
-                        echo "<p>Votre recherche n'a rien donnée.</p>";
-                    }
-                    else {
-                        foreach ($articles as $article) {
-                ?>
+					if (!count($articles)) {
+						echo "<p>Votre recherche n'a rien donnée.</p>";
+					}
+					else {
+						foreach ($articles as $article) {
+				?>
 					<br/>
 
 					<div class="article">
@@ -83,7 +83,7 @@
 
 		<?=$templates->render('footer') ?>
 	</div>
-	
+
 </body>
 
 </html>

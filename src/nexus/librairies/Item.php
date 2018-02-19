@@ -1,5 +1,7 @@
 <?php
 
+namespace Codisart;
+
 /**
  *	@property-read 	string $id
  *	@property 		string $_table

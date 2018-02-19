@@ -9,7 +9,14 @@
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
-<?php require_once('nexus/main.php'); ?>
+<?php
+require_once('nexus/main.php');
+
+use Blog\Blog;
+use Codisart\Collection;
+use Codisart\Controller;
+?>
+
 <body>
 
 	<div id="global">
@@ -54,7 +61,7 @@
 				<br/>
 
 				<div class="article">
-					<?=$templates->render('article/row', array('article' => $article)) ?>
+					<?=$templates->render('article/row', ['article' => $article]) ?>
 				</div>
 
 				<hr/>
@@ -64,12 +71,12 @@
                 ?>
 
 				<div id="navigationBlog">
-					<?=$templates->render('navigation', array(
-                        'url' => 'index.php?',
-                        'maxPages' => $maxPages,
-                        'page' => $page,
-                        'nombreArticles' => $nombreArticles,
-                    )) ?>
+					<?=$templates->render('navigation', [
+						'url' => 'index.php?',
+						'maxPages' => $maxPages,
+						'page' => $page,
+						'nombreArticles' => $nombreArticles,
+					]) ?>
 				</div>
 			</div>
 

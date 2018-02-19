@@ -53,7 +53,7 @@
 
 						defined('REPARTITION') || define('REPARTITION', 10);
 
-						$thisBlog = new Blog();
+						$thisBlog = new Blog\Blog();
 						try {
 							$articles = $thisBlog->getArticles(1, REPARTITION);
 							$totalArticles = $thisBlog->getNombreAllArticles();
@@ -64,8 +64,12 @@
 							$totalArticles = 0;
 						}
 
+<<<<<<< HEAD
 
 						if (empty($articles)) {
+=======
+						if(empty($articles)) {
+>>>>>>> [TECH] Remove manual autoloading and use composer's one
 					?>
 						<tr>
 							<td colspan="4">Il n'y a aucun article à afficher </td>
@@ -82,14 +86,17 @@
 						<td class="date"><?php echo $article->getDate('fr'); ?></td>
 
 						<td class="commentaires">
-							<a href="commentaires.php?id_article=<?php echo $article->id; ?>" title="Voir les commentaires de cet article">
+							<a
+                href="commentaires.php?id_article=<?= $article->id; ?>"
+                title="Voir les commentaires de cet article"
+              >
 								<?php echo $article->getAllCommentaires()->count(); ?>
 							</a>
 						</td>
 
 						<td class="operations">
-							<img class="edit_article" src="img/edit.png" title="Modifier" alt="edit" width="20" data-article="<?php echo $article->id; ?>" />
-							<img class="delete_article" src="img/delete.png" title="Supprimer" alt="delete" width="20" data-article="<?php echo $article->id; ?>"/>
+							<img class="edit_article" src="img/edit.png" title="Modifier" alt="edit" width="20" data-article="<?= $article->id; ?>" />
+							<img class="delete_article" src="img/delete.png" title="Supprimer" alt="delete" width="20" data-article="<?= $article->id; ?>"/>
 						</td>
 					</tr>
 					<?php
