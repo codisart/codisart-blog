@@ -1,22 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-	$directories = glob('nexus');
-	while (empty($directories)) {chdir('..'); $directories = glob('nexus'); }
-	require_once(getcwd().'/nexus/main.php');
-
-	$controller = Controller::getInstance();
-	$controller->recoverPOST('login')->recoverPOST('password');
-
-	if ($controller->isString($login) && $controller->isString($password)) {
-
-		if (User::validLogin($login, $password)) {
-			$_SESSION['login'] = $login;
-
-			header("Location: ".basename($_SERVER['REQUEST_URI']));
-			exit();
-		}
-=======
 $directories = glob('nexus');
 while (empty($directories)){chdir('..'); $directories = glob('nexus');}
 require_once(getcwd().'/nexus/main.php');
@@ -25,12 +8,11 @@ $controller = Controller::getInstance();
 $controller->recoverPOST('login')->recoverPOST('password');
 
 if ($controller->isString($login) && $controller->isString($password)) {
-	if (Blog\User::validLogin($login, $password)) {
-		$_SESSION['login'] = $login;
-		header("Location: ".basename($_SERVER['REQUEST_URI']));
-		exit();
->>>>>>> [TECH] Remove manual autoloading and use composer's one
-	}
+    if (Blog\User::validLogin($login, $password)) {
+        $_SESSION['login'] = $login;
+        header("Location: ".basename($_SERVER['REQUEST_URI']));
+        exit();
+    }
 }
 
 ?>
@@ -58,21 +40,12 @@ if ($controller->isString($login) && $controller->isString($password)) {
 
 		<div class="contenu connexion">
 			<?php
-<<<<<<< HEAD
-                $nom_fichier = basename(__FILE__);
-                $nom_page_appelee = str_replace('?'.$_SERVER['QUERY_STRING'], '', basename($_SERVER['REQUEST_URI']));
-                $nom_redirection_apache = basename($_SERVER['PHP_SELF']);
-                $url_variables = empty($_SERVER['QUERY_STRING']) ? "" : '?'.$_SERVER['QUERY_STRING'];
-            ?>
-			<form action="<?php echo ($nom_page_appelee != $nom_redirection_apache || $nom_fichier == $nom_page_appelee ? 'index.php' : $nom_redirection_apache).$url_variables; ?>" method="POST">
-=======
 				$nom_fichier = basename(__FILE__);
 				$nom_page_appelee = str_replace('?'.$_SERVER['QUERY_STRING'], '', basename($_SERVER['REQUEST_URI']));
 				$nom_redirection_apache = basename($_SERVER['PHP_SELF']);
 				$url_variables = empty($_SERVER['QUERY_STRING']) ? "" : '?'.$_SERVER['QUERY_STRING'];
 			?>
 			<form action="<?= ($nom_page_appelee != $nom_redirection_apache || $nom_fichier == $nom_page_appelee ? 'index.php' : $nom_redirection_apache).$url_variables; ?>" method="POST">
->>>>>>> [TECH] Remove manual autoloading and use composer's one
 				<p>
 					<input type="text" class="textbox" name="login" placeholder="Identifiant" value="<?= isset($login) ? $login : ''; ?>"/>
 				</p>

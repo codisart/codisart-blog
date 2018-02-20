@@ -54,7 +54,7 @@
 					<br/>
 
 					<div class="article">
-						<?=$templates->render('article/row', array('article' => $article)) ?>
+						<?=$templates->render('article/row', ['article' => $article]) ?>
 					</div>
 
 					<hr/>

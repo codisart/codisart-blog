@@ -64,12 +64,7 @@
 							$totalArticles = 0;
 						}
 
-<<<<<<< HEAD
-
-						if (empty($articles)) {
-=======
 						if(empty($articles)) {
->>>>>>> [TECH] Remove manual autoloading and use composer's one
 					?>
 						<tr>
 							<td colspan="4">Il n'y a aucun article à afficher </td>
