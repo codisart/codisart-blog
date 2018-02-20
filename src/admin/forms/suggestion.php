@@ -1,7 +1,7 @@
 <?php	
 	header("Content-Type:text/plain; charset=utf-8");
 
-	while (empty($directories)){chdir('..');$directories = glob('nexus');}
+	while (empty($directories)) {chdir('..'); $directories = glob('nexus'); }
 	require_once(getcwd().'/nexus/main.php');
 	
 	$controller = Controller::getInstance();
@@ -30,5 +30,5 @@
 			</div>
 				
 			<?php
-		exit();
-	}
+        exit();
+    }

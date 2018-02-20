@@ -27,31 +27,31 @@
 </div>
 
 <?php
-	try {
-		$archives = Blog::getArchives(); // On récupère une collection.
-	}
-	catch (Exception $e) {
-		echo '<!-- LOG : '.$e->getMessage().'-->';
-		$archives = null;
-	}
+    try {
+        $archives = Blog::getArchives(); // On récupère une collection.
+    }
+    catch (Exception $e) {
+        echo '<!-- LOG : '.$e->getMessage().'-->';
+        $archives = null;
+    }
 
-	if (!empty($archives)) {
+    if (!empty($archives)) {
 ?>
 	<div class="encart">
 		<h3 class="siderTitre">Archives</h3>
 
 		<ul class="archives">
 		<?php
-			foreach ($archives as $mois => $lien):
-		?>
+            foreach ($archives as $mois => $lien):
+        ?>
 			<li><a href="<?php echo $lien; ?>"><?php echo $mois; ?></a></li>
 		<?php
-			endforeach;
-		?>
+            endforeach;
+        ?>
 		</ul>
 	</div>
 <?php
-	}
+    }
 ?>
 
 <div class="encart">

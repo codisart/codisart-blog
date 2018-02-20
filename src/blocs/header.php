@@ -5,20 +5,20 @@
 	</div>
 
 	<?php
-		$onglets = glob("*.php");
+        $onglets = glob("*.php");
 
-		foreach ($onglets as $onglet) {
-			$onglet = preg_replace("#.php$#", "", $onglet);
-			${$onglet} = '';
-		}
+        foreach ($onglets as $onglet) {
+            $onglet = preg_replace("#.php$#", "", $onglet);
+            ${$onglet} = '';
+        }
 
-		if (!isset($onglet_actif)) {
-			$chemin = $_SERVER['PHP_SELF'];
-			$onglet_actif = preg_replace("#.php$#", "", basename($chemin));
-		}
+        if (!isset($onglet_actif)) {
+            $chemin = $_SERVER['PHP_SELF'];
+            $onglet_actif = preg_replace("#.php$#", "", basename($chemin));
+        }
 
-		${$onglet_actif} = " actif";
-	?>
+        ${$onglet_actif} = " actif";
+    ?>
 	<div class="navigation">
 		<a class="onglet<?php echo $index; ?>" href="index.php">Accueil</a>
 		<a class="onglet<?php echo $projects; ?>" href="projects.php">Projets</a>

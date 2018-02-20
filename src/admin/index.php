@@ -1,6 +1,6 @@
  <?php
-	if (!isset($_SESSION)){session_start();}
-	if (!isset($_SESSION['login'])){require 'connexion.php';exit();}
+	if (!isset($_SESSION)) {session_start(); }
+	if (!isset($_SESSION['login'])) {require 'connexion.php'; exit(); }
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +48,7 @@
 				</thead>
 
 				<tbody id="list_articles"><?php
-						do {$directories = glob('nexus');} while (empty($directories) && chdir('..'));
+						do {$directories = glob('nexus'); } while (empty($directories) && chdir('..'));
 						require_once(getcwd().'/nexus/main.php');
 
 						defined('REPARTITION') || define('REPARTITION', 10);
@@ -59,13 +59,13 @@
 							$totalArticles = $thisBlog->getNombreAllArticles();
 						}
 						catch (Exception $e) {
-							echo '<!-- LOG : '.$e->getMessage().'-->' ;
+							echo '<!-- LOG : '.$e->getMessage().'-->';
 							$articles = null;
 							$totalArticles = 0;
 						}
 
 
-						if(empty($articles)) {
+						if (empty($articles)) {
 					?>
 						<tr>
 							<td colspan="4">Il n'y a aucun article à afficher </td>
@@ -93,8 +93,8 @@
 						</td>
 					</tr>
 					<?php
-							}
-					?>
+                            }
+                    ?>
 				</tbody>
 
 				<tbody>
@@ -105,8 +105,8 @@
 					</tr>
 				</tbody>
 				<?php
-						}
-				?>
+                        }
+                ?>
 
 			</table>
 		</div>

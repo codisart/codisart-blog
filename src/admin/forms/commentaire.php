@@ -1,20 +1,20 @@
 <?php
 
-	while (empty($directories)) {chdir('..'); $directories = glob('nexus'); }
-	require_once(getcwd().'/nexus/main.php');
+    while (empty($directories)) {chdir('..'); $directories = glob('nexus'); }
+    require_once(getcwd().'/nexus/main.php');
 
-	$controller = Controller::getInstance();
+    $controller = Controller::getInstance();
 
-	$controller ->recoverPOST('action')
-				->recoverPOST('id');
+    $controller ->recoverPOST('action')
+                ->recoverPOST('id');
 
-	$titre = $contenu = $form_title = "";
+    $titre = $contenu = $form_title = "";
 
-	if ($action === 'supprimer' && $controller->isNumber($id)) {
+    if ($action === 'supprimer' && $controller->isNumber($id)) {
 
-		$form_title = "Suppression du commentaire"
+        $form_title = "Suppression du commentaire"
 
-			?>
+            ?>
 			<div class="contenu petit">
 				<em>Cliquer à l'extérieur de la modale pour la fermer</em>
 
@@ -33,5 +33,5 @@
 			</div>
 
 			<?php
-			exit();
-	}
+            exit();
+    }

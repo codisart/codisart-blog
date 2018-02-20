@@ -1,6 +1,6 @@
 <?php
 
-	while (empty($directories)){chdir('..');$directories = glob('nexus');}
+	while (empty($directories)) {chdir('..'); $directories = glob('nexus'); }
 	require_once(getcwd().'/nexus/main.php');
 
 	$controller = Controller::getInstance();
@@ -37,7 +37,7 @@
 
 					<p>
 						<input type="hidden" name="action" value="<?php echo $action; ?>" />
-						<?php if ($controller->isNumber($id)){ ?><input type="hidden" name="idArticle" value="<?php echo $id; ?>" /><?php } ?>
+						<?php if ($controller->isNumber($id)) { ?><input type="hidden" name="idArticle" value="<?php echo $id; ?>" /><?php } ?>
 						<input class="button" type="submit"  value="Enregistrer l'article" />
 					</p>
 				</form>
@@ -46,12 +46,12 @@
 			</div>
 		<?php
 
-	}
-	else if ($action === 'supprimer' && $controller->isNumber($id)) {
+    }
+    else if ($action === 'supprimer' && $controller->isNumber($id)) {
 
-		$form_title = "Suppression de l'article"
+        $form_title = "Suppression de l'article"
 
-			?>
+            ?>
 			<div class="contenu petit">
 				<em>Cliquer Ã  l'extÃ©rieur de la modale pour la fermer</em>
 
@@ -70,8 +70,8 @@
 			</div>
 
 			<?php
-			exit();
-	}
-	else {
-		echo '<span class="error" >Erreur</span>';
-	}
+            exit();
+    }
+    else {
+        echo '<span class="error" >Erreur</span>';
+    }
