@@ -4,7 +4,7 @@ namespace Codisart;
 
 class DateTime extends \DateTime {
 
-	const MOIS = array(
+	const MOIS = [
 		1 => "Janvier",
 		2 => "Février",
 		3 => "Mars",
@@ -17,8 +17,7 @@ class DateTime extends \DateTime {
 		10 => "Octobre",
 		11 => "Novembre",
 		12 => "Décembre"
-	);
-
+	];
 
 	public function format($format) {
 		if (preg_match('/(?<![\\\\])F/', $format)) {

@@ -4,10 +4,6 @@ namespace Blog;
 
 class User {
 
-	public function __construct() {
-
-	}
-
 	static public function validLogin($username, $password) {
 		$passwordToCompare = self::getPassword($username);
 

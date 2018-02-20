@@ -2,13 +2,15 @@
 
 namespace Blog;
 
+use Codisart\Item;
+
 /**
  * @property string $_table
  * @property-read string $id
  * @property-read string $titre
  * @property-read string $date
  */
-class Article extends \Item {
+class Article extends Item {
 	protected $_table = 'news';
 
 	protected $titre;
@@ -18,7 +20,7 @@ class Article extends \Item {
 	protected $commentaires;
 
 	public function __construct($id, $titre = '', $date = 0, $contenu = '') {
-		if (!parent::__construct($id)) {
+		if (!$this->init($id)) {
 			$this->id = $id;
 			$this->titre = !empty($titre) ? $titre : null;
 			$this->date = !empty($date) ? $date : null;
@@ -35,7 +37,7 @@ class Article extends \Item {
 			LIMIT 0,1
 		");
 
-		$requete->execute(array('id' => $this->id));
+		$requete->execute(['id' => $this->id]);
 		$donnees = $requete->fetch();
 
 		$this->titre = $donnees['titre'];
@@ -52,8 +54,8 @@ class Article extends \Item {
 		return nl2br($this->contenu);
 	}
 
-	public function getContenuLimite($nbreMots = 20) {
-
+	public function getContenuLimite($nbreMots = 20)
+	{
 		$contenu = $this->getContenu();
 		$contenu_limite = '';
 
@@ -79,7 +81,7 @@ class Article extends \Item {
 
 		$this->commentaires = new \Codisart\Collection();
 
-		$requete->execute(array('id' => $this->id));
+		$requete->execute(['id' => $this->id]);
 
 		if (false !== ($donnees = $requete->fetch())) {
 			do {
@@ -119,7 +121,7 @@ class Article extends \Item {
 		$connexionBDD = connexionBDD();
 
 		$requete = $connexionBDD->prepare("UPDATE news SET $name = ? WHERE id ='$id'");
-		$requete->execute(array($newValue));
+		$requete->execute([$newValue]);
 
 		return $this;
 	}
@@ -129,10 +131,10 @@ class Article extends \Item {
 	public static function ajouter($titre, $contenu) {
 		if (!empty($titre) && !empty($contenu)) {
 			return self::save(
-				array(
+				[
 					'titre' 	=> $titre,
 					'contenu' 	=> $contenu,
-				),
+				],
 				'news'
 			);
 		}

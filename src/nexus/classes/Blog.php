@@ -164,12 +164,12 @@ class Blog extends Reacher {
 		$this->articles = null;
 		$this->_where = null;
 
-		$this->_filtres[] = array(
+		$this->_filtres[] = [
 			"condition" => "contenu LIKE :term OR titre LIKE :term",
-			"value" => array(
+			"value" => [
 				":term" => "%{$query}%"
-			)
-		);
+			]
+		];
 
 		return $this;
 	}
@@ -205,7 +205,7 @@ class Blog extends Reacher {
 			ORDER BY id DESC
 		");
 
-		if (false === $requete->execute(array('mois' => $formattedMonth))) {
+		if (false === $requete->execute(['mois' => $formattedMonth])) {
 			return false;
 		}
 
@@ -226,10 +226,10 @@ class Blog extends Reacher {
 			return $this->_where;
 		}
 
-		$this->_where = array(
+		$this->_where = [
 			'condition' => "",
-			'values' => array()
-		);
+			'values' => []
+		];
 
 		if (!empty($this->_filtres)) {
 			$this->_where['condition'] = 'WHERE 1 = 1 ';

@@ -2,10 +2,12 @@
 
 namespace Blog;
 
+use Codisart\Item;
+
 /**
  * @property string $_table
  */
-class Commentaire extends \Item {
+class Commentaire extends Item {
 	protected $_table = 'commentaires';
 
 	protected $id;
@@ -33,16 +35,15 @@ class Commentaire extends \Item {
 		$this->contenu = $donnees['contenu'];
 	}
 
-
 	public static function ajouter($idArticle, $pseudo, $mail, $comment) {
 		if (!empty($idArticle) && !empty($pseudo) && !empty($mail) && !empty($comment)) {
 			return self::save(
-				array(
+				[
 					'id_news'	=> $idArticle,
 					'pseudo' 	=> $pseudo,
 					'mail' 		=> $mail,
 					'commentaire' 	=> $comment,
-				),
+				],
 				'commentaires'
 			);
 		}

@@ -5,8 +5,7 @@ namespace Codisart;
 class Controller {
 	static private $instance;
 
-	public $variables = array();
-
+	public $variables = [];
 
 	public function __toString() {
 		$string = "<pre>\n Le controller existe et contient les valeurs suivantes: \n ";
@@ -97,7 +96,7 @@ class Controller {
 
 	public function isArray(&$array, $methode) {
 		if (empty($array)) {
-			$array = array();
+			$array = [];
 			return false;
 		}
 
@@ -144,7 +143,7 @@ class Controller {
 		$patternTelephoneNumber = '#^0[1-8]([-. ]?[0-9]{2}){4}$#';
 
 		if (preg_match($patternTelephoneNumber, $nombre)) {
-			$nombre = str_replace(array("-", "_", " "), "", $nombre);
+			$nombre = str_replace(["-", "_", " "], "", $nombre);
 			return true;
 		}
 

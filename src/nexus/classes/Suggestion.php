@@ -2,11 +2,13 @@
 
 namespace Blog;
 
+use Codisart\Item;
+
 /**
  * @property string $_table
  * @property-read string $adresse
  */
-class Suggestion extends \Item {
+class Suggestion extends Item {
 
 	protected $_table = 'messages';
 
@@ -19,7 +21,7 @@ class Suggestion extends \Item {
 	protected $message;
 
 	public function __construct($id, $pseudo = '', $mail = '', $date = 0, $message = '') {
-		if (!parent::__construct($id)) {
+		if (!$this->init($id)) {
 			$this->id = $id;
 
 			$this->pseudo = !empty($pseudo) ? $pseudo : null;
@@ -59,7 +61,7 @@ class Suggestion extends \Item {
 		}
 
 		$requete = connexionBDD()->prepare("INSERT INTO message (pseudo, mail, message) VALUES (?, ?, ?)");
-		return $requete->execute(array($pseudo, $mail, $contenu));
+		return $requete->execute([$pseudo, $mail, $contenu]);
 	}
 
 	/**
