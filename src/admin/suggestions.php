@@ -54,7 +54,7 @@
 					while (empty($directories)) {chdir('..'); $directories = glob('nexus'); }
 					require_once(getcwd().'/nexus/main.php');
 
-					$thisBlog = new Blog();
+					$thisBlog = new Blog\Blog();
 					try {
 						$suggestions = $thisBlog->getAllSuggestions();
 					}
@@ -73,13 +73,13 @@
 					else {
 						foreach ($suggestions as $suggestion) {
 				?>
-					<tr class="message" id="message<?php echo $suggestion->id; ?>">
+					<tr class="message" id="message<?= $suggestion->id; ?>">
 						<td class="checkbox"><input type="checkbox" /></td>
-						<td class="pseudo"><?php echo $suggestion->pseudo; ?></td>
-						<td class="date"><?php echo $suggestion->getDateOn2Rows(); ?></td>
-						<td class="suggestion" ><?php echo $suggestion->message; ?></td>
+						<td class="pseudo"><?= $suggestion->pseudo; ?></td>
+						<td class="date"><?= $suggestion->getDateOn2Rows(); ?></td>
+						<td class="suggestion" ><?= $suggestion->message; ?></td>
 						<td class="operations">
-							<img class="supprimer_suggestion"src="images/delete.png" title="Supprimer" alt="Supprimer" data-suggestion="<?php echo $suggestion->id; ?>" />
+							<img class="supprimer_suggestion"src="images/delete.png" title="Supprimer" alt="Supprimer" data-suggestion="<?= $suggestion->id; ?>" />
 						</td>
 					</tr>
 				<?php

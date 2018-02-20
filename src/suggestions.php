@@ -52,37 +52,37 @@
 			</form>
 
 			<?php
-                $controller = Controller::getInstance();
-                $controller->recoverPOST('asali');
+				$controller = Controller::getInstance();
+				$controller->recoverPOST('asali');
 
-                if (!$asali) {
-                    $controller->recoverPOST('suggestion')->recoverPOST('email')->recoverPOST('pseudo');
-                }
-                if ($controller->isPlainText($suggestion) && $controller->isEmailAddress($email) && $controller->isString($pseudo)) {
-                    try {
-                        Suggestion::ajouter($pseudo, $email, $suggestion);
-                    }
-                    catch (Exception $e) {
-                        echo 'Exception reçue : ', $e->getMessage(), "\n";
-                    }
-                    unset($pseudo, $email, $suggestion);
-                }
+				if (!$asali) {
+					$controller->recoverPOST('suggestion')->recoverPOST('email')->recoverPOST('pseudo');
+				}
+				if ($controller->isPlainText($suggestion) && $controller->isEmailAddress($email) && $controller->isString($pseudo)) {
+					try {
+						Blog\Suggestion::ajouter($pseudo, $email, $suggestion);
+					}
+					catch (Exception $e) {
+						echo 'Exception reçue : ', $e->getMessage(), "\n";
+					}
+					unset($pseudo, $email, $suggestion);
+				}
 
-                $thisBlog = new Blog();
-                try {
-                    $suggestions = $thisBlog->getAllSuggestions();
-                }
-                catch (Exception $e) {
-                    echo '<!-- LOG : '.$e->getMessage().'-->';
-                    $suggestions = null;
-                }
+				$thisBlog = new Blog\Blog();
+				try {
+					$suggestions = $thisBlog->getAllSuggestions();
+				}
+				catch (Exception $e) {
+					echo '<!-- LOG : '.$e->getMessage().'-->';
+					$suggestions = null;
+				}
 
-                if (empty($suggestions)) {
-                    echo "<p>Il n'y a aucune suggestion à afficher </p>";
-                }
-                else {
-                    foreach ($suggestions as $suggestion) {
-            ?>
+				if (empty($suggestions)) {
+					echo "<p>Il n'y a aucune suggestion à afficher </p>";
+				}
+				else {
+					foreach ($suggestions as $suggestion) {
+			?>
 			<div class="message">
 				<h3><?php echo htmlspecialchars($suggestion->pseudo); ?>  <em><?php echo $suggestion->date; ?></em></h3>
 
