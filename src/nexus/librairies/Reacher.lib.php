@@ -6,8 +6,7 @@
  */
 abstract class Reacher {
 
-	protected function fetchAll($query, $className)
-	{
+	protected function fetchAll($query, $className) {
 		$objects = new Collection;
 
 		while ($query && $data = $query->fetch()) {

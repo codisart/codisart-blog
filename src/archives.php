@@ -44,7 +44,7 @@
 						$articles = Blog::getArticlesByMonth($annee, $mois);
 					}
 					catch (Exception $e) {
-						echo '<!-- LOG : '.$e->getMessage().'-->' ;
+						echo '<!-- LOG : '.$e->getMessage().'-->';
 						$articles = null;
 					}
 
@@ -59,15 +59,15 @@
 
 					<hr/>
 				<?php
-						endforeach;
-					else:
-				?>
+                        endforeach;
+                    else:
+                ?>
 					<h5 class="error">Il n'y a pas d'articles enregistrés pour cette période donnée.</h5>
 					<div><a id="retourArticle" href="index.php">Retour à la liste des articles</a></div>
 				<?php
 
-					endif;
-				?>
+                    endif;
+                ?>
 			</div>
 
 			<div id="secondaire">

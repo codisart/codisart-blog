@@ -1,48 +1,48 @@
 <?php
 
-	define('NEXUSDIR', __DIR__.'/');
+    define('NEXUSDIR', __DIR__.'/');
 
-	if (is_file(NEXUSDIR.'config.php')) {
-		include(NEXUSDIR.'config.php');
-	}
-	require(NEXUSDIR.'default.config.php');
-
-
-	function connexionBDD() {
-		try {
-			$connexionBDD = new \PDO(SERVER, USER, PASS);
-			$connexionBDD->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-			$connexionBDD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e) {
-			echo 'Connexion échouée : '.$e->getMessage();
-			return null;
-		}
-
-		return $connexionBDD;
-	}
+    if (is_file(NEXUSDIR.'config.php')) {
+        include(NEXUSDIR.'config.php');
+    }
+    require(NEXUSDIR.'default.config.php');
 
 
-	/***** Classes & Librairies*****/
+    function connexionBDD() {
+        try {
+            $connexionBDD = new \PDO(SERVER, USER, PASS);
+            $connexionBDD->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            $connexionBDD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        catch (Exception $e) {
+            echo 'Connexion échouée : '.$e->getMessage();
+            return null;
+        }
 
-	define("CLASSES", __DIR__."/classes");
-	define("LIBS", __DIR__."/librairies");
+        return $connexionBDD;
+    }
 
-	function loadFile($class) {
-		$parts = explode('\\', $class);
-		$file = end($parts);
 
-		if (is_file(CLASSES."/$file.class.php")) {
-			require CLASSES."/$file.class.php";
-		}
+    /***** Classes & Librairies*****/
 
-		if (is_file(LIBS."/$file.lib.php")) {
-			 require LIBS."/$file.lib.php";
-		}
-	}
+    define("CLASSES", __DIR__."/classes");
+    define("LIBS", __DIR__."/librairies");
 
-	spl_autoload_register("loadFile");
+    function loadFile($class) {
+        $parts = explode('\\', $class);
+        $file = end($parts);
 
-	require '../vendor/autoload.php';
+        if (is_file(CLASSES."/$file.class.php")) {
+            require CLASSES."/$file.class.php";
+        }
 
-	$templates = new League\Plates\Engine('./blocs');
+        if (is_file(LIBS."/$file.lib.php")) {
+                require LIBS."/$file.lib.php";
+        }
+    }
+
+    spl_autoload_register("loadFile");
+
+    require '../vendor/autoload.php';
+
+    $templates = new League\Plates\Engine('./blocs');

@@ -1,6 +1,6 @@
 <?php
-	if (!isset($_SESSION)){session_start();}
-	if (!isset($_SESSION['login'])){require 'connexion.php';exit();}
+	if (!isset($_SESSION)) {session_start(); }
+	if (!isset($_SESSION['login'])) {require 'connexion.php'; exit(); }
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +51,7 @@
 
 			   <tbody>
 			   	<?php
-					while (empty($directories)){chdir('..'); $directories = glob('nexus');}
+					while (empty($directories)) {chdir('..'); $directories = glob('nexus'); }
 					require_once(getcwd().'/nexus/main.php');
 
 					$thisBlog = new Blog();
@@ -59,11 +59,11 @@
 						$suggestions = $thisBlog->getAllSuggestions();
 					}
 					catch (Exception $e) {
-						echo '<!-- LOG : '.$e->getMessage().'-->' ;
+						echo '<!-- LOG : '.$e->getMessage().'-->';
 						$suggestions = null;
 					}
 
-					if(empty($suggestions)) {
+					if (empty($suggestions)) {
 				?>
 					<tr>
 						<td class="load_more" colspan="5">Il n'y a aucune suggestions à afficher </td>
@@ -83,14 +83,14 @@
 						</td>
 					</tr>
 				<?php
-						}
-				?>
+                        }
+                ?>
 					<tr>
 						<td class="load_more" colspan="5">Charger plus de suggestions</td>
 					</tr>
 				<?php
-						}
-				?>
+                        }
+                ?>
 				</tbody>
 
 			</table>

@@ -24,41 +24,41 @@
 				<a id="retourArticle" href="index.php">Retour à la liste des articles</a>
 
 				<?php
-					$controller = Controller::getInstance();
-					$controller
-						->recoverPOST('asali')
-						->recoverPOST('idArticle', 'id');
+                    $controller = Controller::getInstance();
+                    $controller
+                        ->recoverPOST('asali')
+                        ->recoverPOST('idArticle', 'id');
 
-					if (!$asali) {
-						$controller
-							->recoverPOST('comment', 'comment')
-							->recoverPOST('mail', 'mail')
-							->recoverPOST('pseudo', 'pseudo')
-							->recoverPOST('action');
+                    if (!$asali) {
+                        $controller
+                            ->recoverPOST('comment', 'comment')
+                            ->recoverPOST('mail', 'mail')
+                            ->recoverPOST('pseudo', 'pseudo')
+                            ->recoverPOST('action');
 
-						if ('ajouter' === $action) {
-							if (
-								$controller->isString($comment)
-								&& $controller->isEmailAddress($mail)
-								&& $controller->isString($pseudo)
-								&& $controller->isNumber($id)
-							) {
-								try {
-									Commentaire::ajouter($id, $pseudo, $mail, $comment);
-								}
-								catch (Exception $e) {
-									echo '<!-- LOG : '.$e->getMessage().'-->';
-								}
-							}
-							else {
-								echo '<h5 class="error">Votre mail n\'est pas valide !</h5>';
-							}
-						}
-					}
+                        if ('ajouter' === $action) {
+                            if (
+                                $controller->isString($comment)
+                                && $controller->isEmailAddress($mail)
+                                && $controller->isString($pseudo)
+                                && $controller->isNumber($id)
+                            ) {
+                                try {
+                                    Commentaire::ajouter($id, $pseudo, $mail, $comment);
+                                }
+                                catch (Exception $e) {
+                                    echo '<!-- LOG : '.$e->getMessage().'-->';
+                                }
+                            }
+                            else {
+                                echo '<h5 class="error">Votre mail n\'est pas valide !</h5>';
+                            }
+                        }
+                    }
 
-					$controller->recoverGET('idArticle', 'id');
-					$article = new Article($id);
-				?>
+                    $controller->recoverGET('idArticle', 'id');
+                    $article = new Article($id);
+                ?>
 
 				<br/>
 
@@ -84,13 +84,13 @@
 
 				<hr/>
 				<?php
-					$comments = $article->getAllCommentaires();
-				?>
+                    $comments = $article->getAllCommentaires();
+                ?>
 				<h2 id="nombreCommentaires" ><?php echo $comments->count(); ?> commentaires postés. <a href="#formCommentaire">Laisser un commentaire</a></h2>
 
 				<?php
-					foreach ($comments as $comment):
-				?>
+                    foreach ($comments as $comment):
+                ?>
 					<div class="commentaire">
 						<h3><?php echo $comment->pseudo; ?> <em><?php echo $comment->date; ?></em></h3>
 
@@ -99,8 +99,8 @@
 						</p>
 					</div>
 				<?php
-					endforeach;
-				?>
+                    endforeach;
+                ?>
 
 				<hr/>
 
