@@ -28,7 +28,7 @@
 
 <?php
 	try {
-		$archives = Blog\Blog::getArchives(); // On récupère une collection.
+		$archives = \Blog\Blog::getArchives(); // On récupère une collection.
 	}
 	catch (Exception $e) {
 		echo '<!-- LOG : '.$e->getMessage().'-->';
@@ -56,7 +56,7 @@
 
 <div class="encart">
 	<h3 class="siderTitre" title="Article aléatoire">
-		<a href="article.php?idArticle=<?= Blog\Blog::getRandomArticle()->id; ?>">
+		<a href="article.php?idArticle=<?= \Blog\Blog::getRandomArticle()->id; ?>">
 			Random
 		</a>
 	</h3>

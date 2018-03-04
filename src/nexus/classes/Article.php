@@ -46,7 +46,7 @@ class Article extends Item {
 	}
 
 	public function getDate() {
-		$date = new \Codisart\Nexus\DateTime($this->date);
+		$date = new \Codisart\DateTime($this->date);
 		return $date->format('j F Y à H:i:s');
 	}
 

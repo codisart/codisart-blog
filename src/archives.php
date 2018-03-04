@@ -15,16 +15,17 @@
 <body>
 
 	<div id="global">
-		<?=$templates->render('header') ?>
+		<?= $templates->render('header') ?>
 
 		<div id="contenu">
 			<div id="principal">
 
-				<?php
-					$controller = Controller::getInstance();
+			<?php
+				$controller = \Codisart\Controller::getInstance();
 
-					$controller ->recoverGET('a', 'annee')
-								->recoverGET('m', 'mois');
+				$controller
+					->recoverGET('a', 'annee')
+					->recoverGET('m', 'mois');
 
 					if (!$controller->isNumber($mois)
 						|| !$controller->isNumber($annee)
@@ -37,11 +38,11 @@
 					}
 
 				?>
-					<div id=""><br/><h2><?php echo Codisart\Nexus\DateTime::MOIS[$mois]." ".$annee; ?></h2><br/></div><hr />
+					<div id=""><br/><h2><?= \Codisart\DateTime::MOIS[$mois]." ".$annee; ?></h2><br/></div><hr />
 
 				<?php
 					try {
-						$articles = Blog::getArticlesByMonth($annee, $mois);
+						$articles = \Blog\Blog::getArticlesByMonth($annee, $mois);
 					}
 					catch (Exception $e) {
 						echo '<!-- LOG : '.$e->getMessage().'-->';

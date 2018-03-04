@@ -55,7 +55,7 @@ class Blog extends Reacher {
 
 		$where = $this->buildWhereConditions();
 
-		$requete = connexionBDD()->prepare("
+		$requete = \connexionBDD()->prepare("
 			SELECT id, titre, contenu, date
 			FROM news
 			{$where['condition']}
@@ -75,7 +75,7 @@ class Blog extends Reacher {
 	public function getAllArticles() {
 		$where = $this->buildWhereConditions();
 
-		$requete = connexionBDD()->prepare("
+		$requete = \connexionBDD()->prepare("
 			SELECT id, titre, contenu, date
 			FROM news
 			{$where['condition']}
@@ -94,7 +94,7 @@ class Blog extends Reacher {
 	public function getNombreAllArticles() {
 		$where = $this->buildWhereConditions();
 
-		$requete = connexionBDD()->prepare("
+		$requete = \connexionBDD()->prepare("
 			SELECT COUNT(1) as total
 			FROM news
 			{$where['condition']}
@@ -123,14 +123,14 @@ class Blog extends Reacher {
 	 *	@return Article un article au hasard.
 	 */
 	public static function getRandomArticle() {
-		$requete = connexionBDD()->prepare("
+		$requete = \connexionBDD()->prepare("
 			SELECT id, titre, contenu, date
 			FROM news
 			ORDER BY rand() LIMIT 1
 		");
 
 		if (false === $requete->execute() || false === ($donnees = $requete->fetch())) {
-			throw new Exception("Error Processing Request", 1);
+			throw new \Exception("Error Processing Request", 1);
 		}
 
 		return new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
@@ -151,7 +151,7 @@ class Blog extends Reacher {
 		$archives = new \Codisart\Collection();
 
 		while ($requete && $donnees = $requete->fetch()) {
-			$mois = \Codisart\Nexus\DateTime::MOIS[$donnees['mois']].' '.$donnees['year'];
+			$mois = \Codisart\DateTime::MOIS[$donnees['mois']].' '.$donnees['year'];
 			$lien = "archives.php?a={$donnees['year']}&m={$donnees['mois']}";
 			$archives[$mois] = $lien;
 		}
@@ -178,7 +178,7 @@ class Blog extends Reacher {
 	 *	@return Collection collection des suggestions
 	 */
 	public function getAllSuggestions() {
-		$requete = connexionBDD()->prepare("
+		$requete = \connexionBDD()->prepare("
 			SELECT id, pseudo, date, mail, message
 			FROM messages
 			ORDER BY date DESC, id DESC
@@ -198,7 +198,7 @@ class Blog extends Reacher {
 	static public function getArticlesByMonth($year, $month) {
 		$formattedMonth = "$year/$month";
 
-		$requete = connexionBDD()->prepare("
+		$requete = \connexionBDD()->prepare("
 			SELECT id, titre, contenu, date
 			FROM news
 			WHERE DATE_FORMAT(date, '%Y/%c') = :mois

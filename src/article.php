@@ -2,12 +2,10 @@
 <html lang="fr" >
 
 <head>
+	<meta charset="utf-8" />
 	<title>Accueil</title>
 
-	<meta charset="utf-8" />
-
 	<link href="css/general.css" rel="stylesheet" />
-
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 </head>
 
@@ -24,7 +22,7 @@
 				<a id="retourArticle" href="index.php">Retour à la liste des articles</a>
 
 				<?php
-                    $controller = Controller::getInstance();
+                    $controller = \Codisart\Controller::getInstance();
                     $controller
                         ->recoverPOST('asali')
                         ->recoverPOST('idArticle', 'id');
@@ -44,9 +42,9 @@
                                 && $controller->isNumber($id)
                             ) {
                                 try {
-                                    Commentaire::ajouter($id, $pseudo, $mail, $comment);
+                                    \Blog\Commentaire::ajouter($id, $pseudo, $mail, $comment);
                                 }
-                                catch (Exception $e) {
+                                catch (\Exception $e) {
                                     echo '<!-- LOG : '.$e->getMessage().'-->';
                                 }
                             }
@@ -57,7 +55,7 @@
                     }
 
                     $controller->recoverGET('idArticle', 'id');
-                    $article = new Article($id);
+                    $article = new \Blog\   Article($id);
                 ?>
 
 				<br/>

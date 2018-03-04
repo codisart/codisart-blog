@@ -10,7 +10,7 @@ abstract class Item {
 
 	protected function init($data) {
 		if (is_array($data)) {
-			$reflection = new ReflectionClass($this);
+			$reflection = new \ReflectionClass($this);
 			$properties = array_keys($reflection->getdefaultProperties());
 
 			foreach ($data as $key => $value) {
@@ -30,7 +30,7 @@ abstract class Item {
 	 *  @return mixed
 	 */
 	final public function __get($name) {
-		$reflection = new ReflectionClass($this);
+		$reflection = new \ReflectionClass($this);
 		$properties = array_keys($reflection->getdefaultProperties());
 
 		if (isset($this->$name)) {
@@ -80,13 +80,13 @@ abstract class Item {
 
 	public function supprimer() {
 		if (empty($this->_table) || empty($this->id)) {
-			throw new Exception("L'opération de supression de cet article ne peut pas s'effectuer.");
+			throw new \Exception("L'opération de supression de cet article ne peut pas s'effectuer.");
 		}
 
 		$requete = connexionBDD()->prepare("DELETE FROM $this->_table WHERE id = :id");
 
 		if (!$requete->execute(['id' => $this->id])) {
-			throw new Exception("Le message identifié par $this->id a déjà été supprimé de la table $this->_table ou n\'existe pas !");
+			throw new \Exception("Le message identifié par $this->id a déjà été supprimé de la table $this->_table ou n\'existe pas !");
 		}
 
 		return true;

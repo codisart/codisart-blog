@@ -52,7 +52,7 @@
 			</form>
 
 			<?php
-				$controller = Controller::getInstance();
+				$controller = \Codisart\Controller::getInstance();
 				$controller->recoverPOST('asali');
 
 				if (!$asali) {
