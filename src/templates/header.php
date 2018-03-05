@@ -1,8 +1,8 @@
 <div class="header">
 
-		<div class="logo">
-		<h1><a href="index.php">CodisArt</a></h1>
-	</div>
+    <div class="logo">
+        <h1><a href="index.php">CodisArt</a></h1>
+    </div>
 
 	<?php
         $onglets = glob("*.php");

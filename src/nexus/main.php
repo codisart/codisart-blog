@@ -22,4 +22,4 @@ function connexionBDD() {
     return $connexionBDD;
 }
 
-$templates = new League\Plates\Engine('./blocs');
+$templates = new League\Plates\Engine('./templates');

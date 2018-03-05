@@ -1,95 +1,34 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-	<title>Accueil</title>
-
-	<meta charset="utf-8" />
-	<link rel="stylesheet" href="css/general.css" />
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
-</head>
-
 <?php
+
 require_once('nexus/main.php');
 
 use Blog\Blog;
 use Codisart\Collection;
 use Codisart\Controller;
-?>
 
-<body>
+$controller = Controller::getInstance()
+    ->recoverGET('page')
+    ->recoverGET('p', 'page')
+    ->recoverGET('n', 'nombreArticles');
 
-	<div id="global">
-		<?=$templates->render('header') ?>
+$page           = $controller->isNumber($page) ? (int) $page : 1;
+$nombreArticles = $controller->isNumber($nombreArticles) ? $nombreArticles : 10;
 
-		<div id="contenu">
+$thisBlog = new Blog();
+try {
+    $articles = $thisBlog->getArticles($page, $nombreArticles);
+    $maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
+}
+catch (Exception $e) {
+    echo '<!-- LOG : '.$e->getMessage().'-->';
+    $articles = new Collection;
+    $maxPages = 0;
+}
 
-			<div id="principal">
-				<?php
-                    $controller = Controller::getInstance();
-                    $controller ->recoverGET('page')
-                                ->recoverGET('p', 'page')
-                                ->recoverGET('n', 'nombreArticles');
-
-                    $page = $controller->isNumber($page) ? (int) $page : 1;
-                    $nombreArticles = $controller->isNumber($nombreArticles) ? $nombreArticles : 10;
-
-                    // Definition de la première page
-                    define('FIRST_PAGE', 1);
-
-                    // Affichage si première page.
-                    echo (FIRST_PAGE === $page) ? '<div id=""><br/><h2>Derniers Articles</h2><br/></div><hr />' : "";
-
-                    $thisBlog = new Blog();
-                    try {
-                        $articles = $thisBlog->getArticles($page, $nombreArticles);
-                        $maxPages = ceil($thisBlog->getNombreAllArticles()/$nombreArticles);
-                    }
-                    catch (Exception $e) {
-                        echo '<!-- LOG : '.$e->getMessage().'-->';
-                        $articles = new Collection;
-                        $maxPages = 0;
-                    }
-
-                    if (!count($articles)) {
-                        echo "<p>Il n'y a aucun article à afficher.</p>";
-                    }
-                    else {
-                    // Affichage view
-                        foreach ($articles as $article) {
-                ?>
-				<br/>
-
-				<div class="article">
-					<?=$templates->render('article/row', ['article' => $article]) ?>
-				</div>
-
-				<hr/>
-				<?php
-                        }
-                    }
-                ?>
-
-				<div id="navigationBlog">
-					<?=$templates->render('navigation', [
-						'url' => 'index.php?',
-						'maxPages' => $maxPages,
-						'page' => $page,
-						'nombreArticles' => $nombreArticles,
-					]) ?>
-				</div>
-			</div>
-
-			<div id="secondaire">
-				<?=$templates->render('sidebar') ?>
-			</div>
-
-		</div>
-
-	<?=$templates->render('footer') ?>
-
-	</div>
-
-</body>
-
-</html>
+echo $templates->render('pages/index', [
+    'articles' => $articles,
+    'page' => $page,
+    'maxPages' => $maxPages,
+    'nombreArticles' => $nombreArticles,
+    'title' => 'Accueil'
+]);

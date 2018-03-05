@@ -1,6 +1,7 @@
+<div id="navigationBlog">
 <?php
     if ($nombreArticles != 0) {
-		
+
         if ($page > 1 && $page < $maxPages) {
             echo '
 				<div  style="float:left">
@@ -22,3 +23,5 @@
 				</div>';
         }
     }
+?>
+</div>
