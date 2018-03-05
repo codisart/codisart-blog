@@ -195,7 +195,7 @@ class Blog extends Reacher {
 	 * @param  integer $month the chosen month
 	 * @return \Codisart\Collection        The list of the articles
 	 */
-	static public function getArticlesByMonth($year, $month) {
+	public function getArticlesByMonth($year, $month) {
 		$formattedMonth = "$year/$month";
 
 		$requete = \connexionBDD()->prepare("
@@ -205,20 +205,9 @@ class Blog extends Reacher {
 			ORDER BY id DESC
 		");
 
-		if (false === $requete->execute(['mois' => $formattedMonth])) {
-			return false;
-		}
+        $requete->execute(['mois' => $formattedMonth]);
 
-		if (false === ($donnees = $requete->fetch())) {
-			return false;
-		}
-
-		$articles = new \Codisart\Collection();
-		do {
-			$articles[] = new Article($donnees['id'], $donnees['titre'], $donnees['date'], $donnees['contenu']);
-		} while ($donnees = $requete->fetch());
-
-		return $articles;
+		return $this->fetchAll($requete, \Blog\Article::class);
 	}
 
 	protected function buildWhereConditions() {
