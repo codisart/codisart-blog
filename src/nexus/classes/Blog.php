@@ -6,56 +6,56 @@ use Codisart\Reacher;
 
 class Blog extends Reacher {
 
-	protected $page;
-	protected $nombreArticlesPage;
-	protected $articles;
+    protected $page;
+    protected $nombreArticlesPage;
+    protected $articles;
 
-	protected $_filtres;
-	protected $_where;
+    protected $_filtres;
+    protected $_where;
 
-	/**
-	 * constructeur de la classe
-	 */
-	public function __construct() {
-		$this->page = 1;
-		$this->nombreArticlesPage = 10;
+    /**
+     * constructeur de la classe
+     */
+    public function __construct() {
+        $this->page = 1;
+        $this->nombreArticlesPage = 10;
 
-		$this->_filtres = [];
-	}
-
-
-	/**
-	 *	@return integer le numéro de la page
-	 */
-	public function getPage() {
-		return $this->page;
-	}
+        $this->_filtres = [];
+    }
 
 
-	/**
-	 *	@return integer le nombre d'articles de la page
-	 */
-	public function getNombreArticlesPage() {
-		return $this->nombreArticlesPage;
-	}
+    /**
+     *	@return integer le numéro de la page
+     */
+    public function getPage() {
+        return $this->page;
+    }
 
 
-	/**
-	 *	@return Collection les articles de la page demandée
-	 */
-	public function getArticles($page = 1, $nombreArticlesPage = 10) {
-		if (!empty($this->articles)) {
-			return $this->articles;
-		}
+    /**
+     *	@return integer le nombre d'articles de la page
+     */
+    public function getNombreArticlesPage() {
+        return $this->nombreArticlesPage;
+    }
 
-		$this->page = $page;
-		$this->nombreArticlesPage = $nombreArticlesPage;
 
-		$limit = ($this->page - 1) * $this->nombreArticlesPage;
+    /**
+     *	@return Collection les articles de la page demandée
+     */
+    public function getArticles($page = 1, $nombreArticlesPage = 10) {
+        if (!empty($this->articles)) {
+            return $this->articles;
+        }
 
-		$where = $this->buildWhereConditions();
+        $this->page = $page;
+        $this->nombreArticlesPage = $nombreArticlesPage;
 
-		$requete = \connexionBDD()->prepare("
+        $limit = ($this->page - 1) * $this->nombreArticlesPage;
+
+        $where = $this->buildWhereConditions();
+
+        $requete = \connexionBDD()->prepare("
 			SELECT id, titre, contenu, date
 			FROM news
 			{$where['condition']}
@@ -70,7 +70,7 @@ class Blog extends Reacher {
 
 
 	/**
-	 *	@return Collection Tous les articles en base de données selon filtres.
+	 *	@return \Codisart\Collection Tous les articles en base de données selon filtres.
 	 */
 	public function getAllArticles() {
 		$where = $this->buildWhereConditions();
@@ -175,7 +175,7 @@ class Blog extends Reacher {
 	}
 
 	/**
-	 *	@return Collection collection des suggestions
+	 *	@return \Codisart\Collection collection des suggestions
 	 */
 	public function getAllSuggestions() {
 		$requete = \connexionBDD()->prepare("
