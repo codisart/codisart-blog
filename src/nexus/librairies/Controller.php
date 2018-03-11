@@ -131,12 +131,7 @@ class Controller {
 	/***** Special Inputs *****/
 	public function isEmailAddress(&$adresse) {
 		$patternEmailAdress = '#^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.((net)|(com)|(org)|(fr)|(uk))#';
-
-		if (preg_match($patternEmailAdress, $adresse)) {
-			return true;
-		}
-
-		return false;
+		return preg_match($patternEmailAdress, $adresse);
 	}
 
 	public function isTelephoneNumber(&$nombre) {

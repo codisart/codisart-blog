@@ -71,11 +71,7 @@ abstract class Item {
             ")"
         );
 
-        if (!$requete->execute($datas)) {
-            return false;
-        }
-
-        return true;
+        return $requete->execute($datas);
     }
 
     public function supprimer() {

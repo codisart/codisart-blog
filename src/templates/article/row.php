@@ -6,7 +6,7 @@
 <h6>par <span>punkka</span>, posté le <?= $article->getDate('fr') ?></h6>
 
 <p>
-<?=nl2br($article->getContenu()) ?>
+    <?= nl2br($article->getContenu()) ?>
 </p>
 
 <em>
