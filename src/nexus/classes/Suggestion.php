@@ -57,10 +57,10 @@ class Suggestion extends Item {
 	 */
 	public static function ajouter($pseudo, $mail, $contenu) {
 		if (empty($pseudo) || empty($mail) || empty($contenu)) {
-			throw new Exception('Les paramètres ne sont pas correctement renseignés.');
+			throw new \Exception('Les paramètres ne sont pas correctement renseignés.');
 		}
 
-		$requete = connexionBDD()->prepare("INSERT INTO message (pseudo, mail, message) VALUES (?, ?, ?)");
+		$requete = connexionBDD()->prepare("INSERT INTO messages (pseudo, mail, message) VALUES (?, ?, ?)");
 		return $requete->execute([$pseudo, $mail, $contenu]);
 	}
 

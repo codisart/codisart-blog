@@ -1,120 +1,87 @@
-<!DOCTYPE html>
-<html lang="fr" >
+<?php
 
-<head>
-	<title>Suggestions</title>
+require_once('nexus/main.php');
 
-	<meta charset="utf-8" />
+use Blog\Blog;
+use Blog\Suggestion;
+use Codisart\Collection;
+use Codisart\Controller;
 
-	<link href="css/general.css" rel="stylesheet" />
+class SuggestionController
+{
+    private $controller;
+    private $blog;
+    private $templatesEngine;
 
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
-</head>
+    public function __construct(
+        Controller $controller,
+        Blog $blog,
+        $templatesEngine
+    ) {
+        $this->controller = $controller;
+        $this->blog = $blog;
+        $this->templatesEngine = $templatesEngine;
+    }
 
-<?php require_once('nexus/main.php'); ?>
-<body>
+    public function indexAction() : string
+    {
+        if ($this->formIsValid()) {
+            $this->createSuggestion();
+        }
 
-	<div id="global">
-		<?=$templates->render('header') ?>
+        try {
+            $suggestions = $this->blog->getAllSuggestions();
+        } catch (\Exception $e) {
+            return '<!-- LOG : '.$e->getMessage().'-->' . "\n";
+        }
 
-		<div id="contenu" class="contenu suggestions">
+        return $this->renderPage($suggestions);
+    }
 
-			<h1 id="messageAccueil">
-				Je suis à la recherche d'idées d'applications web innovantes à réaliser.<br/>
-				Si vous avez des suggestions, n'hésitez pas à m'en faire part :<br/>
-			</h1>
+    private function formIsValid()
+    {
+        $this->controller->recoverPOST('asali');
 
-			<h2 id="boutonForm" >Laissez-moi une suggestion !</h2>
+        global $asali;
+        if ($asali) {
+            return false;
+        }
 
-			<form id="formMessage" action="suggestions.php" onsubmit="return verificationForm();" method="post">
+        $this->controller
+            ->recoverPOST('suggestion')
+            ->recoverPOST('email')
+            ->recoverPOST('pseudo');
 
-				<img src="img/fermer.png" />
-				<h2>Laisser un message :</h2>
+        global $suggestion, $email, $pseudo;
+        return $this->controller->isPlainText($suggestion)
+            && $this->controller->isEmailAddress($email)
+            && $this->controller->isString($pseudo);
+    }
 
-				<p>
-					<input id="pseudo" name="pseudo" type="text" required="required" value=""/>
-					<label for="pseudo" >Pseudo <em>(obligatoire)</em></label>
-				</p>
+    private function createSuggestion()
+    {
+        try {
+            global $suggestion, $email, $pseudo;
+            Suggestion::ajouter($pseudo, $email, $suggestion);
+        }
+        catch (\Exception $e) {
+            echo '<!-- LOG : '.$e->getMessage().'-->' . "\n";
+        }
+        unset($pseudo, $email, $suggestion);
+    }
 
-				<p>
-					<input id="mail" name="email" type="text" required="required" value="" />
-					<label for="mail" >Email <em>(obligatoire : ne sera pas affiché)</em></label>
-				</p>
+    private function renderPage($suggestions) {
+        return $this->templatesEngine->render('pages/suggestions', [
+            'suggestions' => $suggestions,
+            'title' => 'Suggestions',
+        ]);
+    }
+}
 
-				<p>
-					<textarea id="suggestion" name="suggestion" cols="50" rows="9" required="required"></textarea>
-				</p>
+$suggestionController = new \SuggestionController(
+    Controller::getInstance(),
+    new Blog(),
+    $templates
+);
 
-				<p>
-					<input type="text" name="asali" id="asali" value="" />
-					<input id="submit" name="submit" value="Valider" type="submit" class="button">
-				</p>
-			</form>
-
-			<?php
-                $controller = \Codisart\Controller::getInstance();
-                $controller->recoverPOST('asali');
-
-                if (!$asali) {
-                    $controller->recoverPOST('suggestion')->recoverPOST('email')->recoverPOST('pseudo');
-                }
-                if ($controller->isPlainText($suggestion) && $controller->isEmailAddress($email) && $controller->isString($pseudo)) {
-                    try {
-                        Blog\Suggestion::ajouter($pseudo, $email, $suggestion);
-                    }
-                    catch (Exception $e) {
-                        echo 'Exception reçue : ', $e->getMessage(), "\n";
-                    }
-                    unset($pseudo, $email, $suggestion);
-                }
-
-                $thisBlog = new Blog\Blog();
-                try {
-                    $suggestions = $thisBlog->getAllSuggestions();
-                }
-                catch (Exception $e) {
-                    echo '<!-- LOG : '.$e->getMessage().'-->';
-                    $suggestions = null;
-                }
-
-                if (empty($suggestions)) {
-                    echo "<p>Il n'y a aucune suggestion à afficher </p>";
-                }
-                else {
-                    foreach ($suggestions as $suggestion) {
-            ?>
-			<div class="message">
-				<h3><?php echo htmlspecialchars($suggestion->pseudo); ?>  <em><?php echo $suggestion->date; ?></em></h3>
-
-				<p>
-					<?php echo nl2br($suggestion->message); ?>
-				</p>
-			</div>
-			<div id="navigationSuggestions">
-				<?php
-                    echo "<span>plus de suggestions</span>";
-                ?>
-			</div>
-			<?php
-                    }
-                }
-            ?>
-
-		</div>
-
-	<?=$templates->render('footer') ?>
-
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script>
-	 $(document).ready( function() {
-	 	$('#boutonForm').on('click', function (){
-	 		$('#formMessage').show();
-	 	});
-
-	 	$('#formMessage img').on('click', function (){
-	 		$('#formMessage').hide();
-	 	});
-	 });
-	</script>
-</body>
-</html>
+echo $suggestionController->indexAction();
